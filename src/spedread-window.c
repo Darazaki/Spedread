@@ -57,9 +57,9 @@ spedread_window_skip_trailing_characters (GtkTextIter *iter)
 
       if (current_char == (gunichar)'\n')
         break;
-      else if (g_unichar_isspace (current_char) || g_unichar_ispunct (current_char)) {
+      else if (g_unichar_isspace (current_char) || g_unichar_ispunct (current_char))
         gtk_text_iter_forward_char (iter);
-      } else
+      else
         break;
     }
 }
