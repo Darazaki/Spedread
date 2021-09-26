@@ -1,0 +1,40 @@
+{
+    "app-id" : "n.darazaki.Spedread",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.38",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "spedread",
+    "finish-args" : [
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--share=ipc"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "/share/icons",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "spedread",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "file:///home/dara/x/dev/c/spedread"
+                }
+            ]
+        }
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
+}

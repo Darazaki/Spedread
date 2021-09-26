@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkPopoverMenu" id="main_popover">
+    <property name="can-focus">False</property>
+    <child>
+      <!-- n-columns=2 n-rows=1 -->
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="vexpand">True</property>
+        <property name="row-spacing">7</property>
+        <property name="column-spacing">7</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Milliseconds per Word</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="milliseconds_per_word">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="hexpand">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">main</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <template class="SpedreadWindow" parent="GtkApplicationWindow">
+    <property name="can-focus">False</property>
+    <property name="default-width">600</property>
+    <property name="default-height">300</property>
+    <property name="icon-name">n.darazaki.Spedread</property>
+    <child>
+      <object class="GtkStack" id="stack">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="transition-type">slide-left-right</property>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-start">18</property>
+            <property name="margin-end">18</property>
+            <property name="margin-top">18</property>
+            <property name="margin-bottom">18</property>
+            <child>
+              <object class="GtkTextView" id="input">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="has-default">True</property>
+                <property name="wrap-mode">word</property>
+                <property name="left-margin">12</property>
+                <property name="right-margin">12</property>
+                <property name="top-margin">12</property>
+                <property name="bottom-margin">12</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="name">Text</property>
+            <property name="title" translatable="yes">Text</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="word">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">18</property>
+                <property name="margin-right">18</property>
+                <property name="margin-top">18</property>
+                <property name="vexpand">True</property>
+                <property name="label">Go to "Text" and paste your read!</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleButton" id="reading">
+                <property name="label">gtk-media-play</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="has-default">True</property>
+                <property name="receives-default">False</property>
+                <property name="margin-left">18</property>
+                <property name="margin-right">18</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">18</property>
+                <property name="use-stock">True</property>
+                <property name="always-show-image">True</property>
+                <signal name="toggled" handler="spedread_window_play_toggled" object="SpedreadWindow" swapped="no"/>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="name">Read</property>
+            <property name="title" translatable="yes">Read</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="show-close-button">True</property>
+        <child type="title">
+          <object class="GtkStackSwitcher">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="stack">stack</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="main_popover_opener">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="receives-default">False</property>
+            <property name="popover">main_popover</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">open-menu-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
