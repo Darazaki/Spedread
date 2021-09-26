@@ -29,7 +29,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/dara/x/dev/c/spedread"
+                    "url" : "https://github.com/Darazaki/Spedread"
                 }
             ]
         }
