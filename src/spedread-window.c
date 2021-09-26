@@ -271,3 +271,25 @@ spedread_window_play_toggled (GtkToggleButton *play_button,
   else
     spedread_window_stop_reading (window);
 }
+
+extern void
+spedread_window_about (SPEDREAD_UNUSED void *junk,
+                       SpedreadWindow       *window)
+{
+  g_assert (SPEDREAD_IS_WINDOW (window));
+
+  const gchar *authors[] = {
+    "Naqua Darazaki <n.darazaki@gmail.com>",
+    NULL
+  };
+
+  gtk_show_about_dialog (GTK_WINDOW (window),
+                         "program-name",   "Spedread",
+                         "website",        "https://github.com/Darazaki/Spedread",
+                         "license-type",   GTK_LICENSE_GPL_3_0,
+                         "logo-icon-name", "n.darazaki.Spedread",
+                         "comments",       "Read like a speedrunner",
+                         "version",        PACKAGE_VERSION,
+                         "authors",        authors,
+                         NULL);
+}
