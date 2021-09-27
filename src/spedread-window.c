@@ -192,7 +192,7 @@ spedread_window_init (SpedreadWindow *self)
 
   self->settings = g_settings_new ("n.darazaki.Spedread");
 
-  gtk_spin_button_set_increments (self->milliseconds_per_word, 50, 100);
+  gtk_spin_button_set_increments (self->milliseconds_per_word, 25, 50);
   gtk_spin_button_set_range (self->milliseconds_per_word, 50, 2000);
   g_settings_bind (self->settings, "milliseconds-per-word",
                    self->milliseconds_per_word, "value",
