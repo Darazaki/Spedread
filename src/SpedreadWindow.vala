@@ -141,6 +141,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _play.active = false;
             _play.icon_name = "media-playback-start-symbolic";
             _next.sensitive = false;
+            set_show_movement_buttons (true);
 
             return false;
         } else {
@@ -171,6 +172,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _timeout_id = Timeout.add (ms_per_word, tick, Priority.HIGH);
 
         _play.icon_name = "media-playback-stop-symbolic";
+        set_show_movement_buttons (false);
     }
 
     void stop_reading () {
@@ -178,6 +180,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _play.active = false;
         _play.icon_name = "media-playback-start-symbolic";
+        set_show_movement_buttons (true);   
     }
 
     void play_toggled () {
@@ -187,6 +190,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             start_reading ();
         else
             stop_reading ();
+    }
+
+    void set_show_movement_buttons (bool shown) {
+        _previous.visible = shown;
+        _next.visible = shown;
     }
 
     Gtk.Stack build_main_stack () {
