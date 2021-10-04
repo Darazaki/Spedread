@@ -2,6 +2,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.ToggleButton _play;
     Gtk.SpinButton _ms_per_word;
     Gtk.TextView _input;
+    Gtk.Button _previous;
+    Gtk.Button _next;
     Gtk.Stack _stack;
     Gtk.Label _word;
 
@@ -107,11 +109,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         if (iter.is_end ()) {
             _word.set_text ("Go to \"Text\" and paste your read!");
             _play.sensitive = false;
+            _next.sensitive = false;
         } else {
             next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
             _play.sensitive = true;
+            _next.sensitive = true;
         }
 
         _input_iter = next_iter;
@@ -133,6 +137,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _timeout_id = 0;
             _play.active = false;
             _play.icon_name = "media-playback-start-symbolic";
+            _play.sensitive = false;
+            _next.sensitive = false;
 
             return false;
         } else {
@@ -210,20 +216,22 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _play.clicked.connect (play_toggled);
 
-        var previous = new Gtk.Button () {
+        _previous = new Gtk.Button () {
             icon_name = "go-next-symbolic-rtl",
             sensitive = false
         };
 
-        var next = new Gtk.Button () {
+        _next = new Gtk.Button () {
             icon_name = "go-next-symbolic",
             sensitive = false
         };
 
+        _next.clicked.connect (() => { tick (); });
+
         contents.attach (_word, 0, 0, 3, 1);
-        contents.attach (previous, 0, 1, 1, 1);
+        contents.attach (_previous, 0, 1, 1, 1);
         contents.attach (_play, 1, 1, 1, 1);
-        contents.attach (next, 2, 1, 1, 1);
+        contents.attach (_next, 2, 1, 1, 1);
 
         return contents;
     }
