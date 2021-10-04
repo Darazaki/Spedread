@@ -137,7 +137,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _timeout_id = 0;
             _play.active = false;
             _play.icon_name = "media-playback-start-symbolic";
-            _play.sensitive = false;
             _next.sensitive = false;
 
             return false;
