@@ -112,10 +112,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _next.sensitive = false;
         } else {
             next_word (ref next_iter);
+
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
-            _play.sensitive = true;
-            _next.sensitive = true;
+            
+            var has_next = has_next_word (next_iter);
+            _play.sensitive = has_next;
+            _next.sensitive = has_next;
         }
 
         _input_iter = next_iter;
@@ -144,12 +147,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
+
+            _next.sensitive = has_next_word (next_iter);
         }
 
         _input_iter = next_iter;
 
         // Keep ticking
         return true;
+    }
+
+    bool has_next_word (Gtk.TextIter iter) {
+        skip_whitespaces (ref iter);
+        return !iter.is_end ();
     }
 
     void start_reading () {
