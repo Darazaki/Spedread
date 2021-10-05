@@ -149,6 +149,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
 
+            // TODO: Only do this check when the button is actually shown
             _next.sensitive = has_next_word (next_iter);
         }
 
