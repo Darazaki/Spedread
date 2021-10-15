@@ -148,9 +148,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
-
-            // TODO: Only do this check when the button is actually shown
-            _next.sensitive = has_next_word (next_iter);
         }
 
         _input_iter = next_iter;
@@ -181,7 +178,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _play.active = false;
         _play.icon_name = "media-playback-start-symbolic";
-        set_show_movement_buttons (true);   
+
+        _next.sensitive = has_next_word (_input_iter);
+        set_show_movement_buttons (true);
     }
 
     void play_toggled () {
@@ -244,7 +243,10 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             sensitive = false
         };
 
-        _next.clicked.connect (() => { tick (); });
+        _next.clicked.connect (() => {
+            tick ();
+            _next.sensitive = has_next_word (_input_iter);
+        });
 
         contents.attach (_word, 0, 0, 3, 1);
         contents.attach (_previous, 0, 1, 1, 1);
