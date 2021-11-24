@@ -236,6 +236,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.Stack build_main_stack () {
         var stack = new Gtk.Stack () {
+            transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT,
             margin_bottom = 18,
             margin_top = 18,
             margin_start = 18,
