@@ -1,5 +1,5 @@
 class SpedreadWindow : Gtk.ApplicationWindow {
-    const bool SHOW_PREVIOUS_BUTTON = false;
+    const bool SHOW_PREVIOUS_BUTTON = true;
 
     Gtk.ToggleButton _play;
     Gtk.SpinButton _ms_per_word;
@@ -12,6 +12,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.TextIter _input_iter;
     Settings _settings;
     uint _timeout_id = 0;
+    uint _word_index = 0;
 
     public SpedreadWindow (Gtk.Application app) {
         Object (
@@ -85,35 +86,21 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         skip_trailing_characters (ref iter);
     }
 
-    void previous_word (ref Gtk.TextIter iter) {
-        backward_skip_trailing_characters (ref iter);
-        iter.backward_word_start ();
-    }
+    void previous_word_and_tick () {
+        // TODO: Improve performance by not going through every word again
 
-    void backward_skip_trailing_characters (ref Gtk.TextIter iter) {
-        if (iter.is_start ())
-            return;
-        
-        for (;;) {
-            iter.backward_char ();
-            var current_char = iter.get_char ();
-
-            if (!current_char.isspace ()) {
-                break;
-            }
+        _input.buffer.get_start_iter (out _input_iter);
+        --_word_index;
+        for (uint i = 0; i < _word_index; ++i) {
+            fast_forced_tick ();
         }
+
+        tick ();
+        --_word_index;
     }
 
     bool has_previous_word (Gtk.TextIter iter) {
-        for (;;) {
-            if (iter.is_start ())
-                return false;
-            
-            iter.backward_char ();
-            var c = iter.get_char ();
-            if (!(c.isspace () || c.ispunct ()))
-                return true;
-        }
+        return _word_index != 0;
     }
 
     void view_switched () {
@@ -157,6 +144,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
 
         _input_iter = next_iter;
+        _word_index = 0;
     }
 
     void popover_shown () {
@@ -178,17 +166,30 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _next.sensitive = false;
             set_show_movement_buttons (true);
 
+            // Stop ticking
             return false;
         } else {
             next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
+            ++_word_index;
         }
 
         _input_iter = next_iter;
 
         // Keep ticking
         return true;
+    }
+
+    void fast_forced_tick () {
+        skip_whitespaces (ref _input_iter);
+
+        var iter = _input_iter;
+        var next_iter = iter;
+
+        next_word (ref next_iter);
+
+        _input_iter = next_iter;
     }
 
     bool has_next_word (Gtk.TextIter iter) {
@@ -276,10 +277,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         };
 
         _previous.clicked.connect (() => {
-            previous_word (ref _input_iter);
+            previous_word_and_tick ();
             _next.sensitive = has_next_word (_input_iter);
             _previous.sensitive = has_previous_word (_input_iter);
-            tick ();
         });
 
         _next = new Gtk.Button () {
