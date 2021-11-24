@@ -1,4 +1,6 @@
 class SpedreadWindow : Gtk.ApplicationWindow {
+    const bool SHOW_PREVIOUS_BUTTON = false;
+
     Gtk.ToggleButton _play;
     Gtk.SpinButton _ms_per_word;
     Gtk.TextView _input;
@@ -83,6 +85,37 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         skip_trailing_characters (ref iter);
     }
 
+    void previous_word (ref Gtk.TextIter iter) {
+        backward_skip_trailing_characters (ref iter);
+        iter.backward_word_start ();
+    }
+
+    void backward_skip_trailing_characters (ref Gtk.TextIter iter) {
+        if (iter.is_start ())
+            return;
+        
+        for (;;) {
+            iter.backward_char ();
+            var current_char = iter.get_char ();
+
+            if (!current_char.isspace ()) {
+                break;
+            }
+        }
+    }
+
+    bool has_previous_word (Gtk.TextIter iter) {
+        for (;;) {
+            if (iter.is_start ())
+                return false;
+            
+            iter.backward_char ();
+            var c = iter.get_char ();
+            if (!(c.isspace () || c.ispunct ()))
+                return true;
+        }
+    }
+
     void view_switched () {
         var current_view = _stack.visible_child;
         var input_view = _input.parent;
@@ -110,6 +143,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _word.set_text ("Go to \"Text\" and paste your read!");
             _play.sensitive = false;
             _next.sensitive = false;
+            _previous.sensitive = has_previous_word (next_iter);
         } else {
             next_word (ref next_iter);
 
@@ -119,6 +153,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             var has_next = has_next_word (next_iter);
             _play.sensitive = has_next;
             _next.sensitive = has_next;
+            _previous.sensitive = false;
         }
 
         _input_iter = next_iter;
@@ -180,6 +215,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _play.icon_name = "media-playback-start-symbolic";
 
         _next.sensitive = has_next_word (_input_iter);
+        _previous.sensitive = has_previous_word (_input_iter);
         set_show_movement_buttons (true);
     }
 
@@ -193,7 +229,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     void set_show_movement_buttons (bool shown) {
-        _previous.visible = shown;
+        _previous.visible = shown && SHOW_PREVIOUS_BUTTON;
         _next.visible = shown;
     }
 
@@ -235,8 +271,16 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _previous = new Gtk.Button () {
             icon_name = "go-next-symbolic-rtl",
+            visible = SHOW_PREVIOUS_BUTTON,
             sensitive = false
         };
+
+        _previous.clicked.connect (() => {
+            previous_word (ref _input_iter);
+            _next.sensitive = has_next_word (_input_iter);
+            _previous.sensitive = has_previous_word (_input_iter);
+            tick ();
+        });
 
         _next = new Gtk.Button () {
             icon_name = "go-next-symbolic",
@@ -246,6 +290,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _next.clicked.connect (() => {
             tick ();
             _next.sensitive = has_next_word (_input_iter);
+            _previous.sensitive = has_previous_word (_input_iter);
         });
 
         contents.attach (_word, 0, 0, 3, 1);
