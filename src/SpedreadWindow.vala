@@ -304,6 +304,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.Widget build_text_tab () {
         _input = new Gtk.TextView () {
+            wrap_mode = Gtk.WrapMode.WORD,
             bottom_margin = 12,
             top_margin = 12,
             right_margin = 12,
