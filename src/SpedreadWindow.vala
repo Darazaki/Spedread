@@ -14,6 +14,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     uint _timeout_id = 0;
     uint _word_index = 0;
 
+    Gtk.TextTag _current_word_tag;
+
     public SpedreadWindow (Gtk.Application app) {
         Object (
             application: app,
@@ -29,6 +31,14 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _input.buffer.get_start_iter (out _input_iter);
         _input.buffer.changed.connect (text_changed);
+
+        _current_word_tag = new Gtk.TextTag (null) {
+            background = "purple",
+            background_set = true,
+            foreground = "white",
+            foreground_set = true
+        };
+        _input.buffer.tag_table.add (_current_word_tag);
 
         var switcher = new Gtk.StackSwitcher () {
             stack = _stack
@@ -57,17 +67,25 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
-    void skip_trailing_characters (ref Gtk.TextIter iter) {
+    Gtk.TextIter skip_trailing_characters (ref Gtk.TextIter iter) {
+        var end_of_word = iter;
+
         for (;;) {
             unichar current_char = iter.get_char ();
 
-            if (current_char == (unichar)'\n')
+            if (current_char == (unichar)'\n') {
                 break;
-            else if (current_char.isspace () || current_char.ispunct ())
+            } else if (current_char.ispunct ()) {
                 iter.forward_char ();
-            else
+                end_of_word = iter;
+            } else if (current_char.isspace ()) {
+                iter.forward_char ();
+            } else {
                 break;
+            }
         }
+
+        return end_of_word;
     }
 
     void skip_whitespaces (ref Gtk.TextIter iter) {
@@ -81,9 +99,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
-    void next_word (ref Gtk.TextIter iter) {
+    Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         iter.forward_word_end ();
-        skip_trailing_characters (ref iter);
+        return skip_trailing_characters (ref iter);
     }
 
     void previous_word_and_tick () {
@@ -132,7 +150,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _next.sensitive = false;
             _previous.sensitive = has_previous_word (next_iter);
         } else {
-            next_word (ref next_iter);
+            var end_of_word = next_word (ref next_iter);
 
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
@@ -141,6 +159,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _play.sensitive = has_next;
             _next.sensitive = has_next;
             _previous.sensitive = false;
+
+            highlight_current_word (iter, end_of_word);
         }
 
         _input_iter = next_iter;
@@ -169,16 +189,30 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             // Stop ticking
             return false;
         } else {
-            next_word (ref next_iter);
+            var end_of_word = next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _word.set_text (word);
             ++_word_index;
+
+            // TODO: Only do that when switching back to the "Text" view
+            _input.scroll_to_iter (end_of_word, 0, true, 0, 0.5);
+            highlight_current_word (_input_iter, end_of_word);
         }
 
         _input_iter = next_iter;
 
         // Keep ticking
         return true;
+    }
+
+    void highlight_current_word (Gtk.TextIter start, Gtk.TextIter end) {
+        var buffer = _input.buffer;
+        Gtk.TextIter absolute_start, absolute_end;
+        buffer.get_start_iter (out absolute_start);
+        buffer.get_end_iter (out absolute_end);
+
+        buffer.remove_all_tags (absolute_start, absolute_end);
+        buffer.apply_tag (_current_word_tag, start, end);
     }
 
     void fast_forced_tick () {
