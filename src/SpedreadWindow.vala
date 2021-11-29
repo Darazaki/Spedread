@@ -8,19 +8,20 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.Stack _stack;
 
     Gtk.TextIter _input_iter;
-    Settings _settings;
     uint _timeout_id = 0;
     uint _word_index = 0;
 
-    public SpedreadWindow (Gtk.Application app) {
+    SpedreadApp app {
+        get { return (SpedreadApp) application; }
+    }
+
+    public SpedreadWindow (SpedreadApp app) {
         Object (
             application: app,
             default_height: 400,
             default_width: 600,
             title: "Spedread"
         );
-
-        _settings = new Settings ("n.darazaki.Spedread");
 
         _stack = build_main_stack ();
         _stack.notify["visible-child"].connect (view_switched);
@@ -287,7 +288,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
         _ms_per_word.set_increments (25, 50);
         _ms_per_word.set_range (50, 2000);
-        _settings.bind ("milliseconds-per-word",
+        app.settings.bind ("milliseconds-per-word",
             _ms_per_word, "value",
             GLib.SettingsBindFlags.DEFAULT
         );
