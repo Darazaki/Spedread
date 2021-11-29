@@ -1,9 +1,14 @@
-class SpedreadTextTab : Gtk.ScrolledWindow {
+class SpedreadTextTab : Gtk.Grid {
     public Gtk.TextView input;
-
+    
     Gtk.TextTag _current_word_tag;
-
+    
     public SpedreadTextTab () {
+        Object (
+            hexpand: true,
+            vexpand: true
+        );
+        
         input = new Gtk.TextView () {
             wrap_mode = Gtk.WrapMode.WORD,
             bottom_margin = 12,
@@ -12,9 +17,13 @@ class SpedreadTextTab : Gtk.ScrolledWindow {
             left_margin = 12
         };
 
-        Object (
-            child = input
-        );
+        var scrolled = new Gtk.ScrolledWindow () {
+            child = input,
+            hexpand = true,
+            vexpand = true
+        };
+        
+        attach (scrolled, 0, 0, 1, 1);
 
         _current_word_tag = new Gtk.TextTag (null) {
             background = "purple",
@@ -33,5 +42,9 @@ class SpedreadTextTab : Gtk.ScrolledWindow {
 
         buffer.remove_all_tags (absolute_start, absolute_end);
         buffer.apply_tag (_current_word_tag, start, end);
+    }
+
+    public void scroll_to_position (Gtk.TextIter position) {
+        input.scroll_to_iter (position, 0, true, 0, 0.5);
     }
 }

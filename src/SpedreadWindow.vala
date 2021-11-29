@@ -1,20 +1,16 @@
 class SpedreadWindow : Gtk.ApplicationWindow {
     const bool SHOW_PREVIOUS_BUTTON = true;
 
-    Gtk.ToggleButton _play;
+    SpedreadReadTab _read;
+    SpedreadTextTab _text;
+
     Gtk.SpinButton _ms_per_word;
-    Gtk.TextView _input;
-    Gtk.Button _previous;
-    Gtk.Button _next;
     Gtk.Stack _stack;
-    Gtk.Label _word;
 
     Gtk.TextIter _input_iter;
     Settings _settings;
     uint _timeout_id = 0;
     uint _word_index = 0;
-
-    Gtk.TextTag _current_word_tag;
 
     public SpedreadWindow (Gtk.Application app) {
         Object (
@@ -29,16 +25,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _stack = build_main_stack ();
         _stack.notify["visible-child"].connect (view_switched);
 
-        _input.buffer.get_start_iter (out _input_iter);
-        _input.buffer.changed.connect (text_changed);
-
-        _current_word_tag = new Gtk.TextTag (null) {
-            background = "purple",
-            background_set = true,
-            foreground = "white",
-            foreground_set = true
-        };
-        _input.buffer.tag_table.add (_current_word_tag);
+        _text.input.buffer.get_start_iter (out _input_iter);
+        _text.input.buffer.changed.connect (text_changed);
 
         var switcher = new Gtk.StackSwitcher () {
             stack = _stack
@@ -107,7 +95,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     void previous_word_and_tick () {
         // TODO: Improve performance by not going through every word again
 
-        _input.buffer.get_start_iter (out _input_iter);
+        _text.input.buffer.get_start_iter (out _input_iter);
         --_word_index;
         for (uint i = 0; i < _word_index; ++i) {
             fast_forced_tick ();
@@ -123,7 +111,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     void view_switched () {
         var current_view = _stack.visible_child;
-        var input_view = _input.parent;
+        var input_view = _text.input.parent;
 
         if (current_view == input_view) {
             // "Text" view: focus on the text view
@@ -131,12 +119,12 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             current_view.grab_focus ();
         } else {
             // "Read" view: focus on the play/pause button 
-            _play.grab_focus ();
+            _read.focus_play_button ();
         }
     }
 
     void text_changed () {
-        var buffer = _input.buffer;
+        var buffer = _text.input.buffer;
         var iter = Gtk.TextIter ();
 
         buffer.get_start_iter (out iter);
@@ -145,22 +133,22 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var next_iter = iter;
 
         if (iter.is_end ()) {
-            _word.set_text ("Go to \"Text\" and paste your read!");
-            _play.sensitive = false;
-            _next.sensitive = false;
-            _previous.sensitive = has_previous_word (next_iter);
+            _read.word = "Go to \"Text\" and paste your read!";
+            _read.allow_playing = false;
+            _read.has_next_word = false;
+            _read.has_previous_word = false;
         } else {
             var end_of_word = next_word (ref next_iter);
 
             var word = buffer.get_text (iter, next_iter, true);
-            _word.set_text (word);
+            _read.word = word;
             
             var has_next = has_next_word (next_iter);
-            _play.sensitive = has_next;
-            _next.sensitive = has_next;
-            _previous.sensitive = false;
+            _read.allow_playing = has_next;
+            _read.has_next_word = has_next;
+            _read.has_previous_word = false;
 
-            highlight_current_word (iter, end_of_word);
+            _text.highlight_current_word (iter, end_of_word);
         }
 
         _input_iter = next_iter;
@@ -172,7 +160,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     bool tick () {
-        var buffer = _input.buffer;
+        var buffer = _text.input.buffer;
 
         skip_whitespaces (ref _input_iter);
 
@@ -181,38 +169,27 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         if (iter.is_end ()) {
             _timeout_id = 0;
-            _play.active = false;
-            _play.icon_name = "media-playback-start-symbolic";
-            _next.sensitive = false;
-            set_show_movement_buttons (true);
+            _read.is_playing = false;
+            _read.has_next_word = false;
+            _read.has_previous_word = has_previous_word (iter);
 
             // Stop ticking
             return false;
         } else {
             var end_of_word = next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
-            _word.set_text (word);
+            _read.word = word;
             ++_word_index;
 
             // TODO: Only do that when switching back to the "Text" view
-            _input.scroll_to_iter (end_of_word, 0, true, 0, 0.5);
-            highlight_current_word (_input_iter, end_of_word);
+            _text.scroll_to_position (end_of_word);
+            _text.highlight_current_word (_input_iter, end_of_word);
         }
 
         _input_iter = next_iter;
 
         // Keep ticking
         return true;
-    }
-
-    void highlight_current_word (Gtk.TextIter start, Gtk.TextIter end) {
-        var buffer = _input.buffer;
-        Gtk.TextIter absolute_start, absolute_end;
-        buffer.get_start_iter (out absolute_start);
-        buffer.get_end_iter (out absolute_end);
-
-        buffer.remove_all_tags (absolute_start, absolute_end);
-        buffer.apply_tag (_current_word_tag, start, end);
     }
 
     void fast_forced_tick () {
@@ -239,33 +216,25 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _timeout_id = Timeout.add (ms_per_word, tick, Priority.HIGH);
 
-        _play.icon_name = "media-playback-stop-symbolic";
-        set_show_movement_buttons (false);
+        // TODO: Is it bad to set `_play.active` again here?
+        _read.is_playing = true;
     }
 
     void stop_reading () {
         remove_timeout ();
 
-        _play.active = false;
-        _play.icon_name = "media-playback-start-symbolic";
-
-        _next.sensitive = has_next_word (_input_iter);
-        _previous.sensitive = has_previous_word (_input_iter);
-        set_show_movement_buttons (true);
+        _read.has_next_word = has_next_word (_input_iter);
+        _read.has_previous_word = has_previous_word (_input_iter);
+        _read.is_playing = false;
     }
 
     void play_toggled () {
-        var start_playing = _play.active;
+        var start_playing = _read.is_playing;
 
         if (start_playing)
             start_reading ();
         else
             stop_reading ();
-    }
-
-    void set_show_movement_buttons (bool shown) {
-        _previous.visible = shown && SHOW_PREVIOUS_BUTTON;
-        _next.visible = shown;
     }
 
     Gtk.Stack build_main_stack () {
@@ -277,79 +246,35 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             margin_end = 18
         };
 
-        stack.add_titled (build_text_tab (), "Text", "Text");
-        stack.add_titled (build_read_tab (), "Read", "Read");
+        build_text_tab ();
+        build_read_tab ();
+
+        stack.add_titled (_text, "Text", "Text");
+        stack.add_titled (_read, "Read", "Read");
 
         return stack;
     }
 
-    Gtk.Widget build_read_tab () {
-        var contents = new Gtk.Grid () {
-            column_spacing = 12
-        };
+    void build_read_tab () {
+        _read = new SpedreadReadTab ();
 
-        var word_attributes = new Pango.AttrList ();
-        word_attributes.insert (Pango.attr_scale_new (2));
-        word_attributes.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
+        _read.play_toggled.connect (play_toggled);
 
-        _word = new Gtk.Label ("Go to \"Text\" and paste your read!") {
-            vexpand = true,
-            attributes = word_attributes
-        };
-
-        _play = new Gtk.ToggleButton () {
-            icon_name = "media-playback-start-symbolic",
-            hexpand = true,
-            sensitive = false
-        };
-
-        _play.clicked.connect (play_toggled);
-
-        _previous = new Gtk.Button () {
-            icon_name = "go-next-symbolic-rtl",
-            visible = SHOW_PREVIOUS_BUTTON,
-            sensitive = false
-        };
-
-        _previous.clicked.connect (() => {
+        _read.previous_word.connect (() => {
             previous_word_and_tick ();
-            _next.sensitive = has_next_word (_input_iter);
-            _previous.sensitive = has_previous_word (_input_iter);
+            _read.has_next_word = has_next_word (_input_iter);
+            _read.has_previous_word = has_previous_word (_input_iter);
         });
 
-        _next = new Gtk.Button () {
-            icon_name = "go-next-symbolic",
-            sensitive = false
-        };
-
-        _next.clicked.connect (() => {
+        _read.next_word.connect (() => {
             tick ();
-            _next.sensitive = has_next_word (_input_iter);
-            _previous.sensitive = has_previous_word (_input_iter);
+            _read.has_next_word = has_next_word (_input_iter);
+            _read.has_previous_word = has_previous_word (_input_iter);
         });
-
-        contents.attach (_word, 0, 0, 3, 1);
-        contents.attach (_previous, 0, 1, 1, 1);
-        contents.attach (_play, 1, 1, 1, 1);
-        contents.attach (_next, 2, 1, 1, 1);
-
-        return contents;
     }
 
-    Gtk.Widget build_text_tab () {
-        _input = new Gtk.TextView () {
-            wrap_mode = Gtk.WrapMode.WORD,
-            bottom_margin = 12,
-            top_margin = 12,
-            right_margin = 12,
-            left_margin = 12
-        };
-
-        var scroll = new Gtk.ScrolledWindow () {
-            child = _input
-        };
-
-        return scroll;
+    void build_text_tab () {
+        _text = new SpedreadTextTab ();
     }
 
     Gtk.MenuButton build_menu_button () {

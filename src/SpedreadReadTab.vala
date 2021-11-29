@@ -3,6 +3,9 @@ class SpedreadReadTab : Gtk.Grid {
     public signal void previous_word ();
     public signal void next_word ();
 
+    const string PLAY_ICON = "media-playback-start-symbolic";
+    const string STOP_ICON = "media-playback-stop-symbolic";
+
     Gtk.ToggleButton _play;
     Gtk.Button _previous;
     Gtk.Button _next;
@@ -17,8 +20,10 @@ class SpedreadReadTab : Gtk.Grid {
         get { return _play.active; }
         set {
             _play.active = value;
-            _previous.visible = !value;
-            _next.visible = !value;
+            _play.icon_name = value ? STOP_ICON : PLAY_ICON;
+            value = !value;
+            _previous.visible = value;
+            _next.visible = value;
         }
     }
 
@@ -37,7 +42,7 @@ class SpedreadReadTab : Gtk.Grid {
 
     public SpedreadReadTab () {
         Object (
-            column_spacing = 12
+            column_spacing: 12
         );
 
         var word_attributes = new Pango.AttrList ();
@@ -50,7 +55,7 @@ class SpedreadReadTab : Gtk.Grid {
         };
 
         _play = new Gtk.ToggleButton () {
-            icon_name = "media-playback-start-symbolic",
+            icon_name = PLAY_ICON,
             hexpand = true,
             sensitive = false
         };
@@ -75,5 +80,9 @@ class SpedreadReadTab : Gtk.Grid {
         attach (_previous, 0, 1, 1, 1);
         attach (_play, 1, 1, 1, 1);
         attach (_next, 2, 1, 1, 1);
+    }
+
+    public void focus_play_button () {
+        _play.grab_focus ();
     }
 }
