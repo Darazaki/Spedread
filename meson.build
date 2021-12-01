@@ -6,6 +6,6 @@ dependencies = [
     dependency('gtk4'),
 ]
 
-sources = files('src/SpedreadApp.vala', 'src/SpedreadWindow.vala', 'src/SpedreadTextTab.vala', 'src/SpedreadReadTab.vala')
+sources = files('src/SpedreadApp.vala', 'src/SpedreadWindow.vala', 'src/SpedreadTextTab.vala', 'src/SpedreadReadTab.vala', 'src/SpedreadMenuButton.vala')
 
 executable('spedread', sources, dependencies: dependencies)
