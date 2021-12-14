@@ -248,17 +248,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _read.is_playing = false;
     }
 
-    void play_toggled () {
-        // The play button has just been toggled so its state is the opposite
-        // of what's expected
-        var start_playing = _read.is_playing;
-
-        if (start_playing)
-            start_reading ();
-        else
-            stop_reading ();
-    }
-
     Gtk.Stack build_main_stack () {
         var stack = new Gtk.Stack () {
             transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT,
@@ -280,7 +269,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     void build_read_tab () {
         _read = new SpedreadReadTab ();
 
-        _read.play_toggled.connect (play_toggled);
+        _read.start_reading.connect (start_reading);
+        _read.stop_reading.connect (stop_reading);
 
         _read.previous_word.connect (() => {
             previous_word_and_tick ();

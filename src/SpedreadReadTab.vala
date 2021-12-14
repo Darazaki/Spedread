@@ -1,6 +1,8 @@
 class SpedreadReadTab : Gtk.Grid {
     /** On play button pressed */
-    public signal void play_toggled ();
+    public signal void start_reading ();
+    /** On pause button pressed */
+    public signal void stop_reading ();
     /** On previous word button pressed */
     public signal void previous_word ();
     /** On next word button pressed */
@@ -68,7 +70,7 @@ class SpedreadReadTab : Gtk.Grid {
             sensitive = false
         };
 
-        _play.clicked.connect (() => play_toggled ());
+        _play.clicked.connect (play_toggled);
 
         _previous = new Gtk.Button () {
             icon_name = "go-next-symbolic-rtl",
@@ -93,5 +95,16 @@ class SpedreadReadTab : Gtk.Grid {
     /** Focus the play button so that the space key plays/pauses */
     public void focus_play_button () {
         _play.grab_focus ();
+    }
+
+    void play_toggled () {
+        // The play button has just been toggled so its state is the opposite
+        // of what's expected
+        var start_playing = _play.active;
+
+        if (start_playing)
+            start_reading ();
+        else
+            stop_reading ();
     }
 }
