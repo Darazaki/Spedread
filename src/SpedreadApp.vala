@@ -1,4 +1,5 @@
 public class SpedreadApp : Gtk.Application {
+    /** The application's global settings */
     public GLib.Settings settings;
 
     public SpedreadApp () {

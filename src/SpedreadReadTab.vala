@@ -1,6 +1,9 @@
 class SpedreadReadTab : Gtk.Grid {
+    /** On play button pressed */
     public signal void play_toggled ();
+    /** On previous word button pressed */
     public signal void previous_word ();
+    /** On next word button pressed */
     public signal void next_word ();
 
     const string PLAY_ICON = "media-playback-start-symbolic";
@@ -11,11 +14,13 @@ class SpedreadReadTab : Gtk.Grid {
     Gtk.Button _next;
     Gtk.Label _word;
 
+    /** The text shown on screen */
     public string word {
         get { return _word.get_text (); }
         set { _word.set_text (value); }
     }
 
+    /** Controls the state of the play and movement buttons */
     public bool is_playing {
         get { return _play.active; }
         set {
@@ -27,14 +32,17 @@ class SpedreadReadTab : Gtk.Grid {
         }
     }
 
+    /** Controls whether the next word button should be enabled */
     public bool has_next_word {
         set { _next.sensitive = value; }
     }
 
+    /** Controls whether the previous word button should be enabled */
     public bool has_previous_word {
         set { _previous.sensitive = value; }
     }
 
+    /** Controls whether the play button should be enabled */
     public bool allow_playing {
         get { return _play.sensitive; }
         set { _play.sensitive = value; }
@@ -82,6 +90,7 @@ class SpedreadReadTab : Gtk.Grid {
         attach (_next, 2, 1, 1, 1);
     }
 
+    /** Focus the play button so that the space key plays/pauses */
     public void focus_play_button () {
         _play.grab_focus ();
     }

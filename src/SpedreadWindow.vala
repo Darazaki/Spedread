@@ -11,6 +11,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     uint _timeout_id = 0;
     uint _word_index = 0;
 
+    /** Current application instance, casted to `SpedreadApp` */
     SpedreadApp app {
         get { return (SpedreadApp) application; }
     }
@@ -49,6 +50,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         base.dispose ();
     }
 
+    /** Stop iterating every word automatically */
     void remove_timeout () {
         if (_timeout_id != 0) {
             GLib.Source.remove (_timeout_id);
@@ -56,6 +58,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
+    /** Skip whitespaces and punctuations then return the end of the
+        "end of word" iterator */
     Gtk.TextIter skip_trailing_characters (ref Gtk.TextIter iter) {
         var end_of_word = iter;
 
@@ -88,11 +92,14 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
+    /** Advance the iterator to the next word and return the end of the
+        "end of word" iterator for the previous word */
     Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         iter.forward_word_end ();
         return skip_trailing_characters (ref iter);
     }
 
+    /** Go to the previous word and show it */
     void previous_word_and_tick () {
         // TODO: Improve performance by not going through every word again
 
@@ -124,6 +131,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
+    /** Reset the reading position to the start and show the first word if any */
     void text_changed () {
         var buffer = _text.input.buffer;
         var iter = Gtk.TextIter ();
@@ -134,11 +142,15 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var next_iter = iter;
 
         if (iter.is_end ()) {
+            // No text, disable everything and prompt the user to add something
+            // to read
             _read.word = "Go to \"Text\" and paste your read!";
             _read.allow_playing = false;
             _read.has_next_word = false;
             _read.has_previous_word = false;
         } else {
+            // There's text! Show the first word and highlight it
+
             var end_of_word = next_word (ref next_iter);
 
             var word = buffer.get_text (iter, next_iter, true);
@@ -156,10 +168,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _word_index = 0;
     }
 
+    /** When the main menu is shown */
     void popover_shown () {
         stop_reading ();
     }
 
+    /** Shows the next word if any and update the UI, returning if there's a
+        next word */
     bool tick () {
         var buffer = _text.input.buffer;
 
@@ -169,6 +184,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var next_iter = iter;
 
         if (iter.is_end ()) {
+            // Nothing left to read, update the UI and stop trying to read more
             _timeout_id = 0;
             _read.is_playing = false;
             _read.has_next_word = false;
@@ -177,6 +193,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             // Stop ticking
             return false;
         } else {
+            // A new word has been read! Update the UI to reflect that
             var end_of_word = next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _read.word = word;
@@ -193,6 +210,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         return true;
     }
 
+    /** A faster version of the `tick` function which doesn't check if the next
+        position has a word and doesn't update the UI */
     void fast_forced_tick () {
         skip_whitespaces (ref _input_iter);
 
@@ -230,6 +249,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     void play_toggled () {
+        // The play button has just been toggled so its state is the opposite
+        // of what's expected
         var start_playing = _read.is_playing;
 
         if (start_playing)
