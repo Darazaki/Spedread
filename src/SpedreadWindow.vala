@@ -1,6 +1,4 @@
 class SpedreadWindow : Gtk.ApplicationWindow {
-    const bool SHOW_PREVIOUS_BUTTON = true;
-
     SpedreadReadTab _read;
     SpedreadTextTab _text;
 
