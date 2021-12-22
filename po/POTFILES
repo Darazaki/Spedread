@@ -1,7 +1,7 @@
 data/n.darazaki.Spedread.desktop.in
 data/n.darazaki.Spedread.appdata.xml.in
 data/n.darazaki.Spedread.gschema.xml
-src/window.ui
-src/main.vala
-src/window.vala
-
+src/SpedreadApp.vala
+src/SpedreadReadTab.vala
+src/SpedreadTextTab.vala
+src/SpedreadWindow.vala
