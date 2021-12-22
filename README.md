@@ -10,10 +10,12 @@ along with less eye movements
 ![screenshot](./demo.gif)
 
 - International
-- Play & pause
+- Play, pause, next word & previous word
 - Control the speed at which words are shown
 
 ## Install
+
+This will require a valid Vala compiler and the GTK4 development files:
 
 ```sh
 meson build --buildtype release
