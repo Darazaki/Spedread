@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Spedread
+Comment=Read like a speedrunner
+Exec=spedread
+Terminal=false
+Type=Application
+Categories=GTK;Utility;
+StartupNotify=true
+Keywords=read;fast;
+Icon=n.darazaki.Spedread

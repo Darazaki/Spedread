@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="spedread">
+	<schema id="n.darazaki.Spedread" path="/n/darazaki/Spedread/">
+	  <key name="milliseconds-per-word" type="u">
+	    <summary>Milliseconds Per Word</summary>
+	    <description>
+	      Controls the speed at which words are read in milliseconds per word
+	    </description>
+	    <default>150</default>
+	  </key>
+	</schema>
+</schemalist>

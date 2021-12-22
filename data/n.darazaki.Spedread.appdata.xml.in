@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+	<id>n.darazaki.Spedread.desktop</id>
+	<metadata_license>GPL-3.0-or-later</metadata_license>
+	<project_license>GPL-3.0+</project_license>
+    <launchable type="desktop-id">n.darazaki.Spedread.desktop</launchable>
+    <name>Spedread</name>
+	<launchable>n.darazaki.Spedread.desktop</launchable>
+	<update_contact>n.darazaki@gmail.com</update_contact>
+	<recommends>
+		<control>pointing</control>
+		<control>keyboard</control>
+		<control>touch</control>
+	</recommends>
+	<description>
+		<p>Read like a speed runner!</p>
+		<p>
+			This program will show one word at a time rapidly to allow focusing
+			on the general idea rather than single words along with less eye
+			movements
+		</p>
+	</description>
+	<screenshots>
+		<screenshot type="default">
+			<image>https://github.com/Darazaki/Spedread/raw/v2/demo.gif</image>
+		</screenshot>
+	</screenshots>
+	<url type="homepage">https://github.com/Darazaki/Spedread</url>
+	<url type="bugtracker">https://github.com/Darazaki/Spedread/issues</url>
+	<content_rating type="oars-1.1">
+		<content_attribute id="violence-cartoon">none</content_attribute>
+		<content_attribute id="violence-fantasy">none</content_attribute>
+		<content_attribute id="violence-realistic">none</content_attribute>
+		<content_attribute id="violence-bloodshed">none</content_attribute>
+		<content_attribute id="violence-sexual">none</content_attribute>
+		<content_attribute id="violence-desecration">none</content_attribute>
+		<content_attribute id="violence-slavery">none</content_attribute>
+		<content_attribute id="violence-worship">none</content_attribute>
+		<content_attribute id="drugs-alcohol">none</content_attribute>
+		<content_attribute id="drugs-narcotics">none</content_attribute>
+		<content_attribute id="drugs-tobacco">none</content_attribute>
+		<content_attribute id="sex-nudity">none</content_attribute>
+		<content_attribute id="sex-themes">none</content_attribute>
+		<content_attribute id="sex-homosexuality">none</content_attribute>
+		<content_attribute id="sex-prostitution">none</content_attribute>
+		<content_attribute id="sex-adultery">none</content_attribute>
+		<content_attribute id="sex-appearance">none</content_attribute>
+		<content_attribute id="language-profanity">none</content_attribute>
+		<content_attribute id="language-humor">none</content_attribute>
+		<content_attribute id="language-discrimination">none</content_attribute>
+		<content_attribute id="social-chat">none</content_attribute>
+		<content_attribute id="social-info">none</content_attribute>
+		<content_attribute id="social-audio">none</content_attribute>
+		<content_attribute id="social-location">none</content_attribute>
+		<content_attribute id="social-contacts">none</content_attribute>
+		<content_attribute id="money-purchasing">none</content_attribute>
+		<content_attribute id="money-gambling">none</content_attribute>
+    </content_rating>
+	<custom>
+		<value key="Purism::form_factor">workstation</value>
+		<!-- Not yet: <value key="Purism::form_factor">mobile</value> -->
+	</custom>
+</component>
