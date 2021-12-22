@@ -294,6 +294,15 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             margin_end = 6
         };
 
+        var popover = new Gtk.Popover () {
+            child = contents
+        };
+
+        var button = new Gtk.MenuButton () {
+            icon_name = "open-menu-symbolic",
+            popover = popover
+        };
+
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
         _ms_per_word.set_increments (25, 50);
         _ms_per_word.set_range (50, 2000);
@@ -322,15 +331,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         contents.attach (new Gtk.Label ("Milliseconds per Word"), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
         contents.attach (about_button, 0, 1, 2, 1);
-
-        var popover = new Gtk.Popover () {
-            child = contents
-        };
-
-        var button = new Gtk.MenuButton () {
-            icon_name = "open-menu-symbolic",
-            popover = popover
-        };
 
         popover.show.connect (popover_shown);
 
