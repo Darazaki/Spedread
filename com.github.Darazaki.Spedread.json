@@ -29,8 +29,8 @@
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/Darazaki/Spedread.git"
+                    "type": "dir",
+                    "path": "."
                 }
             ]
         }
