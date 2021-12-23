@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
 	<id>n.darazaki.Spedread.desktop</id>
-	<metadata_license>GPL-3.0-or-later</metadata_license>
-	<project_license>GPL-3.0+</project_license>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0-or-later</project_license>
     <launchable type="desktop-id">n.darazaki.Spedread.desktop</launchable>
     <name>Spedread</name>
+	<developer_name>Naqua Darazaki</developer_name>
 	<launchable>n.darazaki.Spedread.desktop</launchable>
 	<update_contact>n.darazaki@gmail.com</update_contact>
 	<recommends>
@@ -12,6 +13,7 @@
 		<control>keyboard</control>
 		<control>touch</control>
 	</recommends>
+	<summary>GTK speed reading software: Read like a speedrunner!</summary>
 	<description>
 		<p>Read like a speed runner!</p>
 		<p>
@@ -22,7 +24,7 @@
 	</description>
 	<screenshots>
 		<screenshot type="default">
-			<image>https://github.com/Darazaki/Spedread/raw/v2/demo.gif</image>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/demo.gif</image>
 		</screenshot>
 	</screenshots>
 	<url type="homepage">https://github.com/Darazaki/Spedread</url>
