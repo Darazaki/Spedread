@@ -5,8 +5,9 @@
 	<project_license>GPL-3.0-or-later</project_license>
     <launchable type="desktop-id">com.github.darazaki.Spedread.desktop</launchable>
     <name>Spedread</name>
-	<developer_name>Naqua Darazaki</developer_name>
-	<launchable>com.github.darazaki.Spedread.desktop</launchable>
+	<developer_name translatable="no">Naqua Darazaki</developer_name>
+	<launchable type="desktop-id">com.github.darazaki.Spedread.desktop</launchable>
+	<translation type="gettext">com.github.darazaki.Spedread</translation>
 	<update_contact>n.darazaki@gmail.com</update_contact>
 	<recommends>
 		<control>pointing</control>
@@ -60,6 +61,21 @@
     </content_rating>
 	<custom>
 		<value key="Purism::form_factor">workstation</value>
-		<!-- Not yet: <value key="Purism::form_factor">mobile</value> -->
+		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
+	<releases>
+		<release version="2.0.0" date="2021-12-24">
+            <description>
+                <p>New:</p>
+                <ul>
+                    <li>Previous/next word buttons</li>
+					<li>Highlight and follow current word</li>
+                </ul>
+				<p>Changes:</p>
+				<ul>
+					<li>Ported from C + GTK3 to Vala + GTK4</li>
+				</ul>
+            </description>
+        </release>
+	</releases>
 </component>
