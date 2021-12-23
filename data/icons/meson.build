@@ -1,4 +1,4 @@
-application_id = 'com.github.darazaki.Spedread'
+application_id = 'com.github.Darazaki.Spedread'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(
