@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-  input: 'n.darazaki.Spedread.desktop.in',
-  output: 'n.darazaki.Spedread.desktop',
+  input: 'com.github.darazaki.Spedread.desktop.in',
+  output: 'com.github.darazaki.Spedread.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -15,8 +15,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'n.darazaki.Spedread.appdata.xml.in',
-  output: 'n.darazaki.Spedread.appdata.xml',
+  input: 'com.github.darazaki.Spedread.appdata.xml.in',
+  output: 'com.github.darazaki.Spedread.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -29,7 +29,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('n.darazaki.Spedread.gschema.xml',
+install_data('com.github.darazaki.Spedread.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

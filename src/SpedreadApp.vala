@@ -4,7 +4,7 @@ public class SpedreadApp : Gtk.Application {
 
     public SpedreadApp () {
         Object (
-            application_id: "n.darazaki.Spedread",
+            application_id: "com.github.darazaki.Spedread",
             flags: ApplicationFlags.NON_UNIQUE
         );
 
@@ -13,7 +13,7 @@ public class SpedreadApp : Gtk.Application {
         GLib.Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         GLib.Intl.textdomain (GETTEXT_PACKAGE);
 
-        settings = new Settings ("n.darazaki.Spedread");
+        settings = new Settings ("com.github.darazaki.Spedread");
     }
 
     protected override void activate () {

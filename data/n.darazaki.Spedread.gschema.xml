@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="spedread">
-	<schema id="n.darazaki.Spedread" path="/n/darazaki/Spedread/">
+	<schema id="com.github.darazaki.Spedread" path="/com/github/darazaki/Spedread/">
 	  <key name="milliseconds-per-word" type="u">
 	    <summary>Milliseconds Per Word</summary>
 	    <description>

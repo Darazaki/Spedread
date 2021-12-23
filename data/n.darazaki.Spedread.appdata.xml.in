@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>n.darazaki.Spedread.desktop</id>
+	<id>com.github.darazaki.Spedread.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
-    <launchable type="desktop-id">n.darazaki.Spedread.desktop</launchable>
+    <launchable type="desktop-id">com.github.darazaki.Spedread.desktop</launchable>
     <name>Spedread</name>
 	<developer_name>Naqua Darazaki</developer_name>
-	<launchable>n.darazaki.Spedread.desktop</launchable>
+	<launchable>com.github.darazaki.Spedread.desktop</launchable>
 	<update_contact>n.darazaki@gmail.com</update_contact>
 	<recommends>
 		<control>pointing</control>
