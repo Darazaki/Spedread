@@ -1,0 +1,42 @@
+# Translation for the Spedread project.
+# Copyright (C) 2021
+# This file is distributed under the same license as the Spedread package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: n.darazaki.Spedread\n"
+"Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
+"POT-Creation-Date: 2021-12-23 01:10+0100\n"
+"PO-Revision-Date: 2021-12-23 01:16+0100\n"
+"Last-Translator: Naqua Darazaki <n.darazaki@gmail.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/SpedreadReadTab.vala:62 src/SpedreadWindow.vala:145
+msgid "Go to \"Text\" and paste your read!"
+msgstr "Allez dans \"Texte\" et collez votre lecture !"
+
+#: src/SpedreadWindow.vala:261
+msgid "Text"
+msgstr "Texte"
+
+#: src/SpedreadWindow.vala:262
+msgid "Read"
+msgstr "Lecture"
+
+#: src/SpedreadWindow.vala:314
+msgid "About Spedread..."
+msgstr "À propos de Spedread..."
+
+#: src/SpedreadWindow.vala:325
+msgid "Read like a speedrunner"
+msgstr "Lisez comme un speedrunner"
+
+#: src/SpedreadWindow.vala:331
+msgid "Milliseconds per Word"
+msgstr "Millisecondes par Mot"

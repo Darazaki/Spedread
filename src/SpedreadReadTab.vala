@@ -59,7 +59,7 @@ class SpedreadReadTab : Gtk.Grid {
         word_attributes.insert (Pango.attr_scale_new (2));
         word_attributes.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
-        _word = new Gtk.Label ("Go to \"Text\" and paste your read!") {
+        _word = new Gtk.Label (_("Go to \"Text\" and paste your read!")) {
             vexpand = true,
             attributes = word_attributes
         };

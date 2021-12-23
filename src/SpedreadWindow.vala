@@ -142,7 +142,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         if (iter.is_end ()) {
             // No text, disable everything and prompt the user to add something
             // to read
-            _read.word = "Go to \"Text\" and paste your read!";
+            _read.word = _("Go to \"Text\" and paste your read!");
             _read.allow_playing = false;
             _read.has_next_word = false;
             _read.has_previous_word = false;
@@ -258,8 +258,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         build_text_tab ();
         build_read_tab ();
 
-        stack.add_titled (_text, "Text", "Text");
-        stack.add_titled (_read, "Read", "Read");
+        stack.add_titled (_text, "Text", _("Text"));
+        stack.add_titled (_read, "Read", _("Read"));
 
         return stack;
     }
@@ -311,7 +311,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             GLib.SettingsBindFlags.DEFAULT
         );
 
-        var about_button = new Gtk.Button.with_label ("About Spedread...");
+        var about_button = new Gtk.Button.with_label (_("About Spedread..."));
         about_button.clicked.connect (() => {
             var authors = new string[] {
                 "Naqua Darazaki <n.darazaki@gmail.com>"
@@ -322,13 +322,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 "website", "https://github.com/Darazaki/Spedread",
                 "license-type", Gtk.License.GPL_3_0,
                 "logo-icon-name", "n.darazaki.Spedread",
-                "comments", "Read like a speedrunner",
+                "comments", _("Read like a speedrunner"),
                 "version", "2.0.0",
                 "authors", authors
             );
         });
 
-        contents.attach (new Gtk.Label ("Milliseconds per Word"), 0, 0, 1, 1);
+        contents.attach (new Gtk.Label (_("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
         contents.attach (about_button, 0, 1, 2, 1);
 
