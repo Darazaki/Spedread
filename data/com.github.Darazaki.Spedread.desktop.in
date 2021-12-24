@@ -6,5 +6,5 @@ Terminal=false
 Type=Application
 Categories=GTK;Utility;
 StartupNotify=true
-Keywords=read;fast;
+Keywords=read;fast;speed;reading;
 Icon=com.github.Darazaki.Spedread
