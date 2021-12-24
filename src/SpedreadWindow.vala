@@ -322,7 +322,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 "website", "https://github.com/Darazaki/Spedread",
                 "license-type", Gtk.License.GPL_3_0,
                 "logo-icon-name", "com.github.Darazaki.Spedread",
-                "comments", _("Read like a speedrunner"),
+                "comments", _("Read like a speedrunner!"),
                 "version", VERSION,
                 "authors", authors
             );

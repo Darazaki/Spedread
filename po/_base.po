@@ -33,10 +33,25 @@ msgstr ""
 msgid "About Spedread..."
 msgstr ""
 
-#: src/SpedreadWindow.vala:325
-msgid "Read like a speedrunner"
+#: src/SpedreadWindow.vala:325 data/com.github.Darazaki.Spedread.desktop.in:4
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
+msgid "Read like a speedrunner!"
 msgstr ""
 
 #: src/SpedreadWindow.vala:331
 msgid "Milliseconds per Word"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.desktop.in:10
+msgid "read;fast;speed;reading;"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:17
+msgid "GTK speed reading software: Read like a speedrunner!"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:20
+msgid ""
+"This program will show one word at a time rapidly to allow focusing on the "
+"general idea rather than single words along with less eye movements."
 msgstr ""

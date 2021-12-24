@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Spedread
-Comment=Read like a speedrunner
+Comment=Read like a speedrunner!
 Exec=spedread
 Terminal=false
 Type=Application
