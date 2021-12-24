@@ -7,7 +7,7 @@
     <name>Spedread</name>
 	<developer_name translatable="no">Naqua Darazaki</developer_name>
 	<launchable type="desktop-id">com.github.Darazaki.Spedread.desktop</launchable>
-	<translation type="gettext">com.github.Darazaki.Spedread</translation>
+	<translation type="gettext">spedread</translation>
 	<update_contact>n.darazaki@gmail.com</update_contact>
 	<recommends>
 		<control>pointing</control>
