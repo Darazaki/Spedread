@@ -25,7 +25,13 @@
 	</description>
 	<screenshots>
 		<screenshot type="default">
-			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/demo.gif</image>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/data/screenshots/0.png</image>
+		</screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/data/screenshots/1.png</image>
+		</screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/data/screenshots/2.png</image>
 		</screenshot>
 	</screenshots>
 	<url type="homepage">https://github.com/Darazaki/Spedread</url>
