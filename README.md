@@ -15,11 +15,41 @@ along with less eye movements
 
 ## Install
 
+### Flatpak
+
+This application is available as a Flatpak on Flathub:
+
+<a href='https://flathub.org/apps/details/com.github.Darazaki.Spedread'>
+    <img width='180' alt='Download on Flathub'
+    src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
+</a>
+
+### Build from source (native install)
+
 This will require a valid Vala compiler and the GTK4 development files:
 
 ```sh
-meson build --buildtype release
+git clone https://github.com/Darazaki/Spedread spedread
+cd spedread
+meson build --buildtype=release --prefix=/usr
 cd build
 ninja
 sudo ninja install
 ```
+
+You can also run `sudo ninja uninstall` from the `build/` directory to
+uninstall Spedread after having installed it
+
+### Build from source (Flatpak install)
+
+This will require having the `flatpak-builder` command installed along with
+version 41 of the `org.gnome.Sdk` Flatpak package:
+
+```sh
+git clone https://github.com/Darazaki/Spedread spedread
+cd spedread
+dev-scripts/build.sh --install
+```
+
+Spedread will then be installed as a Flatpak application and can be managed as
+such
