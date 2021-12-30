@@ -234,7 +234,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _timeout_id = Timeout.add (ms_per_word, tick, Priority.HIGH);
 
-        // TODO: Is it bad to set `_play.active` again here?
         _read.is_playing = true;
     }
 
