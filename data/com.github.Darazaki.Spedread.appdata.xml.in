@@ -42,6 +42,14 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.0.2" date="2021-12-30">
+			<description>
+				<p>Changes:</p>
+				<ul>
+					<li>Slightly improve performance and energy consumption while reading</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.0.1" date="2021-12-28">
 			<description>
 				<p>New:</p>
