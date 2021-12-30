@@ -211,6 +211,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         return true;
     }
 
+    /** Scroll to the current word and highlight it inside the "Text" tab */
     void update_text_position () {
         _text.scroll_to_position (_end_of_word);
         _text.highlight_current_word (_previous_iter, _end_of_word);
