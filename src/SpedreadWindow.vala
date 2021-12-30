@@ -6,6 +6,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.Stack _stack;
 
     Gtk.TextIter _input_iter;
+    Gtk.TextIter _previous_iter;
+    Gtk.TextIter _end_of_word;
     uint _timeout_id = 0;
     uint _word_index = 0;
 
@@ -27,6 +29,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _text.input.buffer.get_start_iter (out _input_iter);
         _text.input.buffer.changed.connect (text_changed);
+        _previous_iter = _input_iter;
+        _end_of_word = _input_iter;
 
         var switcher = new Gtk.StackSwitcher () {
             stack = _stack
@@ -137,6 +141,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         buffer.get_start_iter (out iter);
         skip_whitespaces (ref iter);
         
+        _previous_iter = iter;
         var next_iter = iter;
 
         if (iter.is_end ()) {
@@ -149,7 +154,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // There's text! Show the first word and highlight it
 
-            var end_of_word = next_word (ref next_iter);
+            _end_of_word = next_word (ref next_iter);
 
             var word = buffer.get_text (iter, next_iter, true);
             _read.word = word;
@@ -159,7 +164,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _read.has_next_word = has_next;
             _read.has_previous_word = false;
 
-            _text.highlight_current_word (iter, end_of_word);
+            _text.highlight_current_word (iter, _end_of_word);
         }
 
         _input_iter = next_iter;
@@ -187,25 +192,28 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _read.is_playing = false;
             _read.has_next_word = false;
             _read.has_previous_word = has_previous_word (iter);
+            update_text_position ();
 
             // Stop ticking
             return false;
         } else {
             // A new word has been read! Update the UI to reflect that
-            var end_of_word = next_word (ref next_iter);
+            _end_of_word = next_word (ref next_iter);
             var word = buffer.get_text (iter, next_iter, true);
             _read.word = word;
             ++_word_index;
-
-            // TODO: Only do that when switching back to the "Text" view
-            _text.scroll_to_position (end_of_word);
-            _text.highlight_current_word (_input_iter, end_of_word);
         }
 
+        _previous_iter = _input_iter;
         _input_iter = next_iter;
 
         // Keep ticking
         return true;
+    }
+
+    void update_text_position () {
+        _text.scroll_to_position (_end_of_word);
+        _text.highlight_current_word (_previous_iter, _end_of_word);
     }
 
     /** A faster version of the `tick` function which doesn't check if the next
@@ -243,6 +251,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _read.has_next_word = has_next_word (_input_iter);
         _read.has_previous_word = has_previous_word (_input_iter);
         _read.is_playing = false;
+        update_text_position ();
     }
 
     Gtk.Stack build_main_stack () {
@@ -273,12 +282,14 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             previous_word_and_tick ();
             _read.has_next_word = has_next_word (_input_iter);
             _read.has_previous_word = has_previous_word (_input_iter);
+            update_text_position ();
         });
 
         _read.next_word.connect (() => {
             tick ();
             _read.has_next_word = has_next_word (_input_iter);
             _read.has_previous_word = has_previous_word (_input_iter);
+            update_text_position ();
         });
     }
 
