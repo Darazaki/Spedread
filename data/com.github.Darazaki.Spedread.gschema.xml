@@ -13,7 +13,7 @@
 	    <description>
 	      Controls the font used to show the words inside the "Read" tab
 	    </description>
-	    <default>"Arial 10"</default>
+	    <default>"Bold 20"</default>
 	  </key>
 	</schema>
 </schemalist>
