@@ -22,6 +22,15 @@ class SpedreadReadTab : Gtk.Grid {
         set { _word.set_text (value); }
     }
 
+    /** The font used to show the current word */
+    public string font {
+        set {
+            var font_attribute = build_font_attribute (value);
+            var attributes = _word.attributes;
+            attributes.change (font_attribute.copy ());
+        }
+    }
+
     /** Controls the state of the play and movement buttons */
     public bool is_playing {
         get { return _play.active; }
@@ -106,5 +115,12 @@ class SpedreadReadTab : Gtk.Grid {
             start_reading ();
         else
             stop_reading ();
+    }
+
+    Pango.AttrFontDesc build_font_attribute (string font) {
+        var description = Pango.FontDescription.from_string (font);
+        var attribute = new Pango.AttrFontDesc (description);
+
+        return attribute;
     }
 }
