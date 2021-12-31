@@ -8,5 +8,12 @@
 	    </description>
 	    <default>150</default>
 	  </key>
+	  <key name="reading-font" type="s">
+	    <summary>A</summary>
+	    <description>
+	      A
+	    </description>
+	    <default>"Arial 10"</default>
+	  </key>
 	</schema>
 </schemalist>
