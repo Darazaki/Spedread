@@ -9,9 +9,9 @@
 	    <default>150</default>
 	  </key>
 	  <key name="reading-font" type="s">
-	    <summary>A</summary>
+	    <summary>Font used while reading</summary>
 	    <description>
-	      A
+	      Controls the font used to show the words inside the "Read" tab
 	    </description>
 	    <default>"Arial 10"</default>
 	  </key>
