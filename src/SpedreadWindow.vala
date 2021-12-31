@@ -330,7 +330,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         );
         app.settings.bind ("reading-font",
             _read, "font",
-            GLib.SettingsBindFlags.SET
+            GLib.SettingsBindFlags.GET
         );
 
         var about_button = new Gtk.Button.with_label (_("About Spedread..."));
