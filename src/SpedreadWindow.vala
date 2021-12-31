@@ -3,6 +3,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     SpedreadTextTab _text;
 
     Gtk.SpinButton _ms_per_word;
+    Gtk.FontButton _font_chooser;
     Gtk.Stack _stack;
 
     Gtk.TextIter _input_iter;
@@ -322,6 +323,16 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             GLib.SettingsBindFlags.DEFAULT
         );
 
+        _font_chooser = new Gtk.FontButton ();
+        app.settings.bind ("reading-font",
+            _font_chooser, "font",
+            GLib.SettingsBindFlags.DEFAULT
+        );
+        app.settings.bind ("reading-font",
+            _read, "font",
+            GLib.SettingsBindFlags.SET
+        );
+
         var about_button = new Gtk.Button.with_label (_("About Spedread..."));
         about_button.clicked.connect (() => {
             var authors = new string[] {
@@ -341,7 +352,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         contents.attach (new Gtk.Label (_("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (about_button, 0, 1, 2, 1);
+        contents.attach (new Gtk.Label(_("Reading Font")), 0, 1, 1, 1);
+        contents.attach (_font_chooser, 1, 1, 1, 1);
+        contents.attach (about_button, 0, 2, 2, 1);
 
         popover.show.connect (popover_shown);
 
