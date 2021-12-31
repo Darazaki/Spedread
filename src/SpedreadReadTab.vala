@@ -28,6 +28,7 @@ class SpedreadReadTab : Gtk.Grid {
             var font_attribute = build_font_attribute (value);
             var attributes = _word.attributes;
             attributes.change (font_attribute.copy ());
+            _word.attributes = attributes;
         }
     }
 
@@ -64,13 +65,9 @@ class SpedreadReadTab : Gtk.Grid {
             column_spacing: 12
         );
 
-        var word_attributes = new Pango.AttrList ();
-        word_attributes.insert (Pango.attr_scale_new (2));
-        word_attributes.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
-
         _word = new Gtk.Label (_("Go to \"Text\" and paste your read!")) {
             vexpand = true,
-            attributes = word_attributes
+            attributes = new Pango.AttrList ()
         };
 
         _play = new Gtk.ToggleButton () {
