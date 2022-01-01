@@ -16,30 +16,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/SpedreadReadTab.vala:62 src/SpedreadWindow.vala:145
+#: src/SpedreadReadTab.vala:68 src/SpedreadWindow.vala:151
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Vai su \"Testo\" e incolla la tua lettura!"
 
-#: src/SpedreadWindow.vala:261
+#: src/SpedreadWindow.vala:265
 msgid "Text"
 msgstr "Testo"
 
-#: src/SpedreadWindow.vala:262
+#: src/SpedreadWindow.vala:266
 msgid "Read"
 msgstr "Leggi"
 
-#: src/SpedreadWindow.vala:314
+#: src/SpedreadWindow.vala:330
 msgid "About Spedread..."
 msgstr "Informazioni su Spedread..."
 
-#: src/SpedreadWindow.vala:325 data/com.github.Darazaki.Spedread.desktop.in:4
+#: src/SpedreadWindow.vala:341 data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Leggi come un velocista!"
 
-#: src/SpedreadWindow.vala:331
+#: src/SpedreadWindow.vala:347
 msgid "Milliseconds per Word"
 msgstr "Millisecondi per Parola"
+
+#: src/SpedreadWindow.vala:349
+msgid "Reading Font"
+msgstr ""
 
 #: data/com.github.Darazaki.Spedread.desktop.in:10
 msgid "read;fast;speed;reading;"
