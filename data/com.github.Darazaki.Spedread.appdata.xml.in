@@ -42,6 +42,18 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.1.0" date="2022-01-02">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Make font inside the "Read" tab customizable</li>
+				</ul>
+				<p>Changes:</p>
+				<ul>
+					<li>Set font size to 12pt inside the "Text" tab</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.0.2" date="2021-12-30">
 			<description>
 				<p>Changes:</p>
