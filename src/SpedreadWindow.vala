@@ -222,13 +222,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         position has a word and doesn't update the UI */
     void fast_forced_tick () {
         skip_whitespaces (ref _input_iter);
-
-        var iter = _input_iter;
-        var next_iter = iter;
-
-        next_word (ref next_iter);
-
-        _input_iter = next_iter;
+        next_word (ref _input_iter);
     }
 
     bool has_next_word (Gtk.TextIter iter) {
