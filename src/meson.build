@@ -19,7 +19,7 @@ config_file = configure_file(
     configuration: config_data,
 )
 
-spedread_sources = files('SpedreadApp.vala', 'SpedreadWindow.vala', 'SpedreadTextTab.vala', 'SpedreadReadTab.vala')
+spedread_sources = files('SpedreadApp.vala', 'SpedreadWindow.vala', 'SpedreadTextTab.vala', 'SpedreadReadTab.vala', 'SpedreadDictionary.vala')
 
 executable('spedread', spedread_sources, config_file,
     dependencies: spedread_dependencies,
