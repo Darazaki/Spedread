@@ -112,6 +112,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         return end_of_word;
     }
 
+    /** Check if whatever is contained between `start` and `end` looks like a
+        number */
     bool is_number_between (Gtk.TextIter start, Gtk.TextIter end) {
         var separator_found = false;
         var found_digit = false;
