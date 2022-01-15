@@ -118,7 +118,10 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var separator_found = false;
         var found_digit = false;
 
-        for (var c = start.get_char (); !start.equal (end); start.forward_char (), c = start.get_char ()) {
+        for (var c = start.get_char ();
+            !start.equal (end);
+            start.forward_char (), c = start.get_char ())
+        {
             if (c.isdigit ()) {
                 found_digit = true;
                 separator_found = false;
