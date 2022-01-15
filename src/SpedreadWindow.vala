@@ -98,8 +98,44 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Advance the iterator to the next word and return the end of the
         "end of word" iterator for the previous word */
     Gtk.TextIter next_word (ref Gtk.TextIter iter) {
-        iter.forward_word_end ();
-        return skip_trailing_characters (ref iter);
+        Gtk.TextIter end_of_word, last_iter;
+        
+        for (;;) {
+            last_iter = iter;
+            iter.forward_word_end ();
+            end_of_word = skip_trailing_characters (ref iter);
+
+            if (!is_number_between (last_iter, iter))
+                break;
+        }
+
+        return end_of_word;
+    }
+
+    bool is_number_between (Gtk.TextIter start, Gtk.TextIter end) {
+        var separator_found = false;
+        var found_digit = false;
+
+        for (var c = start.get_char (); !start.equal (end); start.forward_char (), c = start.get_char ()) {
+            if (c.isdigit ()) {
+                found_digit = true;
+                separator_found = false;
+            } else if (c.isspace () || c == '.' || c == ',') {
+                // Separator found!
+
+                if (separator_found) {
+                    // 2 separators in a row => not a number
+                    return false;
+                } else {
+                    separator_found = true;
+                }
+            } else {
+                // Character not valid in a number
+                return false;
+            }
+        }
+
+        return found_digit;
     }
 
     /** Go to the previous word and show it */
