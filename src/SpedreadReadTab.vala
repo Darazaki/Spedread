@@ -114,7 +114,7 @@ class SpedreadReadTab : Gtk.Grid {
             stop_reading ();
     }
 
-    Pango.AttrFontDesc build_font_attribute (string font) {
+    static Pango.AttrFontDesc build_font_attribute (string font) {
         var description = Pango.FontDescription.from_string (font);
         var attribute = new Pango.AttrFontDesc (description);
 

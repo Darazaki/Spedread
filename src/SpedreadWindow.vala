@@ -63,7 +63,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Skip whitespaces and punctuations then return the end of the
         "end of word" iterator */
-    Gtk.TextIter skip_trailing_characters (ref Gtk.TextIter iter) {
+    static Gtk.TextIter skip_trailing_characters (ref Gtk.TextIter iter) {
         var end_of_word = iter;
 
         for (;;) {
@@ -97,7 +97,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Advance the iterator to the next word and return the end of the
         "end of word" iterator for the previous word */
-    Gtk.TextIter next_word (ref Gtk.TextIter iter) {
+    static Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         Gtk.TextIter end_of_word, last_iter;
         
         for (;;) {
@@ -114,7 +114,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Check if whatever is contained between `start` and `end` looks like a
         number */
-    bool is_number_between (Gtk.TextIter start, Gtk.TextIter end) {
+    static bool is_number_between (Gtk.TextIter start, Gtk.TextIter end) {
         var separator_found = false;
         var found_digit = false;
 
