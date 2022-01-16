@@ -105,6 +105,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             iter.forward_word_end ();
             end_of_word = skip_trailing_characters (ref iter);
 
+            // TODO: Fix "123.aaaa" being counted as a number
             if (!is_number_between (last_iter, iter))
                 break;
         }
