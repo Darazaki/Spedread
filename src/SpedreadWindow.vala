@@ -12,6 +12,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     uint _timeout_id = 0;
     uint _word_index = 0;
 
+    /** Type of the `is_*_between` methods, used by `next_word_using` for word
+        detection */
     delegate bool IsThingBetween (Gtk.TextIter start, Gtk.TextIter end);
 
     /** Current application instance, casted to `SpedreadApp` */
@@ -115,6 +117,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         return end_of_word;
     }
 
+    /** Advance the iterator to the next word using a specific function to
+        detect where the word stops */
     static void next_word_using (
         IsThingBetween is_thing_between,
         ref Gtk.TextIter iter,
@@ -137,6 +141,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
+    /** Check if whatever is contained between `start` and `end` looks like an
+        acronym */
     static bool is_acronym_between (Gtk.TextIter start, Gtk.TextIter end) {
         var expects_alpha_next = true;
 
