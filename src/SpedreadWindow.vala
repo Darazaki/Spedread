@@ -12,6 +12,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     uint _timeout_id = 0;
     uint _word_index = 0;
 
+    delegate bool IsThingBetween (Gtk.TextIter start, Gtk.TextIter end);
+
     /** Current application instance, casted to `SpedreadApp` */
     SpedreadApp app {
         get { return (SpedreadApp) application; }
@@ -100,17 +102,58 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     static Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         Gtk.TextIter end_of_word, last_iter;
         
-        for (;;) {
-            last_iter = iter;
-            iter.forward_word_end ();
-            end_of_word = skip_trailing_characters (ref iter);
+        last_iter = iter;
+        iter.forward_word_end ();
+        end_of_word = skip_trailing_characters (ref iter);
 
-            // TODO: Fix "123.aaaa" being counted as a number
-            if (!is_number_between (last_iter, iter))
-                break;
+        if (is_number_between (last_iter, iter)) {
+            next_word_using (is_number_between, ref iter, last_iter, ref end_of_word);
+        } else if (is_acronym_between (last_iter, iter)) {
+            next_word_using (is_acronym_between, ref iter, last_iter, ref end_of_word);
         }
 
         return end_of_word;
+    }
+
+    static void next_word_using (
+        IsThingBetween is_thing_between,
+        ref Gtk.TextIter iter,
+        Gtk.TextIter last_iter,
+        ref Gtk.TextIter end_of_word
+    ) {
+        var initial_iter = last_iter;
+        for (;;) {
+            last_iter = iter;
+            iter.forward_word_end ();
+
+            if (!is_thing_between (initial_iter, iter)) {
+                iter = last_iter;
+                end_of_word = skip_trailing_characters (ref iter);
+                break;
+            } else if (iter.equal (last_iter)) {
+                end_of_word = skip_trailing_characters (ref iter);
+                break;
+            }
+        }
+    }
+
+    static bool is_acronym_between (Gtk.TextIter start, Gtk.TextIter end) {
+        var expects_alpha_next = true;
+
+        for (var c = start.get_char ();
+            !start.equal (end);
+            start.forward_char (), c = start.get_char ())
+        {
+            if (expects_alpha_next && c.isalpha ()) {
+                expects_alpha_next = false;
+            } else if (!expects_alpha_next && c == '.') {
+                expects_alpha_next = true;
+            } else {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /** Check if whatever is contained between `start` and `end` looks like a
