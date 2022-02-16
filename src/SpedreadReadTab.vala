@@ -19,7 +19,7 @@ class SpedreadReadTab : Gtk.Grid {
     /** The text shown on screen */
     public string word {
         get { return _word.get_text (); }
-        set { _word.set_text (value); }
+        set { _word.set_text (value.strip ()); }
     }
 
     /** The font used to show the current word */

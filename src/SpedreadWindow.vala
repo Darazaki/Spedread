@@ -248,7 +248,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             _end_of_word = next_word (ref next_iter);
 
-            var word = buffer.get_text (iter, next_iter, true);
+            var word = buffer.get_text (iter, next_iter, false);
             _read.word = word;
             
             var has_next = has_next_word (next_iter);
@@ -291,7 +291,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // A new word has been read! Update the UI to reflect that
             _end_of_word = next_word (ref next_iter);
-            var word = buffer.get_text (iter, next_iter, true);
+            var word = buffer.get_text (iter, next_iter, false);
             _read.word = word;
             ++_word_index;
         }
