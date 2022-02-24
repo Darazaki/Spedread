@@ -42,6 +42,18 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.1.1" date="2022-02-24">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Numbers and acronyms are now treated as one word</li>
+				</ul>
+				<p>Fixed:</p>
+				<ul>
+					<li>Spaces before and after words no longer affect how they are shown</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.1.0" date="2022-01-02">
 			<description>
 				<p>New:</p>
