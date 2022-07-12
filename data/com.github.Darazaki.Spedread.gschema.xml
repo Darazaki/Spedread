@@ -15,5 +15,12 @@
 	    </description>
 	    <default>"Bold 20"</default>
 	  </key>
+	  <key name="use-libadwaita" type="b">
+	    <summary>Use libadwaita</summary>
+	    <description>
+			Use libadwaita for theming the application
+	    </description>
+	    <default>false</default>
+	  </key>
 	</schema>
 </schemalist>

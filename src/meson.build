@@ -2,6 +2,7 @@ spedread_dependencies = [
     dependency('glib-2.0'),
     dependency('gobject-2.0'),
     dependency('gtk4'),
+    dependency('libadwaita-1'),
 ]
 
 add_project_arguments(
@@ -19,7 +20,14 @@ config_file = configure_file(
     configuration: config_data,
 )
 
-spedread_sources = files('SpedreadApp.vala', 'SpedreadWindow.vala', 'SpedreadTextTab.vala', 'SpedreadReadTab.vala', 'SpedreadDictionary.vala')
+spedread_sources = files(
+    'SpedreadApp.vala',
+    'SpedreadWindow.vala',
+    'SpedreadTextTab.vala',
+    'SpedreadReadTab.vala',
+    'SpedreadDictionary.vala',
+    'SpedreadSettings.vala',
+)
 
 executable('spedread', spedread_sources, config_file,
     dependencies: spedread_dependencies,

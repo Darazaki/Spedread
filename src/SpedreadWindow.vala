@@ -16,12 +16,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         detection */
     delegate bool IsThingBetween (Gtk.TextIter start, Gtk.TextIter end);
 
-    /** Current application instance, casted to `SpedreadApp` */
-    SpedreadApp app {
-        get { return (SpedreadApp) application; }
-    }
-
-    public SpedreadWindow (SpedreadApp app) {
+    public SpedreadWindow (Gtk.Application app) {
         Object (
             application: app,
             default_height: 400,
@@ -385,10 +380,16 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     Gtk.MenuButton build_menu_button () {
+        var settings = SpedreadSettings.settings;
+        var is_using_libadwaita = SpedreadSettings.is_using_libadwaita;
+
         var contents = new Gtk.Grid () {
             column_spacing = 12,
+            row_spacing = is_using_libadwaita ? 12 : 0,
             margin_start = 6,
-            margin_end = 6
+            margin_end = 6,
+            margin_top = is_using_libadwaita ? 6 : 0,
+            margin_bottom = is_using_libadwaita ? 6 : 0,
         };
 
         var popover = new Gtk.Popover () {
@@ -403,19 +404,27 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
         _ms_per_word.set_increments (25, 50);
         _ms_per_word.set_range (50, 2000);
-        app.settings.bind ("milliseconds-per-word",
+        settings.bind ("milliseconds-per-word",
             _ms_per_word, "value",
             GLib.SettingsBindFlags.DEFAULT
         );
 
         _font_chooser = new Gtk.FontButton ();
-        app.settings.bind ("reading-font",
+        settings.bind ("reading-font",
             _font_chooser, "font",
             GLib.SettingsBindFlags.DEFAULT
         );
-        app.settings.bind ("reading-font",
+        settings.bind ("reading-font",
             _read, "font",
             GLib.SettingsBindFlags.GET
+        );
+
+        var use_libadwaita = new Gtk.Switch () {
+            halign = Gtk.Align.END,
+        };
+        settings.bind ("use-libadwaita",
+            use_libadwaita, "state",
+            GLib.SettingsBindFlags.DEFAULT
         );
 
         var about_button = new Gtk.Button.with_label (_("About Spedread..."));
@@ -439,7 +448,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         contents.attach (_ms_per_word, 1, 0, 1, 1);
         contents.attach (new Gtk.Label(_("Reading Font")), 0, 1, 1, 1);
         contents.attach (_font_chooser, 1, 1, 1, 1);
-        contents.attach (about_button, 0, 2, 2, 1);
+        contents.attach (new Gtk.Label (_("Use libadwaita")), 0, 2, 1, 1);
+        contents.attach (use_libadwaita, 1, 2, 1, 1);
+        contents.attach (about_button, 0, 3, 2, 1);
 
         popover.show.connect (popover_shown);
 
