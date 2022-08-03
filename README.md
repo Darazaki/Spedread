@@ -26,7 +26,7 @@ This application is available as a Flatpak on Flathub:
 
 ### Build from source (native install)
 
-This will require a valid Vala compiler and the GTK4 development files:
+This will require a valid Vala compiler and the GTK4 and libadwaita development files:
 
 ```sh
 git clone https://github.com/Darazaki/Spedread spedread
@@ -43,7 +43,7 @@ uninstall Spedread after having installed it
 ### Build from source (Flatpak install)
 
 This will require having the `flatpak-builder` command installed along with
-version 41 of the `org.gnome.Sdk` Flatpak package:
+version 42 of the `org.gnome.Sdk` Flatpak package:
 
 ```sh
 git clone https://github.com/Darazaki/Spedread spedread
