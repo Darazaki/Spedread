@@ -17,34 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/SpedreadReadTab.vala:68 src/SpedreadWindow.vala:151
+#: src/SpedreadReadTab.vala:68 src/SpedreadWindow.vala:237
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Allez dans \"Texte\" et collez votre lecture !"
 
-#: src/SpedreadWindow.vala:265
+#: src/SpedreadWindow.vala:351
 msgid "Text"
 msgstr "Texte"
 
-#: src/SpedreadWindow.vala:266
+#: src/SpedreadWindow.vala:352
 msgid "Read"
 msgstr "Lecture"
 
-#: src/SpedreadWindow.vala:330
+#: src/SpedreadWindow.vala:430
 msgid "About Spedread..."
 msgstr "À propos de Spedread..."
 
-#: src/SpedreadWindow.vala:341 data/com.github.Darazaki.Spedread.desktop.in:4
+#: src/SpedreadWindow.vala:441 data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Lisez comme un speedrunner !"
 
-#: src/SpedreadWindow.vala:347
+#: src/SpedreadWindow.vala:447
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
-#: src/SpedreadWindow.vala:349
+#: src/SpedreadWindow.vala:449
 msgid "Reading Font"
 msgstr "Police de Lecture"
+
+#: src/SpedreadWindow.vala:451
+msgid "Use libadwaita"
+msgstr "Utiliser libadwaita"
+
+#: data/com.github.Darazaki.Spedread.desktop.in:3
+#, fuzzy
+msgid "Spedread"
+msgstr "À propos de Spedread..."
 
 #: data/com.github.Darazaki.Spedread.desktop.in:10
 msgid "read;fast;speed;reading;"
@@ -60,5 +69,5 @@ msgid ""
 "general idea rather than single words along with less eye movements."
 msgstr ""
 "Ce programme affiche rapidement les mots un à un pour permettre de se "
-"concentrer sur l'idée générale plutôt que sur les mots en soit tout "
-"en réduisant les mouvements occulaires."
+"concentrer sur l'idée générale plutôt que sur les mots en soit tout en "
+"réduisant les mouvements occulaires."

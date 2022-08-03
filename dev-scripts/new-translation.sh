@@ -10,7 +10,7 @@ author_email="$(git config user.email)"
 author="$author_name <$author_email>"
 
 
-cp po/_base.po po/"$lang".po
+cp po/_base.pot po/"$lang".po
 
 echo "Using $author as value for %AUTHOR%"
 sed -i "s*%AUTHOR%*$author*g"      po/"$lang".po
