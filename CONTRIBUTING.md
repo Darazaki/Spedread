@@ -9,7 +9,7 @@ you can create a new translation file through
 `dev-scripts/new-translation.sh`:
 
 ```sh
-git clone https://github.com/<you>/Spedread spedread
+git clone git@github.com:<you>/Spedread.git spedread
 cd spedread
 dev-scripts/new-translation.sh
 ```

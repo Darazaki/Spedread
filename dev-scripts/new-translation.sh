@@ -1,7 +1,16 @@
 #!/bin/sh
 set -e
 
-read -p "Which language do you want to generate the translation for? (jp, fr, etc.) : " lang
+printf "%s" "Which language do you want to generate the translation for? (jp, fr, etc.) : "
+read -r lang
+
+if [ -e po/"$lang".po ]
+then
+    echo "po/$lang.po already exists"
+    echo "You can use it as a starting point to add any missing translations or correct any mistakes"
+    echo "Creation of a new translation file cancelled"
+    exit
+fi
 
 creation_date="$(date -u +'%Y-%m-%d %H:%M%z')"
 creation_year="$(date -u +'%Y')"
@@ -19,7 +28,10 @@ sed -i "s*%YEAR%*$creation_year*g" po/"$lang".po
 sed -i "s*%DATE%*$creation_date*g" po/"$lang".po
 
 echo "$lang" >> po/LINGUAS
-echo "Added $lang to po/LINGUAS, please make sure it appears only once"
+sort < po/LINGUAS | uniq > po/LINGUAS_
+mv -f po/LINGUAS_ po/LINGUAS
+
+echo "Added $lang to po/LINGUAS"
 echo
 echo "File created inside po/$lang.po, feel free to edit it with any code editor and submit it as a PR!"
 echo "If it's your first time editing a translation, you can use po/fr.po as an example and/or open an issue with your questions"
