@@ -27,6 +27,7 @@ spedread_sources = files(
     'SpedreadReadTab.vala',
     'SpedreadDictionary.vala',
     'SpedreadSettings.vala',
+    'SpedreadIterHistory.vala',
 )
 
 executable('spedread', spedread_sources, config_file,
