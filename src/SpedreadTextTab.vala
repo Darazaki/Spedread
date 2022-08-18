@@ -5,15 +5,15 @@ class SpedreadTextTab : Gtk.Grid {
     const string BIGGER_TEXT_TAG_NAME = "bigger-text";
     const string HIGHLIGHT_TAG_NAME = "highlight";
     const int TEXT_SIZE = 12;
-    
+
     Gtk.TextTag _current_word_tag;
-    
+
     public SpedreadTextTab () {
         Object (
             hexpand: true,
             vexpand: true
         );
-        
+
         input = new Gtk.TextView () {
             wrap_mode = Gtk.WrapMode.WORD,
             bottom_margin = 12,
@@ -27,7 +27,7 @@ class SpedreadTextTab : Gtk.Grid {
             hexpand = true,
             vexpand = true
         };
-        
+
         attach (scrolled, 0, 0, 1, 1);
 
         var bigger_text = new Gtk.TextTag (BIGGER_TEXT_TAG_NAME) {
@@ -64,7 +64,7 @@ class SpedreadTextTab : Gtk.Grid {
         buffer.get_end_iter (out absolute_end);
 
         buffer.remove_tag_by_name (HIGHLIGHT_TAG_NAME,
-            absolute_start, absolute_end
+                                   absolute_start, absolute_end
         );
         buffer.apply_tag (_current_word_tag, start, end);
     }

@@ -1,16 +1,16 @@
 public struct SpedreadDictionary {
-    public SpedreadDictionary *left;
-    public SpedreadDictionary *right;
+    public SpedreadDictionary* left;
+    public SpedreadDictionary* right;
     public uint8 value;
 
-    public SpedreadDictionary(uint8 v) {
+    public SpedreadDictionary (uint8 v) {
         left = null;
         right = null;
         value = v;
     }
 
-    public static SpedreadDictionary *build_example_dictionary () {
-        var dict = (SpedreadDictionary *) g_realloc (null, sizeof (SpedreadDictionary));
+    public static SpedreadDictionary * build_example_dictionary () {
+        var dict = (SpedreadDictionary*) g_realloc (null, sizeof (SpedreadDictionary));
         *dict = SpedreadDictionary (0);
 
         // TODO: Finish building example dictionary
@@ -18,15 +18,15 @@ public struct SpedreadDictionary {
         return dict;
     }
 
-    public static bool contains (SpedreadDictionary *node, string word) {
+    public static bool contains (SpedreadDictionary* node, string word) {
         return is_end_of_entry (find_prefix (node, word));
     }
 
-    public static bool is_end_of_entry (SpedreadDictionary *node) {
+    public static bool is_end_of_entry (SpedreadDictionary* node) {
         if (node == null) {
             return false;
         }
-        
+
         if (node->left == null && node->right == null) {
             return true;
         }
@@ -35,11 +35,11 @@ public struct SpedreadDictionary {
         return false;
     }
 
-    public static SpedreadDictionary *find_prefix (SpedreadDictionary *node, string prefix) {
+    public static SpedreadDictionary * find_prefix (SpedreadDictionary* node, string prefix) {
         return find_prefix_inner (node, prefix, 0);
     }
 
-    static SpedreadDictionary *find_prefix_inner (SpedreadDictionary *node, string prefix, int index) {
+    static SpedreadDictionary * find_prefix_inner (SpedreadDictionary* node, string prefix, int index) {
         if (node == null) {
             return null;
         }

@@ -65,10 +65,10 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     static Gtk.TextIter skip_trailing_characters (ref Gtk.TextIter iter) {
         var end_of_word = iter;
 
-        for (;;) {
+        for ( ;; ) {
             unichar current_char = iter.get_char ();
 
-            if (current_char == (unichar)'\n') {
+            if (current_char == (unichar) '\n') {
                 break;
             } else if (current_char.ispunct ()) {
                 iter.forward_char ();
@@ -84,7 +84,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     void skip_whitespaces (ref Gtk.TextIter iter) {
-        for (;;) {
+        for ( ;; ) {
             unichar current_char = iter.get_char ();
 
             if (current_char.isspace ())
@@ -98,7 +98,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         "end of word" iterator for the previous word */
     static Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         Gtk.TextIter end_of_word, last_iter;
-        
+
         last_iter = iter;
         iter.forward_word_end ();
         end_of_word = skip_trailing_characters (ref iter);
@@ -114,14 +114,12 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Advance the iterator to the next word using a specific function to
         detect where the word stops */
-    static void next_word_using (
-        IsThingBetween is_thing_between,
+    static void next_word_using (IsThingBetween is_thing_between,
         ref Gtk.TextIter iter,
         Gtk.TextIter last_iter,
-        ref Gtk.TextIter end_of_word
-    ) {
+        ref Gtk.TextIter end_of_word) {
         var initial_iter = last_iter;
-        for (;;) {
+        for ( ;; ) {
             last_iter = iter;
             iter.forward_word_end ();
 
@@ -142,9 +140,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var expects_alpha_next = true;
 
         for (var c = start.get_char ();
-            !start.equal (end);
-            start.forward_char (), c = start.get_char ())
-        {
+             !start.equal (end);
+             start.forward_char (), c = start.get_char ()) {
             if (expects_alpha_next && c.isalpha ()) {
                 expects_alpha_next = false;
             } else if (!expects_alpha_next && c == '.') {
@@ -164,9 +161,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var found_digit = false;
 
         for (var c = start.get_char ();
-            !start.equal (end);
-            start.forward_char (), c = start.get_char ())
-        {
+             !start.equal (end);
+             start.forward_char (), c = start.get_char ()) {
             if (c.isdigit ()) {
                 found_digit = true;
                 separator_found = false;
@@ -247,7 +243,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             var word = buffer.get_text (iter, next_iter, false);
             _read.word = word;
-            
+
             var has_next = has_next_word (next_iter);
             _read.allow_playing = has_next;
             _read.has_next_word = has_next;
@@ -315,8 +311,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     void start_reading () {
         if (_input_iter.is_end ())
             text_changed ();
-        
-        uint ms_per_word = (uint)_ms_per_word.value;
+
+        uint ms_per_word = (uint) _ms_per_word.value;
 
         _timeout_id = Timeout.add (ms_per_word, tick, Priority.HIGH);
 
@@ -344,8 +340,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         build_text_tab ();
         build_read_tab ();
 
-        stack.add_titled (_text, "Text", _("Text"));
-        stack.add_titled (_read, "Read", _("Read"));
+        stack.add_titled (_text, "Text", _ ("Text"));
+        stack.add_titled (_read, "Read", _ ("Read"));
 
         return stack;
     }
@@ -401,29 +397,29 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _ms_per_word.set_increments (25, 50);
         _ms_per_word.set_range (50, 2000);
         settings.bind ("milliseconds-per-word",
-            _ms_per_word, "value",
-            GLib.SettingsBindFlags.DEFAULT
+                       _ms_per_word, "value",
+                       GLib.SettingsBindFlags.DEFAULT
         );
 
         _font_chooser = new Gtk.FontButton ();
         settings.bind ("reading-font",
-            _font_chooser, "font",
-            GLib.SettingsBindFlags.DEFAULT
+                       _font_chooser, "font",
+                       GLib.SettingsBindFlags.DEFAULT
         );
         settings.bind ("reading-font",
-            _read, "font",
-            GLib.SettingsBindFlags.GET
+                       _read, "font",
+                       GLib.SettingsBindFlags.GET
         );
 
         var use_libadwaita = new Gtk.Switch () {
             halign = Gtk.Align.END,
         };
         settings.bind ("use-libadwaita",
-            use_libadwaita, "state",
-            GLib.SettingsBindFlags.DEFAULT
+                       use_libadwaita, "state",
+                       GLib.SettingsBindFlags.DEFAULT
         );
 
-        var about_button = new Gtk.Button.with_label (_("About Spedread..."));
+        var about_button = new Gtk.Button.with_label (_ ("About Spedread..."));
         about_button.clicked.connect (() => {
             var authors = new string[] {
                 "Naqua Darazaki <n.darazaki@gmail.com>"
@@ -432,21 +428,21 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             popover.popdown ();
 
             Gtk.show_about_dialog (this,
-                "program-name", "Spedread",
-                "website", "https://github.com/Darazaki/Spedread",
-                "license-type", Gtk.License.GPL_3_0,
-                "logo-icon-name", "com.github.Darazaki.Spedread",
-                "comments", _("Read like a speedrunner!"),
-                "version", VERSION,
-                "authors", authors
+                                   "program-name", "Spedread",
+                                   "website", "https://github.com/Darazaki/Spedread",
+                                   "license-type", Gtk.License.GPL_3_0,
+                                   "logo-icon-name", "com.github.Darazaki.Spedread",
+                                   "comments", _ ("Read like a speedrunner!"),
+                                   "version", VERSION,
+                                   "authors", authors
             );
         });
 
-        contents.attach (new Gtk.Label (_("Milliseconds per Word")), 0, 0, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label(_("Reading Font")), 0, 1, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 1, 1, 1);
         contents.attach (_font_chooser, 1, 1, 1, 1);
-        contents.attach (new Gtk.Label (_("Use libadwaita")), 0, 2, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 2, 1, 1);
         contents.attach (use_libadwaita, 1, 2, 1, 1);
         contents.attach (about_button, 0, 3, 2, 1);
 

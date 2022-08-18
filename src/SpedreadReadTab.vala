@@ -1,10 +1,13 @@
 class SpedreadReadTab : Gtk.Grid {
     /** On play button pressed */
     public signal void start_reading ();
+
     /** On pause button pressed */
     public signal void stop_reading ();
+
     /** On previous word button pressed */
     public signal void previous_word ();
+
     /** On next word button pressed */
     public signal void next_word ();
 
@@ -65,7 +68,7 @@ class SpedreadReadTab : Gtk.Grid {
             column_spacing: 12
         );
 
-        _word = new Gtk.Label (_("Go to \"Text\" and paste your read!")) {
+        _word = new Gtk.Label (_ ("Go to \"Text\" and paste your read!")) {
             vexpand = true,
             attributes = new Pango.AttrList ()
         };
