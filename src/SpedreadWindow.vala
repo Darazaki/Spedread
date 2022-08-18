@@ -429,6 +429,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 "Naqua Darazaki <n.darazaki@gmail.com>"
             };
 
+            popover.popdown ();
+
             Gtk.show_about_dialog (this,
                 "program-name", "Spedread",
                 "website", "https://github.com/Darazaki/Spedread",
