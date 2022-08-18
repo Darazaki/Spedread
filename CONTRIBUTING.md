@@ -4,7 +4,7 @@
 
 Translations are located inside the `po/` directory
 
-After forking the repository on Github and optionaly creating a new branch,
+After forking the repository on Github and optionally creating a new branch,
 you can create a new translation file through
 `dev-scripts/new-translation.sh`:
 
