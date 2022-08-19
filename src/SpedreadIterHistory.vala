@@ -3,13 +3,11 @@ struct SpedreadIterHistory {
 
     public Gtk.TextIter last {
         get {
-            return _stack[_stack.length - 1];
-        }
-    }
+            if (_stack.length == 0) {
+                log (null, LogLevelFlags.FLAG_FATAL, "Tried to access last element of empty history");
+            }
 
-    public int length {
-        get {
-            return _stack.length;
+            return _stack[_stack.length - 1];
         }
     }
 
