@@ -187,7 +187,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Go to the previous word and show it */
     void previous_word_and_tick () {
         _input_iter = _iter_history.pop ();
-        if (_iter_history.length != 0) {
+        if (!_iter_history.is_empty ()) {
             _previous_iter = _iter_history.last;
         } else {
             _text.input.buffer.get_start_iter (out _previous_iter);
@@ -200,7 +200,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     bool has_previous_word (Gtk.TextIter iter) {
-        return _iter_history.length != 0;
+        return !_iter_history.is_empty ();
     }
 
     void view_switched () {

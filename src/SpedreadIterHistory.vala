@@ -38,4 +38,8 @@ struct SpedreadIterHistory {
     public void erase () {
         _stack.resize (0);
     }
+
+    public bool is_empty () {
+        return _stack.length == 0;
+    }
 }
