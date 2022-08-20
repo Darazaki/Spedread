@@ -20,7 +20,7 @@
 	    <description>
 			Use libadwaita for theming the application
 	    </description>
-	    <default>false</default>
+	    <default>true</default>
 	  </key>
 	</schema>
 </schemalist>
