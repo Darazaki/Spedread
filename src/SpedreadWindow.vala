@@ -395,7 +395,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
         _ms_per_word.set_increments (25, 50);
-        _ms_per_word.set_range (50, 2000);
+        _ms_per_word.set_range (25, 2000);
         settings.bind ("milliseconds-per-word",
                        _ms_per_word, "value",
                        GLib.SettingsBindFlags.DEFAULT
