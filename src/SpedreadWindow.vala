@@ -418,6 +418,30 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        use_libadwaita, "state",
                        GLib.SettingsBindFlags.DEFAULT
         );
+        use_libadwaita.state_set.connect (new_state => {
+            // Warn the user that the change will only be applied after an app
+            // restart
+            if (new_state != SpedreadSettings.is_using_libadwaita) {
+                popover.popdown ();
+
+                var message_string = _ (
+                    "This change will only be applied after you restart Spedread");
+                var dialog = new Gtk.MessageDialog (
+                    this,
+                    Gtk.DialogFlags.MODAL,
+                    Gtk.MessageType.WARNING,
+                    Gtk.ButtonsType.OK,
+                    "%s",
+                    message_string);
+                dialog.show ();
+                dialog.response.connect (() => {
+                    dialog.close ();
+                });
+            }
+
+            // Set the state (see `Gtk.Switch.state_set`)
+            return false;
+        });
 
         var about_button = new Gtk.Button.with_label (_ ("About Spedread..."));
         about_button.clicked.connect (() => {
