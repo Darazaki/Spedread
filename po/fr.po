@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2021-12-23 01:10+0100\n"
+"POT-Creation-Date: 2022-08-21 15:10+0200\n"
 "PO-Revision-Date: 2021-12-23 01:16+0100\n"
 "Last-Translator: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "Language-Team: none\n"
@@ -17,47 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/SpedreadReadTab.vala:68 src/SpedreadWindow.vala:237
+#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:235
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Allez dans \"Texte\" et collez votre lecture !"
 
-#: src/SpedreadWindow.vala:351
+#: src/SpedreadWindow.vala:343
 msgid "Text"
 msgstr "Texte"
 
-#: src/SpedreadWindow.vala:352
+#: src/SpedreadWindow.vala:344
 msgid "Read"
 msgstr "Lecture"
 
-#: src/SpedreadWindow.vala:430
+#: src/SpedreadWindow.vala:428
+msgid "This change will only be applied after you restart Spedread"
+msgstr "Ce changement ne sera appliqué qu'après avoir relancé Spedread"
+
+#: src/SpedreadWindow.vala:446
 msgid "About Spedread..."
 msgstr "À propos de Spedread..."
 
-#: src/SpedreadWindow.vala:441 data/com.github.Darazaki.Spedread.desktop.in:4
+#: src/SpedreadWindow.vala:459 data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Lisez comme un speedrunner !"
 
-#: src/SpedreadWindow.vala:447
+#: src/SpedreadWindow.vala:465
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
-#: src/SpedreadWindow.vala:449
+#: src/SpedreadWindow.vala:467
 msgid "Reading Font"
 msgstr "Police de Lecture"
 
-#: src/SpedreadWindow.vala:451
+#: src/SpedreadWindow.vala:469
 msgid "Use libadwaita"
 msgstr "Utiliser libadwaita"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
-#, fuzzy
 msgid "Spedread"
-msgstr "À propos de Spedread..."
+msgstr "Spedread"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:10
 msgid "read;fast;speed;reading;"
-msgstr "lire;vite;rapide;lecture;"
+msgstr "lire;vite;rapide;lecture;read;reading;fast;speed;"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
@@ -70,4 +73,4 @@ msgid ""
 msgstr ""
 "Ce programme affiche rapidement les mots un à un pour permettre de se "
 "concentrer sur l'idée générale plutôt que sur les mots en soit tout en "
-"réduisant les mouvements occulaires."
+"réduisant les mouvements oculaires."
