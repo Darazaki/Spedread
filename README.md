@@ -1,4 +1,4 @@
-# <img height="32" src="./data/icons/hicolor/scalable/apps/com.github.Darazaki.Spedread.svg" /> Spedread
+# <img height="32" src="./data/icons/normal.svg" /> Spedread
 
 GTK speed reading software: Read like a speedrunner!
 
