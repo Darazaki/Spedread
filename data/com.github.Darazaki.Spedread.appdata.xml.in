@@ -42,6 +42,23 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.2.0" date="2022-09-02">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Change icon to fit both GNOME HIG and my personal style</li>
+					<li>Use libadwaita by default (can be disabled)</li>
+					<li>Lower minimum ms per word from 50 to 25 ms</li>
+					<li>Greatly improve performance when going backward at the cost of more RAM usage</li>
+					<li>Update GNOME Platform version from 41 to 42</li>
+				</ul>
+				<p>Fixed:</p>
+				<ul>
+					<li>Main menu popover no longer prevents clicking on the about dialog</li>
+					<li>View switching now properly pauses reading</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.1.1" date="2022-02-24">
 			<description>
 				<p>New:</p>
