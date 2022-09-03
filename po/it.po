@@ -1,14 +1,14 @@
 # Translation for the Spedread project.
 # Copyright (C) 2021
 # This file is distributed under the same license as the Spedread package.
-# Albano Battistella <albano_battistella@hotmail.com>, 2021.
+# Albano Battistella <albano_battistella@hotmail.com>, 2021,2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "POT-Creation-Date: 2022-08-21 15:10+0200\n"
-"PO-Revision-Date: 2021-12-28 20:59+0100\n"
+"PO-Revision-Date: 2022-09-03 22:09+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: it\n"
 "Language: Italian\n"
@@ -30,7 +30,7 @@ msgstr "Leggi"
 
 #: src/SpedreadWindow.vala:428
 msgid "This change will only be applied after you restart Spedread"
-msgstr ""
+msgstr "Questa modifica verrà applicata solo dopo il riavvio di Speedread"
 
 #: src/SpedreadWindow.vala:446
 msgid "About Spedread..."
@@ -47,16 +47,15 @@ msgstr "Millisecondi per Parola"
 
 #: src/SpedreadWindow.vala:467
 msgid "Reading Font"
-msgstr ""
+msgstr "Carattere di lettura"
 
 #: src/SpedreadWindow.vala:469
 msgid "Use libadwaita"
-msgstr ""
+msgstr "Usa libadwaita"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
-#, fuzzy
 msgid "Spedread"
-msgstr "Informazioni su Spedread..."
+msgstr "Spedread"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:10
 msgid "read;fast;speed;reading;"
