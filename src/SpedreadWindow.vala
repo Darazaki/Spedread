@@ -41,6 +41,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             show_title_buttons = true
         };
 
+        titlebar.pack_start (build_new_window_button ());
         titlebar.pack_end (build_menu_button ());
 
         set_titlebar (titlebar);
@@ -369,6 +370,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     void build_text_tab () {
         _text = new SpedreadTextTab ();
+    }
+
+    Gtk.Button build_new_window_button () {
+        var button = new Gtk.Button () {
+            icon_name = "window-new-symbolic"
+        };
+
+        button.clicked.connect (() => {
+            var window = new SpedreadWindow (application);
+            window.present ();
+        });
+
+        return button;
     }
 
     Gtk.MenuButton build_menu_button () {
