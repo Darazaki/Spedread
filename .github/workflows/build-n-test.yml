@@ -9,12 +9,12 @@ on:
 jobs:
   build-n-test:
 
-    runs-on: alpine:edge
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v3
     - name: install dependencies
-      run: apk add --no-cache meson build-base vala libadwaita-dev appstream-glib desktop-file-utils
+      run: sudo apt-get install meson build-essential valac libadwaita-1-dev appstream-util desktop-file-utils
     - name: configure
       run: meson setup build
     - name: build
