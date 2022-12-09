@@ -13,11 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: install dependencies
-      run: sudo apt-get install meson build-essential valac libadwaita-1-dev appstream-util desktop-file-utils
-    - name: configure
+    - name: Install dependencies
+      run: sudo apt-get install meson build-essential valac libadwaita-1-dev appstream-util desktop-file-utils gettext
+    - name: Configure
       run: meson setup build
-    - name: build
+    - name: Build
       run: ninja -C build
-    - name: test
+    - name: Test
       run: ninja -C build test
