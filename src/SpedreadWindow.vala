@@ -42,6 +42,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         };
 
         titlebar.pack_start (build_new_window_button ());
+        titlebar.pack_start (build_quick_paste_button ());
         titlebar.pack_end (build_menu_button ());
 
         set_titlebar (titlebar);
@@ -485,6 +486,42 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         contents.attach (about_button, 0, 3, 2, 1);
 
         popover.show.connect (popover_shown);
+
+        return button;
+    }
+
+    Gtk.Button build_quick_paste_button () {
+        var button = new Gtk.Button () {
+            icon_name = "edit-paste"
+        };
+
+        button.clicked.connect (() => {
+            // Make sure pasting the text stops the current reading
+            stop_reading ();
+
+            var clipboard = Gdk.Display.get_default ().get_clipboard ();
+
+            // Attempt reading text from the clipboard
+            clipboard.read_text_async.begin (null, (_, result) => {
+                string text;
+
+                // The clipboard's content may or may to be convertible into
+                // text. If it isn't: return
+                try {
+                    var maybe_text = clipboard.read_text_async.end (result);
+                    if (maybe_text == null) {
+                        return;
+                    }
+
+                    text = maybe_text;
+                } catch {
+                    return;
+                }
+
+                // Update the text (all the annoying stuff should be automatic)
+                _text.input.buffer.text = text;
+            });
+        });
 
         return button;
     }
