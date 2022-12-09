@@ -42,6 +42,15 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.3.0" date="2022-12-09">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Add "new window" and "quick paste" buttons</li>
+					<li>Update GNOME Platform version from 42 to 43</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.2.1" date="2022-09-03">
 			<description>
 				<p>New:</p>

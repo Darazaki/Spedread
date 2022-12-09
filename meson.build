@@ -1,8 +1,11 @@
-project('spedread', ['c', 'vala'],
-          version: '2.2.1',
+project(
+    'spedread',
+    ['c', 'vala'],
+    version: '2.3.0',
     meson_version: '>= 0.50.0',
-  default_options: [ 'warning_level=2',
-                   ],
+    default_options: [
+        'warning_level=2',
+    ],
 )
 
 i18n = import('i18n')
