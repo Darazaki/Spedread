@@ -435,8 +435,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         );
         use_libadwaita.state_set.connect (new_state => {
             // Warn the user that the change will only be applied after an app
-            // restart
-            if (new_state != SpedreadSettings.is_using_libadwaita) {
+            // restart. `is_active` is there to make sure only the focused
+            // window displays the warning
+            if (is_active && new_state != SpedreadSettings.is_using_libadwaita) {
                 popover.popdown ();
 
                 var message_string = _ (
