@@ -1,0 +1,23 @@
+name: Build & Test CI
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  build-n-test:
+
+    runs-on: alpine:edge
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: install dependencies
+      run: apk add --no-cache meson build-base vala libadwaita-dev appstream-glib desktop-file-utils
+    - name: configure
+      run: meson setup build
+    - name: build
+      run: ninja -C build
+    - name: test
+      run: ninja -C build test
