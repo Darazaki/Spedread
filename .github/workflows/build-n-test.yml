@@ -21,3 +21,18 @@ jobs:
       run: ninja -C build
     - name: Test
       run: ninja -C build test
+
+  flatpak-build:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install flatpak-builder
+      run: sudo apt-get install flatpak-builder
+    - name: Add Flathub repository
+      run: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    - name: Install GNOME SDK
+      run: flatpak install org.gnome.Sdk//43 -y
+    - name: Build
+      run: dev-scripts/build.sh
