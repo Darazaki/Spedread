@@ -42,6 +42,19 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.3.1" date="2022-12-10">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Add Russian translation (thanks to @alexkdeveloper)</li>
+					<li>Use libadwaita's about dialog when using libadwaita (thanks to @alexkdeveloper)</li>
+				</ul>
+				<p>Fixed:</p>
+				<ul>
+					<li>Quick paste button now uses the correct icon</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.3.0" date="2022-12-09">
 			<description>
 				<p>New:</p>
