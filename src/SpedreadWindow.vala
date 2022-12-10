@@ -511,7 +511,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.Button build_quick_paste_button () {
         var button = new Gtk.Button () {
-            icon_name = "edit-paste"
+            icon_name = "edit-paste-symbolic"
         };
 
         button.clicked.connect (() => {
