@@ -31,8 +31,8 @@ jobs:
     - name: Install flatpak-builder
       run: sudo apt-get install flatpak-builder
     - name: Add Flathub repository
-      run: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     - name: Install GNOME SDK
-      run: flatpak install org.gnome.Sdk//43 -y
+      run: sudo flatpak install org.gnome.Sdk//43 -y
     - name: Build
       run: dev-scripts/build.sh
