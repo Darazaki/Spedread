@@ -1,7 +1,7 @@
 # Translation for the Spedread project.
 # Copyright (C) 2021
 # This file is distributed under the same license as the Spedread package.
-# %AUTHOR%, %YEAR%.
+# Alex K, 2022.
 #
 msgid ""
 msgstr ""
