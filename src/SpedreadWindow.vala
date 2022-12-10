@@ -467,15 +467,29 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             popover.popdown ();
 
-            Gtk.show_about_dialog (this,
-                                   "program-name", "Spedread",
-                                   "website", "https://github.com/Darazaki/Spedread",
-                                   "license-type", Gtk.License.GPL_3_0,
-                                   "logo-icon-name", "com.github.Darazaki.Spedread",
-                                   "comments", _ ("Read like a speedrunner!"),
-                                   "version", VERSION,
-                                   "authors", authors
-            );
+           if(SpedreadSettings.is_using_libadwaita){
+                var win = new Adw.AboutWindow () {
+                application_name = "Spedread",
+                application_icon = "com.github.Darazaki.Spedread",
+                version = VERSION,
+                comments = _ ("Read like a speedrunner!"),
+                license_type = Gtk.License.GPL_3_0,
+                developers = authors,
+                website = "https://github.com/Darazaki/Spedread"
+            };
+            win.set_transient_for (this);
+            win.show ();
+                }else{
+                    Gtk.show_about_dialog (this,
+                    "program-name", "Spedread",
+                    "website", "https://github.com/Darazaki/Spedread",
+                    "license-type", Gtk.License.GPL_3_0,
+                    "logo-icon-name", "com.github.Darazaki.Spedread",
+                    "comments", _ ("Read like a speedrunner!"),
+                    "version", VERSION,
+                    "authors", authors
+                  );
+            }
         });
 
         contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
