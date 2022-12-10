@@ -32,7 +32,7 @@ spedread_sources = files(
 
 executable('spedread', spedread_sources, config_file,
     dependencies: spedread_dependencies,
-    vala_args: '--target-glib=2.50',
+    vala_args: ['--target-glib=2.50', meson.source_root() + '/src/config.vapi'],
     install: true,
 )
 
