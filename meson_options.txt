@@ -1,0 +1,6 @@
+option(
+    'adw_1_2',
+    type: 'boolean',
+    value: false,
+    description: 'Enable libadwaita 1.2 features (such as Adw.AboutWindow)',
+)

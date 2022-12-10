@@ -10,8 +10,6 @@ project(
 
 i18n = import('i18n')
 
-
-
 subdir('data')
 subdir('src')
 subdir('po')
