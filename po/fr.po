@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Spedread package.
 # Naqua Darazaki <n.darazaki@gmail.com>, 2021.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
