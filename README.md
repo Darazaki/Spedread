@@ -54,11 +54,11 @@ dev-scripts/build.sh --install
 Spedread will then be installed as a Flatpak application and can be managed as
 such
 
-### AUR (unofficial)
+### AUR
 
 Two packages are available on the AUR:
 [spedread](https://aur.archlinux.org/packages/spedread)
 and [spedread-git](https://aur.archlinux.org/packages/spedread-git)
 
-These packages are maintained by Igor Dyatlov so any thanks/issues
-related to the AUR packaging should go directly to him!
+These packages are maintained by both Igor Dyatlov and me so if you have any
+issues with the packaging please report them directly onto the AUR
