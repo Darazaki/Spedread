@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "POT-Creation-Date: 2022-08-21 15:10+0200\n"
-"PO-Revision-Date: 2023-02-13 11:34+0100\n"
+"PO-Revision-Date: 2023-02-13 23:45+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -65,7 +65,7 @@ msgstr "read;fast;speed;reading;lesen;schnell;Geschwindigkeit;"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
-msgstr "GTK-Progamm zum Schnelllesen: Lesen Sie wie der Blitz!"
+msgstr "GTK-Programm zum Schnelllesen: Lesen Sie wie der Blitz!"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:20
 msgid ""
