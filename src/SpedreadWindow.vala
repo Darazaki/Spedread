@@ -426,18 +426,18 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        GLib.SettingsBindFlags.GET
         );
 
-        var use_libadwaita = new Gtk.Switch () {
+        var use_libadwaita = new Gtk.CheckButton () {
             halign = Gtk.Align.END,
         };
         settings.bind ("use-libadwaita",
-                       use_libadwaita, "state",
+                       use_libadwaita, "active",
                        GLib.SettingsBindFlags.DEFAULT
         );
-        use_libadwaita.state_set.connect (new_state => {
+        use_libadwaita.toggled.connect (new_state => {
             // Warn the user that the change will only be applied after an app
             // restart. `is_active` is there to make sure only the focused
             // window displays the warning
-            if (is_active && new_state != SpedreadSettings.is_using_libadwaita) {
+            if (is_active && new_state.get_active () != SpedreadSettings.is_using_libadwaita) {
                 popover.popdown ();
 
                 var message_string = _ (
@@ -456,7 +456,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             }
 
             // Set the state (see `Gtk.Switch.state_set`)
-            return false;
+            return;
         });
 
         var about_button = new Gtk.Button.with_label (_ ("About Spedread..."));
