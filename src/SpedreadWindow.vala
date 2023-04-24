@@ -375,7 +375,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.Button build_new_window_button () {
         var button = new Gtk.Button () {
-            icon_name = "window-new-symbolic"
+            icon_name = "window-new-symbolic",
+            tooltip_text = _ ("New Window")
         };
 
         button.clicked.connect (() => {
@@ -405,7 +406,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         var button = new Gtk.MenuButton () {
             icon_name = "open-menu-symbolic",
-            popover = popover
+            popover = popover,
+            tooltip_text = _ ("Main Menu")
         };
 
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
@@ -511,7 +513,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.Button build_quick_paste_button () {
         var button = new Gtk.Button () {
-            icon_name = "edit-paste-symbolic"
+            icon_name = "edit-paste-symbolic",
+            tooltip_text = _ ("Paste")
         };
 
         button.clicked.connect (() => {
