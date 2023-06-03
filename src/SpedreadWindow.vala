@@ -430,7 +430,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             halign = Gtk.Align.END,
         };
         settings.bind ("use-libadwaita",
-                       use_libadwaita, "state",
+                       use_libadwaita, "active",
                        GLib.SettingsBindFlags.DEFAULT
         );
         use_libadwaita.state_set.connect (new_state => {
