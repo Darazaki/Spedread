@@ -30,11 +30,11 @@ msgstr "Lecture"
 
 #: src/SpedreadWindow.vala:379
 msgid "New Window"
-msgstr ""
+msgstr "Nouvelle Fenêtre"
 
 #: src/SpedreadWindow.vala:410
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu Principal"
 
 #: src/SpedreadWindow.vala:446
 msgid "This change will only be applied after you restart Spedread"
@@ -64,7 +64,7 @@ msgstr "Utiliser libadwaita"
 
 #: src/SpedreadWindow.vala:517
 msgid "Paste"
-msgstr ""
+msgstr "Coller"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"
@@ -72,7 +72,7 @@ msgstr "Spedread"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:10
 msgid "read;fast;speed;reading;"
-msgstr "lire;vite;rapide;lecture;read;reading;fast;speed;"
+msgstr "lire;vite;rapide;lecture;"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
