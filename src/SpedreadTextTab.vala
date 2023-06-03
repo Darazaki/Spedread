@@ -1,4 +1,4 @@
-class SpedreadTextTab : Gtk.Grid {
+class SpedreadTextTab : Gtk.Box {
     /** Contains the text the user wants to read */
     public Gtk.TextView input;
 
@@ -28,7 +28,7 @@ class SpedreadTextTab : Gtk.Grid {
             vexpand = true
         };
 
-        attach (scrolled, 0, 0, 1, 1);
+        append (scrolled);
 
         var bigger_text = new Gtk.TextTag (BIGGER_TEXT_TAG_NAME) {
             size = TEXT_SIZE * Pango.SCALE
