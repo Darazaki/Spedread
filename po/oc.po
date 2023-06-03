@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2022-08-21 15:10+0200\n"
+"POT-Creation-Date: 2023-06-03 20:39+0200\n"
 "PO-Revision-Date: 2023-04-28 08:09+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
@@ -17,42 +17,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:235
+#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:237
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Anatz a « Tèxte » e pegatz-i vòstra lectura !"
 
-#: src/SpedreadWindow.vala:343
+#: src/SpedreadWindow.vala:345
 msgid "Text"
 msgstr "Tèxte"
 
-#: src/SpedreadWindow.vala:344
+#: src/SpedreadWindow.vala:346
 msgid "Read"
 msgstr "Legir"
 
-#: src/SpedreadWindow.vala:428
+#: src/SpedreadWindow.vala:379
+msgid "New Window"
+msgstr ""
+
+#: src/SpedreadWindow.vala:410
+msgid "Main Menu"
+msgstr ""
+
+#: src/SpedreadWindow.vala:446
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Se prendrà en compte aquesta modificacion un còp Spedread reaviat"
 
-#: src/SpedreadWindow.vala:446
+#: src/SpedreadWindow.vala:464
 msgid "About Spedread..."
 msgstr "A prepaus de Spedread..."
 
-#: src/SpedreadWindow.vala:459 data/com.github.Darazaki.Spedread.desktop.in:4
+#: src/SpedreadWindow.vala:478 src/SpedreadWindow.vala:495
+#: data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Legissètz coma un correire naut nivèl !"
 
-#: src/SpedreadWindow.vala:465
+#: src/SpedreadWindow.vala:501
 msgid "Milliseconds per Word"
 msgstr "Millisegondas per mot"
 
-#: src/SpedreadWindow.vala:467
+#: src/SpedreadWindow.vala:503
 msgid "Reading Font"
 msgstr "Polissa de lectura"
 
-#: src/SpedreadWindow.vala:469
+#: src/SpedreadWindow.vala:505
 msgid "Use libadwaita"
 msgstr "Utilizar libadwaita"
+
+#: src/SpedreadWindow.vala:517
+msgid "Paste"
+msgstr ""
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"

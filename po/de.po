@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2022-08-21 15:10+0200\n"
+"POT-Creation-Date: 2023-06-03 20:39+0200\n"
 "PO-Revision-Date: 2023-02-13 23:45+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -18,42 +18,55 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:235
+#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:237
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Gehen Sie zu »Text« und fügen Sie Ihren Lesetext ein!"
 
-#: src/SpedreadWindow.vala:343
+#: src/SpedreadWindow.vala:345
 msgid "Text"
 msgstr "Text"
 
-#: src/SpedreadWindow.vala:344
+#: src/SpedreadWindow.vala:346
 msgid "Read"
 msgstr "Lesen"
 
-#: src/SpedreadWindow.vala:428
+#: src/SpedreadWindow.vala:379
+msgid "New Window"
+msgstr ""
+
+#: src/SpedreadWindow.vala:410
+msgid "Main Menu"
+msgstr ""
+
+#: src/SpedreadWindow.vala:446
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Diese Änderung wird erst nach einem Neustart von Spedread angewandt"
 
-#: src/SpedreadWindow.vala:446
+#: src/SpedreadWindow.vala:464
 msgid "About Spedread..."
 msgstr "Info zu Spedread …"
 
-#: src/SpedreadWindow.vala:459 data/com.github.Darazaki.Spedread.desktop.in:4
+#: src/SpedreadWindow.vala:478 src/SpedreadWindow.vala:495
+#: data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Lesen Sie wie der Blitz!"
 
-#: src/SpedreadWindow.vala:465
+#: src/SpedreadWindow.vala:501
 msgid "Milliseconds per Word"
 msgstr "Millisekunden pro Wort"
 
-#: src/SpedreadWindow.vala:467
+#: src/SpedreadWindow.vala:503
 msgid "Reading Font"
 msgstr "Leseschriftart"
 
-#: src/SpedreadWindow.vala:469
+#: src/SpedreadWindow.vala:505
 msgid "Use libadwaita"
 msgstr "Libadwaita verwenden"
+
+#: src/SpedreadWindow.vala:517
+msgid "Paste"
+msgstr ""
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"

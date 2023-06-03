@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2022-08-21 15:10+0200\n"
+"POT-Creation-Date: 2023-06-03 20:39+0200\n"
 "PO-Revision-Date: 2022-09-03 22:09+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: it\n"
@@ -16,42 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:235
+#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:237
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Vai su \"Testo\" e incolla la tua lettura!"
 
-#: src/SpedreadWindow.vala:343
+#: src/SpedreadWindow.vala:345
 msgid "Text"
 msgstr "Testo"
 
-#: src/SpedreadWindow.vala:344
+#: src/SpedreadWindow.vala:346
 msgid "Read"
 msgstr "Leggi"
 
-#: src/SpedreadWindow.vala:428
+#: src/SpedreadWindow.vala:379
+msgid "New Window"
+msgstr ""
+
+#: src/SpedreadWindow.vala:410
+msgid "Main Menu"
+msgstr ""
+
+#: src/SpedreadWindow.vala:446
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Questa modifica verrà applicata solo dopo il riavvio di Speedread"
 
-#: src/SpedreadWindow.vala:446
+#: src/SpedreadWindow.vala:464
 msgid "About Spedread..."
 msgstr "Informazioni su Spedread..."
 
-#: src/SpedreadWindow.vala:459 data/com.github.Darazaki.Spedread.desktop.in:4
+#: src/SpedreadWindow.vala:478 src/SpedreadWindow.vala:495
+#: data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Leggi come un velocista!"
 
-#: src/SpedreadWindow.vala:465
+#: src/SpedreadWindow.vala:501
 msgid "Milliseconds per Word"
 msgstr "Millisecondi per Parola"
 
-#: src/SpedreadWindow.vala:467
+#: src/SpedreadWindow.vala:503
 msgid "Reading Font"
 msgstr "Carattere di lettura"
 
-#: src/SpedreadWindow.vala:469
+#: src/SpedreadWindow.vala:505
 msgid "Use libadwaita"
 msgstr "Usa libadwaita"
+
+#: src/SpedreadWindow.vala:517
+msgid "Paste"
+msgstr ""
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"
