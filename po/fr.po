@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2023-06-03 20:39+0200\n"
+"POT-Creation-Date: 2023-06-04 22:43+0200\n"
 "PO-Revision-Date: 2021-12-23 01:16+0100\n"
 "Last-Translator: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "Language-Team: none\n"
@@ -16,53 +16,63 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/SpedreadReadTab.vala:71 src/SpedreadWindow.vala:237
+#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:285
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Allez dans \"Texte\" et collez votre lecture !"
 
-#: src/SpedreadWindow.vala:345
+#: src/SpedreadWindow.vala:239
+msgid "End reached"
+msgstr "Terminé"
+
+#. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
+#: src/SpedreadWindow.vala:264
+#, c-format
+msgid "%u min %u s left"
+msgstr "Temps restant : %u min %u s"
+
+#: src/SpedreadWindow.vala:399
 msgid "Text"
 msgstr "Texte"
 
-#: src/SpedreadWindow.vala:346
+#: src/SpedreadWindow.vala:400
 msgid "Read"
 msgstr "Lecture"
 
-#: src/SpedreadWindow.vala:379
+#: src/SpedreadWindow.vala:435
 msgid "New Window"
 msgstr "Nouvelle Fenêtre"
 
-#: src/SpedreadWindow.vala:410
+#: src/SpedreadWindow.vala:466
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: src/SpedreadWindow.vala:446
+#: src/SpedreadWindow.vala:507
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Ce changement ne sera appliqué qu'après avoir relancé Spedread"
 
-#: src/SpedreadWindow.vala:464
+#: src/SpedreadWindow.vala:525
 msgid "About Spedread..."
 msgstr "À propos de Spedread..."
 
-#: src/SpedreadWindow.vala:478 src/SpedreadWindow.vala:495
+#: src/SpedreadWindow.vala:539 src/SpedreadWindow.vala:556
 #: data/com.github.Darazaki.Spedread.desktop.in:4
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
 msgid "Read like a speedrunner!"
 msgstr "Lisez comme un speedrunner !"
 
-#: src/SpedreadWindow.vala:501
+#: src/SpedreadWindow.vala:562
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
-#: src/SpedreadWindow.vala:503
+#: src/SpedreadWindow.vala:564
 msgid "Reading Font"
 msgstr "Police de Lecture"
 
-#: src/SpedreadWindow.vala:505
+#: src/SpedreadWindow.vala:566
 msgid "Use libadwaita"
 msgstr "Utiliser libadwaita"
 
-#: src/SpedreadWindow.vala:517
+#: src/SpedreadWindow.vala:578
 msgid "Paste"
 msgstr "Coller"
 

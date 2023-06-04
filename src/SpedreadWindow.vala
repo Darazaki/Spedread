@@ -260,6 +260,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var seconds_left = time_left_in_s % 60;
         var minutes_left = time_left_in_s / 60;
 
+        // TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
         _read.time_left = _ ("%u min %u s left").printf (
             minutes_left,
             seconds_left
