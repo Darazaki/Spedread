@@ -220,15 +220,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
+    /** Update the "Read" view's time left label */
     void update_time_left () {
         var iter = _input_iter;
         skip_whitespaces (ref iter);
 
         if (iter.is_end ()) {
+            // Get the iter indicating the start of the first word
             Gtk.TextIter start_iter;
             _text.input.buffer.get_start_iter (out start_iter);
             skip_whitespaces (ref start_iter);
 
+            // If the first word is also the end (=> text is empty)
+            // then don't show the "End reached" message
             if (start_iter.equal (iter)) {
                 _read.time_left = "";
             } else {
@@ -456,16 +460,15 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
         _ms_per_word.set_increments (25, 50);
         _ms_per_word.set_range (25, 2000);
-        settings.bind ("milliseconds-per-word",
-                       _ms_per_word, "value",
-                       GLib.SettingsBindFlags.DEFAULT
-        );
-
         _ms_per_word.value_changed.connect (() => {
             if (!_read.is_playing) {
                 update_time_left ();
             }
         });
+        settings.bind ("milliseconds-per-word",
+                       _ms_per_word, "value",
+                       GLib.SettingsBindFlags.DEFAULT
+        );
 
         _font_chooser = new Gtk.FontButton ();
         settings.bind ("reading-font",

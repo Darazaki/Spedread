@@ -36,7 +36,7 @@ class SpedreadReadTab : Gtk.Grid {
         }
     }
 
-    /** Controls the state of the play and movement buttons */
+    /** Controls the state shown by the UI */
     public bool is_playing {
         get { return _play.active; }
         set {
@@ -59,6 +59,7 @@ class SpedreadReadTab : Gtk.Grid {
         set { _previous.sensitive = value; }
     }
 
+    /** Controls the text shown by the time left label */
     public string time_left {
         get { return _time_left.label; }
         set { _time_left.label = value; }
