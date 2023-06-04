@@ -42,6 +42,22 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.4.0" date="2023-06-04">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Update GNOME Platform version from 43 to 44 (thanks to @alexkdeveloper)</li>
+					<li>Add a "time left" indication when reading is paused</li>
+					<li>Add tooltips to buttons (thanks to @gregorni)</li>
+					<li>Add Occitan translation (thanks to @Mejans)</li>
+					<li>Add Czech translation (thanks to @pafri)</li>
+				</ul>
+				<p>Fixed:</p>
+				<ul>
+					<li>"Use libadwaita" switch now correctly reflects user preferences (thanks to @alexkdeveloper)</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.3.4" date="2023-02-14">
 			<description>
 				<p>Fixed:</p>
