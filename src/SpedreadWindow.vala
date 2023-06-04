@@ -302,6 +302,10 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
 
         _input_iter = next_iter;
+
+        if (_stack.visible_child == _read) {
+            update_time_left ();
+        }
     }
 
     /** When the main menu is shown */
