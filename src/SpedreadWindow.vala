@@ -252,14 +252,18 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var time_left_in_ms = ms_per_word * word_count;
         var time_left_in_s = time_left_in_ms / 1000;
 
+        // Always round up
+        if (time_left_in_ms % 1000 != 0) {
+            time_left_in_s++;
+        }
+
         var seconds_left = time_left_in_s % 60;
         var minutes_left = time_left_in_s / 60;
 
-        if (time_left_in_ms % 1000 != 0) {
-            seconds_left++;
-        }
-
-        _read.time_left = _ ("%u min %u s left").printf (minutes_left, seconds_left);
+        _read.time_left = _ ("%u min %u s left").printf (
+            minutes_left,
+            seconds_left
+        );
     }
 
     /** Reset the reading position to the start and show the first word if any */
