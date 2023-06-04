@@ -216,7 +216,46 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // "Read" view: focus on the play/pause button
             _read.focus_play_button ();
+            update_time_left ();
         }
+    }
+
+    void update_time_left () {
+        var iter = _input_iter;
+        skip_whitespaces (ref iter);
+
+        if (iter.is_end ()) {
+            Gtk.TextIter start_iter;
+            _text.input.buffer.get_start_iter (out start_iter);
+            skip_whitespaces (ref start_iter);
+
+            if (start_iter.equal (iter)) {
+                _read.time_left = "";
+            } else {
+                _read.time_left = _ ("End reached");
+            }
+
+            return;
+        }
+
+        uint word_count;
+        for (word_count = 0; !iter.is_end (); word_count++) {
+            next_word (ref iter);
+            skip_whitespaces (ref iter);
+        }
+
+        var ms_per_word = (uint) _ms_per_word.value;
+        var time_left_in_ms = ms_per_word * word_count;
+        var time_left_in_s = time_left_in_ms / 1000;
+
+        var seconds_left = time_left_in_s % 60;
+        var minutes_left = time_left_in_s / 60;
+
+        if (time_left_in_ms % 1000 != 0) {
+            seconds_left++;
+        }
+
+        _read.time_left = _ ("%u min %u s left").printf (minutes_left, seconds_left);
     }
 
     /** Reset the reading position to the start and show the first word if any */
@@ -279,6 +318,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _read.has_next_word = false;
             _read.has_previous_word = has_previous_word (iter);
             update_text_position ();
+            update_time_left ();
 
             // Stop ticking
             return false;
@@ -328,6 +368,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _read.has_previous_word = has_previous_word (_input_iter);
         _read.is_playing = false;
         update_text_position ();
+        update_time_left ();
     }
 
     Gtk.Stack build_main_stack () {
@@ -359,6 +400,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _read.has_next_word = has_next_word (_input_iter);
             _read.has_previous_word = has_previous_word (_input_iter);
             update_text_position ();
+            update_time_left ();
         });
 
         _read.next_word.connect (() => {
@@ -366,6 +408,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _read.has_next_word = has_next_word (_input_iter);
             _read.has_previous_word = has_previous_word (_input_iter);
             update_text_position ();
+            update_time_left ();
         });
     }
 
@@ -417,6 +460,12 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        _ms_per_word, "value",
                        GLib.SettingsBindFlags.DEFAULT
         );
+
+        _ms_per_word.value_changed.connect (() => {
+            if (!_read.is_playing) {
+                update_time_left ();
+            }
+        });
 
         _font_chooser = new Gtk.FontButton ();
         settings.bind ("reading-font",

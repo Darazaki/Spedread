@@ -17,6 +17,7 @@ class SpedreadReadTab : Gtk.Grid {
     Gtk.ToggleButton _play;
     Gtk.Button _previous;
     Gtk.Button _next;
+    Gtk.Label _time_left;
     Gtk.Label _word;
 
     /** The text shown on screen */
@@ -44,6 +45,7 @@ class SpedreadReadTab : Gtk.Grid {
             value = !value;
             _previous.visible = value;
             _next.visible = value;
+            _time_left.visible = value;
         }
     }
 
@@ -55,6 +57,11 @@ class SpedreadReadTab : Gtk.Grid {
     /** Controls whether the previous word button should be enabled */
     public bool has_previous_word {
         set { _previous.sensitive = value; }
+    }
+
+    public string time_left {
+        get { return _time_left.label; }
+        set { _time_left.label = value; }
     }
 
     /** Controls whether the play button should be enabled */
@@ -72,6 +79,15 @@ class SpedreadReadTab : Gtk.Grid {
             vexpand = true,
             attributes = new Pango.AttrList ()
         };
+
+        _time_left = new Gtk.Label (null) {
+            valign = Gtk.Align.END,
+            margin_bottom = 12,
+        };
+
+        var overlay = new Gtk.Overlay ();
+        overlay.child = _word;
+        overlay.add_overlay (_time_left);
 
         _play = new Gtk.ToggleButton () {
             icon_name = PLAY_ICON,
@@ -95,7 +111,7 @@ class SpedreadReadTab : Gtk.Grid {
 
         _next.clicked.connect (() => next_word ());
 
-        attach (_word, 0, 0, 3, 1);
+        attach (overlay, 0, 0, 3, 1);
         attach (_previous, 0, 1, 1, 1);
         attach (_play, 1, 1, 1, 1);
         attach (_next, 2, 1, 1, 1);
