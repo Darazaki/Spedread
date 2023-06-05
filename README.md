@@ -28,10 +28,10 @@ This application is available as a Flatpak on Flathub:
 
 A snap version is available on Canonical's Snap Store:
 
-<iframe src="https://snapcraft.io/spedread/embedded?button=black"
-        frameborder="0" width="100%" height="300px"
-        style="border: 1px solid #CCC; border-radius: 2px;">
-</iframe>
+<a href='https://snapcraft.io/spedread'>
+    <img width='180' alt='Get it from the Snap Store'
+    src='https://snapcraft.io/static/images/badges/en/snap-store-black.svg'/>
+</a>
 
 ### AUR
 
