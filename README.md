@@ -24,6 +24,24 @@ This application is available as a Flatpak on Flathub:
     src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
 </a>
 
+### Snap (maintained by [CapeCrusader321](https://github.com/CapeCrusader321))
+
+A snap version is available on Canonical's Snap Store:
+
+<iframe src="https://snapcraft.io/spedread/embedded?button=black"
+        frameborder="0" width="100%" height="300px"
+        style="border: 1px solid #CCC; border-radius: 2px;">
+</iframe>
+
+### AUR
+
+Two packages are available on the AUR:
+[spedread](https://aur.archlinux.org/packages/spedread)
+and [spedread-git](https://aur.archlinux.org/packages/spedread-git)
+
+These packages are maintained by both Igor Dyatlov and me so if you have any
+issues with the packaging please report them directly onto the AUR
+
 ### Build from source (native install)
 
 This will require a valid Vala compiler and the GTK4 and libadwaita development files:
@@ -53,12 +71,3 @@ dev-scripts/build.sh --install
 
 Spedread will then be installed as a Flatpak application and can be managed as
 such
-
-### AUR
-
-Two packages are available on the AUR:
-[spedread](https://aur.archlinux.org/packages/spedread)
-and [spedread-git](https://aur.archlinux.org/packages/spedread-git)
-
-These packages are maintained by both Igor Dyatlov and me so if you have any
-issues with the packaging please report them directly onto the AUR
