@@ -1,14 +1,14 @@
 # Translation for the Spedread project.
 # Copyright (C) 2021
 # This file is distributed under the same license as the Spedread package.
-# Albano Battistella <albano_battistella@hotmail.com>, 2021,2022.
+# Albano Battistella <albano_battistella@hotmail.com>, 2021,2022,2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "POT-Creation-Date: 2023-06-04 22:43+0200\n"
-"PO-Revision-Date: 2022-09-03 22:09+0100\n"
+"PO-Revision-Date: 2023-06-05 14:15+0100\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: it\n"
 "Language: Italian\n"
@@ -22,13 +22,13 @@ msgstr "Vai su \"Testo\" e incolla la tua lettura!"
 
 #: src/SpedreadWindow.vala:239
 msgid "End reached"
-msgstr ""
+msgstr "Fine raggiunta"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
 #: src/SpedreadWindow.vala:264
 #, c-format
 msgid "%u min %u s left"
-msgstr ""
+msgstr "%u min %u rimasti"
 
 #: src/SpedreadWindow.vala:399
 msgid "Text"
@@ -40,11 +40,11 @@ msgstr "Leggi"
 
 #: src/SpedreadWindow.vala:435
 msgid "New Window"
-msgstr ""
+msgstr "Nuova finestra"
 
 #: src/SpedreadWindow.vala:466
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu principale"
 
 #: src/SpedreadWindow.vala:507
 msgid "This change will only be applied after you restart Spedread"
@@ -74,7 +74,7 @@ msgstr "Usa libadwaita"
 
 #: src/SpedreadWindow.vala:578
 msgid "Paste"
-msgstr ""
+msgstr "Incolla"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"
