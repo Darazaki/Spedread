@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "POT-Creation-Date: 2023-06-04 22:43+0200\n"
-"PO-Revision-Date: 2023-02-10 17:30+0100\n"
+"PO-Revision-Date: 2023-06-06 12:01+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:285
 msgid "Go to \"Text\" and paste your read!"
@@ -24,13 +24,13 @@ msgstr "Ga naar ‘Tekst’ en plak uw leesmateriaal!"
 
 #: src/SpedreadWindow.vala:239
 msgid "End reached"
-msgstr ""
+msgstr "Het einde is bereikt"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
 #: src/SpedreadWindow.vala:264
 #, c-format
 msgid "%u min %u s left"
-msgstr ""
+msgstr "Nog %u min. en %u sec. te gaan"
 
 #: src/SpedreadWindow.vala:399
 msgid "Text"
@@ -42,11 +42,11 @@ msgstr "Lezen"
 
 #: src/SpedreadWindow.vala:435
 msgid "New Window"
-msgstr ""
+msgstr "Nieuw venster"
 
 #: src/SpedreadWindow.vala:466
 msgid "Main Menu"
-msgstr ""
+msgstr "Hoofdmenu"
 
 #: src/SpedreadWindow.vala:507
 msgid "This change will only be applied after you restart Spedread"
@@ -76,7 +76,7 @@ msgstr "Libadwaita gebruiken"
 
 #: src/SpedreadWindow.vala:578
 msgid "Paste"
-msgstr ""
+msgstr "Plakken"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"
