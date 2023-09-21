@@ -61,7 +61,7 @@ uninstall Spedread after having installed it
 ### Build from source (Flatpak install)
 
 This will require having the `flatpak-builder` command installed along with
-version 44 of the `org.gnome.Sdk` Flatpak package:
+version 45 of the `org.gnome.Sdk` Flatpak package:
 
 ```sh
 git clone https://github.com/Darazaki/Spedread spedread
