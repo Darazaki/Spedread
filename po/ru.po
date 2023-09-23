@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "POT-Creation-Date: 2023-06-04 22:43+0200\n"
-"PO-Revision-Date: 2022-12-10 16:26+0800\n"
+"PO-Revision-Date: 2023-09-23 20:01+0800\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: ru_RU\n"
@@ -25,13 +25,13 @@ msgstr "Перейдите в раздел \"Текст\" и вставьте ч
 
 #: src/SpedreadWindow.vala:239
 msgid "End reached"
-msgstr ""
+msgstr "Конец достигнут"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
 #: src/SpedreadWindow.vala:264
 #, c-format
 msgid "%u min %u s left"
-msgstr ""
+msgstr "Осталось %u мин. %u сек."
 
 #: src/SpedreadWindow.vala:399
 msgid "Text"
@@ -43,11 +43,11 @@ msgstr "Чтение"
 
 #: src/SpedreadWindow.vala:435
 msgid "New Window"
-msgstr ""
+msgstr "Новое Окно"
 
 #: src/SpedreadWindow.vala:466
 msgid "Main Menu"
-msgstr ""
+msgstr "Главное Меню"
 
 #: src/SpedreadWindow.vala:507
 msgid "This change will only be applied after you restart Spedread"
@@ -77,7 +77,7 @@ msgstr "Использовать libadwaita"
 
 #: src/SpedreadWindow.vala:578
 msgid "Paste"
-msgstr ""
+msgstr "Вставить"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:3
 msgid "Spedread"
@@ -85,7 +85,7 @@ msgstr ""
 
 #: data/com.github.Darazaki.Spedread.desktop.in:10
 msgid "read;fast;speed;reading;"
-msgstr ""
+msgstr "читать;быстро;скорость;чтение;"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
