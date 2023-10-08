@@ -42,6 +42,14 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.4.5" date="2023-10-08">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Update Occitan translation (thanks to @Mejans)</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.4.4" date="2023-09-24">
 			<description>
 				<p>New:</p>
