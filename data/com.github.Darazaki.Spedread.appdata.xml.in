@@ -42,6 +42,15 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.4.6" date="2024-03-20">
+			<description>
+				<p>New:</p>
+				<ul>
+					<li>Update GNOME Platform version from 45 to 46</li>
+				</ul>
+				<p>Note: This update only concerns the Flatpak builds of Spedread.</p>
+			</description>
+		</release>
 		<release version="2.4.5" date="2023-10-08">
 			<description>
 				<p>New:</p>
