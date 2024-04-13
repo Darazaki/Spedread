@@ -1,21 +1,52 @@
 # Translation for the Spedread project.
 # Copyright (C) 2023
 # This file is distributed under the same license as the Spedread package.
-# %AUTHOR%, %YEAR%.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2023-06-04 22:43+0200\n"
 "PO-Revision-Date: %DATE%\n"
 "Last-Translator: %AUTHOR%\n"
 "Language-Team: none\n"
 "Language: %LANG%\n"
+"POT-Creation-Date: 2024-04-12 16:16+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: data/com.github.Darazaki.Spedread.desktop.in:3
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:8
+msgid "Spedread"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.desktop.in:4
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
+#: src/SpedreadWindow.vala:539 src/SpedreadWindow.vala:556
+msgid "Read like a speedrunner!"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.desktop.in:10
+msgid "read;fast;speed;reading;"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:9
+msgid "Naqua Darazaki"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:17
+msgid "GTK speed reading software: Read like a speedrunner!"
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:20
+msgid ""
+"This program will show one word at a time rapidly to allow focusing on the "
+"general idea rather than single words along with less eye movements."
+msgstr ""
+
+#. No text, disable everything and prompt the user to add something
+#. to read
 #: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:285
 msgid "Go to \"Text\" and paste your read!"
 msgstr ""
@@ -54,42 +85,23 @@ msgstr ""
 msgid "About Spedread..."
 msgstr ""
 
-#: src/SpedreadWindow.vala:539 src/SpedreadWindow.vala:556
-#: data/com.github.Darazaki.Spedread.desktop.in:4
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-msgid "Read like a speedrunner!"
-msgstr ""
-
-#: src/SpedreadWindow.vala:562
-msgid "Milliseconds per Word"
+#. TRANSLATORS: 'Name <email@domain.com>' or 'Name https://website.example'
+#: src/SpedreadWindow.vala:558
+msgid "translator-credits"
 msgstr ""
 
 #: src/SpedreadWindow.vala:564
-msgid "Reading Font"
+msgid "Milliseconds per Word"
 msgstr ""
 
 #: src/SpedreadWindow.vala:566
+msgid "Reading Font"
+msgstr ""
+
+#: src/SpedreadWindow.vala:568
 msgid "Use libadwaita"
 msgstr ""
 
-#: src/SpedreadWindow.vala:578
+#: src/SpedreadWindow.vala:580
 msgid "Paste"
-msgstr ""
-
-#: data/com.github.Darazaki.Spedread.desktop.in:3
-msgid "Spedread"
-msgstr ""
-
-#: data/com.github.Darazaki.Spedread.desktop.in:10
-msgid "read;fast;speed;reading;"
-msgstr ""
-
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:17
-msgid "GTK speed reading software: Read like a speedrunner!"
-msgstr ""
-
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:20
-msgid ""
-"This program will show one word at a time rapidly to allow focusing on the "
-"general idea rather than single words along with less eye movements."
 msgstr ""

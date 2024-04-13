@@ -43,7 +43,7 @@
 	</custom>
 	<releases>
 		<release version="2.4.6" date="2024-03-20">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update GNOME Platform version from 45 to 46</li>
@@ -52,7 +52,7 @@
 			</description>
 		</release>
 		<release version="2.4.5" date="2023-10-08">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update Occitan translation (thanks to @Mejans)</li>
@@ -60,7 +60,7 @@
 			</description>
 		</release>
 		<release version="2.4.4" date="2023-09-24">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update Russian translation (thanks to @alexkdeveloper)</li>
@@ -68,7 +68,7 @@
 			</description>
 		</release>
 		<release version="2.4.3" date="2023-09-21">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update GNOME Platform version from 44 to 45</li>
@@ -77,7 +77,7 @@
 			</description>
 		</release>
 		<release version="2.4.2" date="2023-06-06">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update Dutch translation (thanks to @Vistaus)</li>
@@ -85,7 +85,7 @@
 			</description>
 		</release>
 		<release version="2.4.1" date="2023-06-05">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update Italian translation (thanks to @albanobattistella)</li>
@@ -93,7 +93,7 @@
 			</description>
 		</release>
 		<release version="2.4.0" date="2023-06-04">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update GNOME Platform version from 43 to 44 (thanks to @alexkdeveloper)</li>
@@ -109,7 +109,7 @@
 			</description>
 		</release>
 		<release version="2.3.4" date="2023-02-14">
-			<description>
+			<description translate="no">
 				<p>Fixed:</p>
 				<ul>
 					<li>Typo in German translation has been fixed (thanks to Jürgen Benvenuti)</li>
@@ -117,7 +117,7 @@
 			</description>
 		</release>
 		<release version="2.3.3" date="2023-02-13">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Add German translation (thanks to Jürgen Benvenuti)</li>
@@ -125,7 +125,7 @@
 			</description>
 		</release>
 		<release version="2.3.2" date="2023-02-11">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Add Dutch translation (thanks to @Vistaus)</li>
@@ -133,7 +133,7 @@
 			</description>
 		</release>
 		<release version="2.3.1" date="2022-12-10">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Add Russian translation (thanks to @alexkdeveloper)</li>
@@ -146,7 +146,7 @@
 			</description>
 		</release>
 		<release version="2.3.0" date="2022-12-09">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Add "new window" and "quick paste" buttons</li>
@@ -155,7 +155,7 @@
 			</description>
 		</release>
 		<release version="2.2.1" date="2022-09-03">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Update Italian translation (thanks to @albanobattistella)</li>
@@ -163,7 +163,7 @@
 			</description>
 		</release>
 		<release version="2.2.0" date="2022-09-02">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Change icon to fit both GNOME HIG and my personal style</li>
@@ -180,7 +180,7 @@
 			</description>
 		</release>
 		<release version="2.1.1" date="2022-02-24">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Numbers and acronyms are now treated as one word</li>
@@ -192,7 +192,7 @@
 			</description>
 		</release>
 		<release version="2.1.0" date="2022-01-02">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Make font inside the "Read" tab customizable</li>
@@ -204,7 +204,7 @@
 			</description>
 		</release>
 		<release version="2.0.2" date="2021-12-30">
-			<description>
+			<description translate="no">
 				<p>Changes:</p>
 				<ul>
 					<li>Slightly improve performance and energy consumption while reading</li>
@@ -212,7 +212,7 @@
 			</description>
 		</release>
 		<release version="2.0.1" date="2021-12-28">
-			<description>
+			<description translate="no">
 				<p>New:</p>
 				<ul>
 					<li>Italian translation (thanks to @albanobattistella)</li>
@@ -220,7 +220,7 @@
 			</description>
 		</release>
 		<release version="2.0.0" date="2021-12-24">
-            <description>
+            <description translate="no">
                 <p>New:</p>
                 <ul>
                     <li>Previous/next word buttons</li>

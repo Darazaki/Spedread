@@ -1,6 +1,6 @@
+data/com.github.Darazaki.Spedread.desktop.in
+data/com.github.Darazaki.Spedread.appdata.xml.in
 src/SpedreadApp.vala
 src/SpedreadReadTab.vala
 src/SpedreadTextTab.vala
 src/SpedreadWindow.vala
-data/com.github.Darazaki.Spedread.desktop.in
-data/com.github.Darazaki.Spedread.appdata.xml.in

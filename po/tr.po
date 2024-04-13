@@ -1,0 +1,112 @@
+# Turkish translation for com.github.Darazaki.Spedread.
+# Copyright (C) 2024 com.github.Darazaki.Spedread's COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.Darazaki.Spedread package.
+#
+# Sabri Ünal <yakushabb@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.Darazaki.Spedread\n"
+"Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
+"POT-Creation-Date: 2024-04-12 16:16+0300\n"
+"PO-Revision-Date: 2024-04-12 16:19+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"Language-Team: Turkish <takim@gnome.org.tr>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: data/com.github.Darazaki.Spedread.desktop.in:3
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:8
+msgid "Spedread"
+msgstr "Spedread"
+
+#: data/com.github.Darazaki.Spedread.desktop.in:4
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
+#: src/SpedreadWindow.vala:539 src/SpedreadWindow.vala:556
+msgid "Read like a speedrunner!"
+msgstr "Koşar gibi okuyun!"
+
+#: data/com.github.Darazaki.Spedread.desktop.in:10
+msgid "read;fast;speed;reading;"
+msgstr "oku;hız;hızlı;okuma;"
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:9
+msgid "Naqua Darazaki"
+msgstr "Naqua Darazaki"
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:17
+msgid "GTK speed reading software: Read like a speedrunner!"
+msgstr "GTK ile hazırlanmış hızlı okuma yazılımı: Koşar gibi okuyun!"
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:20
+msgid ""
+"This program will show one word at a time rapidly to allow focusing on the "
+"general idea rather than single words along with less eye movements."
+msgstr ""
+"Bu program, daha az göz hareketiyle, tek tek kelimeler yerine genel fikre "
+"odaklanmayı sağlamak için her seferinde bir kelimeyi hızlıca gösterecek."
+
+#. No text, disable everything and prompt the user to add something
+#. to read
+#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:285
+msgid "Go to \"Text\" and paste your read!"
+msgstr "\"Metin\" alanına gidip okumak istediğinizi yapıştırın!"
+
+#: src/SpedreadWindow.vala:239
+msgid "End reached"
+msgstr "Sona ulaşıldı"
+
+#. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
+#: src/SpedreadWindow.vala:264
+#, c-format
+msgid "%u min %u s left"
+msgstr "%u dk %u sn kaldı"
+
+#: src/SpedreadWindow.vala:399
+msgid "Text"
+msgstr "Metin"
+
+#: src/SpedreadWindow.vala:400
+msgid "Read"
+msgstr "Oku"
+
+#: src/SpedreadWindow.vala:435
+msgid "New Window"
+msgstr "Yeni Pencere"
+
+#: src/SpedreadWindow.vala:466
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: src/SpedreadWindow.vala:507
+msgid "This change will only be applied after you restart Spedread"
+msgstr "Bu değişiklik Spedread yeniden başlattıktan sonra uygulanacak"
+
+#: src/SpedreadWindow.vala:525
+msgid "About Spedread..."
+msgstr "Spedread Hakkında"
+
+#. TRANSLATORS: 'Name <email@domain.com>' or 'Name https://website.example'
+#: src/SpedreadWindow.vala:558
+msgid "translator-credits"
+msgstr "Sabri Ünal <yakushabb@gmail.com>"
+
+#: src/SpedreadWindow.vala:564
+msgid "Milliseconds per Word"
+msgstr "Kelime Başına Milisaniye"
+
+#: src/SpedreadWindow.vala:566
+msgid "Reading Font"
+msgstr "Okuma Yazı Tipi"
+
+#: src/SpedreadWindow.vala:568
+msgid "Use libadwaita"
+msgstr "Libadwaita kullan"
+
+#: src/SpedreadWindow.vala:580
+msgid "Paste"
+msgstr "Yapıştır"
