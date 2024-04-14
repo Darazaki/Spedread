@@ -43,11 +43,13 @@
 	</custom>
 	<releases>
 		<release version="2.4.7" date="2024-04-14">
-			<p>New:</p>
-			<ul>
-				<li>Add Turkish translation (thanks to @yakushabb)</li>
-				<li>Translators are now credited inside Spedread (thanks to @yakushabb)</li>
-			</ul>
+			<description translate="no">
+				<p>New:</p>
+				<ul>
+					<li>Add Turkish translation (thanks to @yakushabb)</li>
+					<li>Translators are now credited inside Spedread (thanks to @yakushabb)</li>
+				</ul>
+			</description>
 		</release>
 		<release version="2.4.6" date="2024-03-20">
 			<description translate="no">
