@@ -530,6 +530,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             popover.popdown ();
 
+            // TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
+            var translator_credits = _ ("translator-credits");
+
 #if ADW_1_2
             if (SpedreadSettings.is_using_libadwaita) {
                 var win = new Adw.AboutWindow () {
@@ -537,6 +540,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                     application_icon = "com.github.Darazaki.Spedread",
                     version = VERSION,
                     comments = _ ("Read like a speedrunner!"),
+                    translator_credits = translator_credits,
                     license_type = Gtk.License.GPL_3_0,
                     developers = authors,
                     website = "https://github.com/Darazaki/Spedread"
@@ -554,8 +558,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 "license-type", Gtk.License.GPL_3_0,
                 "logo-icon-name", "com.github.Darazaki.Spedread",
                 "comments", _ ("Read like a speedrunner!"),
-                // TRANSLATORS: 'Name <email@domain.com>' or 'Name https://website.example'
-                "translator-credits", _("translator-credits"),
+                "translator-credits", translator_credits,
                 "version", VERSION,
                 "authors", authors
             );
