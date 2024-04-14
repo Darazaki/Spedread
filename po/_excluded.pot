@@ -1,0 +1,5 @@
+msgid "Spedread"
+msgstr ""
+
+msgid "Naqua Darazaki"
+msgstr ""
