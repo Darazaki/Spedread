@@ -1,7 +1,7 @@
 project(
     'spedread',
     ['c', 'vala'],
-    version: '2.4.6',
+    version: '2.4.7',
     meson_version: '>= 0.50.0',
     default_options: [
         'warning_level=2',
