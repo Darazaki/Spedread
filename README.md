@@ -24,7 +24,7 @@ This application is available as a Flatpak on Flathub:
     src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
 </a>
 
-### Snap (maintained by [CapeCrusader321](https://github.com/CapeCrusader321))
+### Snap
 
 A snap version is available on Canonical's Snap Store:
 
@@ -32,6 +32,8 @@ A snap version is available on Canonical's Snap Store:
     <img width='180' alt='Get it from the Snap Store'
     src='https://snapcraft.io/static/images/badges/en/snap-store-black.svg'/>
 </a>
+
+This snap was originally created and maintained by @sameersharma2006
 
 ### AUR
 
