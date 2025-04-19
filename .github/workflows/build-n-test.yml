@@ -28,8 +28,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install flatpak-builder
-      run: sudo apt-get install flatpak-builder
+    - name: Install flatpak-builder & appstream-compose
+      run: sudo apt-get install flatpak-builder appstream-compose
     - name: Add Flathub repository
       run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     - name: Install GNOME SDK & Platform
