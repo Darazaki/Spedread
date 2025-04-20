@@ -3,8 +3,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     SpedreadTextTab _text;
 
     Gtk.SpinButton _ms_per_word;
-    Gtk.FontButton _font_chooser;
     Gtk.Stack _stack;
+
+#if GTK_4_10
+    Gtk.FontDialogButton _font_chooser;
+#else
+    Gtk.FontButton _font_chooser;
+#endif
 
     SpedreadIterHistory _iter_history = SpedreadIterHistory ();
     Gtk.TextIter _input_iter;
@@ -479,11 +484,37 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        GLib.SettingsBindFlags.DEFAULT
         );
 
+#if GTK_4_10
+        var font_dialog = new Gtk.FontDialog ();
+        _font_chooser = new Gtk.FontDialogButton (font_dialog);
+        _font_chooser.font_desc = Pango.FontDescription.from_string (
+            settings.get_string ("reading-font")
+        );
+        settings.bind_with_mapping (
+            "reading-font",
+            _font_chooser, "font-desc",
+            GLib.SettingsBindFlags.DEFAULT,
+            (target, gotten) => { // get from settings
+                var font_string = gotten.get_string ();
+                var font = Pango.FontDescription.from_string (font_string);
+                print ("Font gotten is: %s\n", font.to_string ());
+                target.set_object ((GLib.Object) font);
+                return true;
+            },
+            value => { // set to settings
+                var font = (Pango.FontDescription) value;
+                print ("Font set is: %s\n", font.to_string ());
+                return font.to_string ();
+            },
+            null, null
+        );
+#else
         _font_chooser = new Gtk.FontButton ();
         settings.bind ("reading-font",
                        _font_chooser, "font",
                        GLib.SettingsBindFlags.DEFAULT
         );
+#endif
         settings.bind ("reading-font",
                        _read, "font",
                        GLib.SettingsBindFlags.GET
@@ -505,6 +536,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
                 var message_string = _ (
                     "This change will only be applied after you restart Spedread");
+
+#if GTK_4_10
+                var dialog = new Gtk.AlertDialog (message_string);
+                dialog.show (this);
+#else
                 var dialog = new Gtk.MessageDialog (
                     this,
                     Gtk.DialogFlags.MODAL,
@@ -516,6 +552,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 dialog.response.connect (() => {
                     dialog.close ();
                 });
+#endif
             }
 
             // Set the state (see `Gtk.Switch.state_set`)
@@ -524,22 +561,33 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         var about_button = new Gtk.Button.with_label (_ ("About Spedread..."));
         about_button.clicked.connect (() => {
-            var authors = new string[] {
-                "Naqua Darazaki <n.darazaki@gmail.com>"
-            };
-
             popover.popdown ();
 
             // TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
             var translator_credits = _ ("translator-credits");
+            var catchphrase = _ ("Read like a speedrunner!");
+            var authors = new string[] {
+                "Naqua Darazaki <n.darazaki@gmail.com>"
+            };
 
-#if ADW_1_2
+#if ADW_1_5
+            if (SpedreadSettings.is_using_libadwaita) {
+                Adw.show_about_dialog_from_appdata (this,
+                    application.resource_base_path + "/appdata.xml", VERSION,
+                    "comments", catchphrase,
+                    "translator-credits", translator_credits,
+                    "developers", authors,
+                    null);
+
+                return;
+            }
+#elif ADW_1_2
             if (SpedreadSettings.is_using_libadwaita) {
                 var win = new Adw.AboutWindow () {
                     application_name = "Spedread",
                     application_icon = "com.github.Darazaki.Spedread",
                     version = VERSION,
-                    comments = _ ("Read like a speedrunner!"),
+                    comments = catchphrase,
                     translator_credits = translator_credits,
                     license_type = Gtk.License.GPL_3_0,
                     developers = authors,
@@ -547,7 +595,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 };
                 win.set_transient_for (this);
                 win.show ();
-                
+
                 return;
             }
 #endif
@@ -557,7 +605,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 "website", "https://github.com/Darazaki/Spedread",
                 "license-type", Gtk.License.GPL_3_0,
                 "logo-icon-name", "com.github.Darazaki.Spedread",
-                "comments", _ ("Read like a speedrunner!"),
+                "comments", catchphrase,
                 "translator-credits", translator_credits,
                 "version", VERSION,
                 "authors", authors

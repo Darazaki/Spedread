@@ -1,4 +1,11 @@
 option(
+    'force_legacy_libs',
+    type: 'boolean',
+    value: false,
+    description: 'Disable automatic library version detection and usage of new features',
+)
+
+option(
     'adw_1_2',
     type: 'boolean',
     value: false,

@@ -40,4 +40,12 @@ if compile_schemas.found()
   )
 endif
 
+gresource_target = gnome.compile_resources(
+  'SpedreadGResource', # generated .c file name
+  'com.github.Darazaki.Spedread.gresource.xml',
+  c_name: 'spedread_g', # prefix used for identifier within the .c file
+  source_dir: meson.current_build_dir(),
+  dependencies: [appstream_file]
+) 
+
 subdir('icons')
