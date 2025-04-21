@@ -513,6 +513,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        GLib.SettingsBindFlags.DEFAULT
         );
 #endif
+        var font_chooser_button = (Gtk.Button) _font_chooser.get_first_child ();
+        font_chooser_button.clicked.connect (() => {
+            popover.popdown ();
+        });
+
         settings.bind ("reading-font",
                        _read, "font",
                        GLib.SettingsBindFlags.GET
