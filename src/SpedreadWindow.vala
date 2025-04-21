@@ -497,13 +497,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             (target, gotten) => { // get from settings
                 var font_string = gotten.get_string ();
                 var font = Pango.FontDescription.from_string (font_string);
-                print ("Font gotten is: %s\n", font.to_string ());
                 target.set_object ((GLib.Object) font);
                 return true;
             },
             value => { // set to settings
                 var font = (Pango.FontDescription) value;
-                print ("Font set is: %s\n", font.to_string ());
                 return font.to_string ();
             },
             null, null
