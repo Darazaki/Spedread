@@ -25,12 +25,10 @@ apps:
 parts:
   spedread:
     source: .
-    source-tag: v2.4.7-fixed
     plugin: meson
     parse-info: [usr/share/appdata/com.github.Darazaki.Spedread.appdata.xml]
     meson-parameters:
       - -Dprefix=/usr
-      - -Dadw_1_2=true
     override-pull: |
       craftctl default
       sed -e 's|Icon=com.github.Darazaki.Spedread|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/com.github.Darazaki.Spedread.svg|' -i data/com.github.Darazaki.Spedread.desktop.in
