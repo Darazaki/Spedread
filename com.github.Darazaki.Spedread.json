@@ -27,9 +27,6 @@
             "name": "spedread",
             "builddir": true,
             "buildsystem": "meson",
-            "config-opts": [
-                "-Dadw_1_2=true"
-            ],
             "sources": [
                 {
                     "type": "dir",
