@@ -25,14 +25,13 @@ jobs:
   flatpak-build:
 
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-48
+      options: --privileged
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install flatpak-builder & appstream-compose
-      run: sudo apt-get install flatpak-builder appstream-compose
-    - name: Add Flathub repository
-      run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    - name: Install GNOME SDK & Platform
-      run: sudo flatpak install org.gnome.Sdk//48 org.gnome.Platform//48 -y
-    - name: Build
-      run: dev-scripts/build.sh
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      with:
+        bundle: Spedread.flatpak
+        manifest-path: com.github.Darazaki.Spedread.json
