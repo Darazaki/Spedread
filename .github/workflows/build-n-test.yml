@@ -35,3 +35,11 @@ jobs:
       with:
         bundle: Spedread.flatpak
         manifest-path: com.github.Darazaki.Spedread.json
+
+  snap-build:
+    
+    runs-on: ubuntu-22.04
+    
+    steps:
+    - uses: actions/checkout@v4
+    - uses: snapcore/action-build@v1
