@@ -35,7 +35,7 @@ jobs:
       with:
         bundle: Spedread.flatpak
         manifest-path: com.github.Darazaki.Spedread.json
-        
+
   snap-build:
 
     runs-on: ubuntu-22.04
@@ -43,3 +43,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: snapcore/action-build@v1
+      id: build
+    - name: Install built snap package
+      run: sudo snap install --dangerous ${{ steps.build.outputs.snap }}
+    - name: Verify that the installed snap package runs
+      run: spedread --help
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Spedread-x86_64.snap
+        path: ${{ steps.build.outputs.snap }}
