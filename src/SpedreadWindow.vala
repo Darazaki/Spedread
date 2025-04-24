@@ -487,9 +487,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 #if GTK_4_10
         var font_dialog = new Gtk.FontDialog ();
         _font_chooser = new Gtk.FontDialogButton (font_dialog);
-        _font_chooser.font_desc = Pango.FontDescription.from_string (
-            settings.get_string ("reading-font")
-        );
         settings.bind_with_mapping (
             "reading-font",
             _font_chooser, "font-desc",
