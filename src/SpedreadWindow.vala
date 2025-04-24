@@ -497,7 +497,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             (target, gotten) => { // get from settings
                 var font_string = gotten.get_string ();
                 var font = Pango.FontDescription.from_string (font_string);
-                target.set_object ((GLib.Object) font);
+                target.set_boxed (font);
                 return true;
             },
             value => { // set to settings
