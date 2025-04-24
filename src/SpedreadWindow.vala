@@ -62,7 +62,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Stop iterating every word automatically */
     void remove_timeout () {
         if (_timeout_id != 0) {
-            GLib.Source.remove (_timeout_id);
+            Source.remove (_timeout_id);
             _timeout_id = 0;
         }
     }
@@ -481,7 +481,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         });
         settings.bind ("milliseconds-per-word",
                        _ms_per_word, "value",
-                       GLib.SettingsBindFlags.DEFAULT
+                       SettingsBindFlags.DEFAULT
         );
 
 #if GTK_4_10
@@ -493,7 +493,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         settings.bind_with_mapping (
             "reading-font",
             _font_chooser, "font-desc",
-            GLib.SettingsBindFlags.DEFAULT,
+            SettingsBindFlags.DEFAULT,
             (target, gotten) => { // get from settings
                 var font_string = gotten.get_string ();
                 var font = Pango.FontDescription.from_string (font_string);
@@ -510,7 +510,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _font_chooser = new Gtk.FontButton ();
         settings.bind ("reading-font",
                        _font_chooser, "font",
-                       GLib.SettingsBindFlags.DEFAULT
+                       SettingsBindFlags.DEFAULT
         );
 #endif
         var font_chooser_button = (Gtk.Button) _font_chooser.get_first_child ();
@@ -520,7 +520,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         settings.bind ("reading-font",
                        _read, "font",
-                       GLib.SettingsBindFlags.GET
+                       SettingsBindFlags.GET
         );
 
         var use_libadwaita = new Gtk.Switch () {
@@ -528,7 +528,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         };
         settings.bind ("use-libadwaita",
                        use_libadwaita, "active",
-                       GLib.SettingsBindFlags.DEFAULT
+                       SettingsBindFlags.DEFAULT
         );
         use_libadwaita.state_set.connect (new_state => {
             // Warn the user that the change will only be applied after an app
