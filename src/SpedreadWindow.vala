@@ -2,6 +2,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     SpedreadReadTab _read;
     SpedreadTextTab _text;
 
+    Gtk.ShortcutController _shortcut_controller;
     Gtk.SpinButton _ms_per_word;
     Gtk.Stack _stack;
 
@@ -20,6 +21,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Type of the `is_*_between` methods, used by `next_word_using` for word
         detection */
     delegate bool IsThingBetween (Gtk.TextIter start, Gtk.TextIter end);
+
+    /** The type of lambdas that are passed to the `add_new_shortcut` method */
+    delegate void ShortcutFunc ();
 
     public SpedreadWindow (Gtk.Application app) {
         Object (
@@ -50,6 +54,12 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         titlebar.pack_start (build_quick_paste_button ());
         titlebar.pack_end (build_menu_button ());
 
+        _shortcut_controller = new Gtk.ShortcutController () {
+            propagation_phase = Gtk.PropagationPhase.CAPTURE,
+            scope = Gtk.ShortcutScope.GLOBAL,
+        };
+
+        _stack.add_controller (_shortcut_controller);
         define_shortcuts ();
 
         set_titlebar (titlebar);
@@ -61,17 +71,15 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         base.dispose ();
     }
 
-    void add_new_shortcut (string trigger, owned Gtk.ShortcutFunc action) {
-        var shortcut_trigger = Gtk.ShortcutTrigger.parse_string (trigger);
-        if (shortcut_trigger == null) {
-            message ("String '%s' doesn't map to a valid shortcut trigger. Exiting.",
-                trigger);
-            Process.exit (1);
-        }
+    void add_new_shortcut (Gdk.ModifierType modifiers, uint keyval, owned ShortcutFunc action) {
+        var shortcut_trigger = new Gtk.KeyvalTrigger (keyval, modifiers);
+        var shortcut_action = new Gtk.CallbackAction (() => {
+            action ();
+            return true;
+        });
 
-        var shortcut_action = new Gtk.CallbackAction ((owned) action);
         var shortcut = new Gtk.Shortcut (shortcut_trigger, shortcut_action);
-        add_shortcut (shortcut);
+        _shortcut_controller.add_shortcut (shortcut);
     }
 
     /** Stop iterating every word automatically */
@@ -678,26 +686,29 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         return button;
     }
 
+    void switch_tab () {
+        _stack.visible_child = _stack.visible_child == _read
+            ? (Gtk.Widget) _text
+            : (Gtk.Widget) _read;
+    }
+
     void define_shortcuts () {
+        const Gdk.ModifierType CTRL = Gdk.ModifierType.CONTROL_MASK;
+        const Gdk.ModifierType CTRL_SHIFT = CTRL | Gdk.ModifierType.SHIFT_MASK;
+
         // Quick paste
-        add_new_shortcut ("<ctrl><shift>v", () => {
-            quick_paste ();
-            return true;
-        });
+        add_new_shortcut (CTRL, Gdk.Key.P, quick_paste);
+        add_new_shortcut (CTRL_SHIFT, Gdk.Key.V, quick_paste);
 
         // Switch tabs
-        add_new_shortcut ("<ctrl>space", () => {
-            _stack.visible_child = _stack.visible_child == _read
-                ? (Gtk.Widget) _text
-                : (Gtk.Widget) _read;
-
-            return true;
-        });
+        add_new_shortcut (CTRL, Gdk.Key.Tab, switch_tab);
+        add_new_shortcut (CTRL, Gdk.Key.KP_Tab, switch_tab);
+        add_new_shortcut (CTRL_SHIFT, Gdk.Key.Tab, switch_tab);
+        add_new_shortcut (CTRL_SHIFT, Gdk.Key.KP_Tab, switch_tab);
 
         // New window
-        add_new_shortcut ("<ctrl>n", () => {
+        add_new_shortcut (CTRL, Gdk.Key.N, () => {
             new SpedreadWindow (application).present ();
-            return true;
         });
     }
 }
