@@ -280,9 +280,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         buffer.get_start_iter (out iter);
         skip_whitespaces (ref iter);
 
-        _previous_iter = iter;
+        // Invalidate old `Gtk.TextIter`s
+        var next_iter = _end_of_word = _previous_iter = iter;
         _iter_history.erase ();
-        var next_iter = iter;
 
         if (iter.is_end ()) {
             // No text, disable everything and prompt the user to add something
