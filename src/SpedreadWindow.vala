@@ -50,6 +50,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         titlebar.pack_start (build_quick_paste_button ());
         titlebar.pack_end (build_menu_button ());
 
+        define_shortcuts ();
+
         set_titlebar (titlebar);
         set_child (_stack);
     }
@@ -57,6 +59,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     protected override void dispose () {
         remove_timeout ();
         base.dispose ();
+    }
+
+    void add_new_shortcut (string trigger, owned Gtk.ShortcutFunc action) {
+        var shortcut_trigger = Gtk.ShortcutTrigger.parse_string (trigger);
+        if (shortcut_trigger == null) {
+            message ("String '%s' doesn't map to a valid shortcut trigger. Exiting.",
+                trigger);
+            Process.exit (1);
+        }
+
+        var shortcut_action = new Gtk.CallbackAction ((owned) action);
+        var shortcut = new Gtk.Shortcut (shortcut_trigger, shortcut_action);
+        add_shortcut (shortcut);
     }
 
     /** Stop iterating every word automatically */
@@ -441,8 +456,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         };
 
         button.clicked.connect (() => {
-            var window = new SpedreadWindow (application);
-            window.present ();
+            new SpedreadWindow (application).present ();
         });
 
         return button;
@@ -625,40 +639,65 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         return button;
     }
 
+    /** Replaces the text to read with the clipboard's content */
+    void quick_paste () {
+        // Make sure pasting the text stops the current reading
+        stop_reading ();
+
+        var clipboard = Gdk.Display.get_default ().get_clipboard ();
+
+        // Attempt reading text from the clipboard
+        clipboard.read_text_async.begin (null, (_, result) => {
+            string text;
+
+            // The clipboard's content may or may to be convertible into
+            // text. If it isn't: return
+            try {
+                var maybe_text = clipboard.read_text_async.end (result);
+                if (maybe_text == null) {
+                    return;
+                }
+
+                text = maybe_text;
+            } catch {
+                return;
+            }
+
+            // Update the text (all the annoying stuff should be automatic)
+            _text.input.buffer.text = text;
+        });
+    }
+
     Gtk.Button build_quick_paste_button () {
         var button = new Gtk.Button () {
             icon_name = "edit-paste-symbolic",
             tooltip_text = _ ("Paste")
         };
 
-        button.clicked.connect (() => {
-            // Make sure pasting the text stops the current reading
-            stop_reading ();
+        button.clicked.connect (quick_paste);
+        return button;
+    }
 
-            var clipboard = Gdk.Display.get_default ().get_clipboard ();
-
-            // Attempt reading text from the clipboard
-            clipboard.read_text_async.begin (null, (_, result) => {
-                string text;
-
-                // The clipboard's content may or may to be convertible into
-                // text. If it isn't: return
-                try {
-                    var maybe_text = clipboard.read_text_async.end (result);
-                    if (maybe_text == null) {
-                        return;
-                    }
-
-                    text = maybe_text;
-                } catch {
-                    return;
-                }
-
-                // Update the text (all the annoying stuff should be automatic)
-                _text.input.buffer.text = text;
-            });
+    void define_shortcuts () {
+        // Quick paste
+        add_new_shortcut ("<ctrl><shift>v", () => {
+            quick_paste ();
+            return true;
         });
 
-        return button;
+        // Switch tabs
+        add_new_shortcut ("<ctrl>space", () => {
+            _stack.visible_child = _stack.visible_child == _read
+                ? (Gtk.Widget) _text
+                : (Gtk.Widget) _read;
+
+            return true;
+        });
+
+        // New window
+        add_new_shortcut ("<ctrl>n", () => {
+            new SpedreadWindow (application).present ();
+            return true;
+        });
     }
 }
