@@ -460,7 +460,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.Button build_new_window_button () {
         var button = new Gtk.Button () {
             icon_name = "window-new-symbolic",
-            tooltip_text = _ ("New Window")
+            tooltip_text = _ ("New Window (Ctrl+N)")
         };
 
         button.clicked.connect (() => {
@@ -679,7 +679,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.Button build_quick_paste_button () {
         var button = new Gtk.Button () {
             icon_name = "edit-paste-symbolic",
-            tooltip_text = _ ("Paste")
+            tooltip_text = _ ("Paste (Ctrl+P)")
         };
 
         button.clicked.connect (quick_paste);

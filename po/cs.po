@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2024-04-14 14:50+0200\n"
+"POT-Creation-Date: 2025-04-27 22:15+0200\n"
 "PO-Revision-Date: 2023-04-26 13:05+0200\n"
 "Last-Translator: Pavel Fric <pavelfric@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -19,13 +19,13 @@ msgstr ""
 "X-Generator: Lokalize 22.12.2\n"
 "X-Poedit-Country: Czech Republic\n"
 
-#: data/com.github.Darazaki.Spedread.desktop.in:4
+#: data/com.github.Darazaki.Spedread.desktop.in:3
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: src/SpedreadWindow.vala:542 src/SpedreadWindow.vala:560
+#: src/SpedreadWindow.vala:590
 msgid "Read like a speedrunner!"
 msgstr "Čtěte rychle"
 
-#: data/com.github.Darazaki.Spedread.desktop.in:10
+#: data/com.github.Darazaki.Spedread.desktop.in:9
 msgid "read;fast;speed;reading;"
 msgstr "čtení;rychlé;rychlost;čtení;"
 
@@ -42,61 +42,61 @@ msgstr ""
 "soustředit na myšlenku spíše než na jednotlivá slova a méně přitom pohyboval "
 "očima."
 
-#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:285
+#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:313
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Přejděte na \"Text\" a vložte své čtení!"
 
-#: src/SpedreadWindow.vala:239
+#: src/SpedreadWindow.vala:267
 msgid "End reached"
 msgstr ""
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:264
+#: src/SpedreadWindow.vala:292
 #, c-format
 msgid "%u min %u s left"
 msgstr ""
 
-#: src/SpedreadWindow.vala:399
+#: src/SpedreadWindow.vala:427
 msgid "Text"
 msgstr "Text"
 
-#: src/SpedreadWindow.vala:400
+#: src/SpedreadWindow.vala:428
 msgid "Read"
 msgstr "Číst"
 
-#: src/SpedreadWindow.vala:435
-msgid "New Window"
+#: src/SpedreadWindow.vala:463
+msgid "New Window (Ctrl+N)"
 msgstr ""
 
-#: src/SpedreadWindow.vala:466
+#: src/SpedreadWindow.vala:493
 msgid "Main Menu"
 msgstr ""
 
-#: src/SpedreadWindow.vala:507
+#: src/SpedreadWindow.vala:560
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Tato změna se provede až po opětovném spuštění aplikace Spedread."
 
-#: src/SpedreadWindow.vala:525
+#: src/SpedreadWindow.vala:584
 msgid "About Spedread..."
 msgstr "O programu Spedread …"
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:534
+#: src/SpedreadWindow.vala:589
 msgid "translator-credits"
 msgstr "Pavel Fric <pavelfric@seznam.cz>"
 
-#: src/SpedreadWindow.vala:567
+#: src/SpedreadWindow.vala:637
 msgid "Milliseconds per Word"
 msgstr "Milisekund na slovo"
 
-#: src/SpedreadWindow.vala:569
+#: src/SpedreadWindow.vala:639
 msgid "Reading Font"
 msgstr "Písmo pro čtení"
 
-#: src/SpedreadWindow.vala:571
+#: src/SpedreadWindow.vala:641
 msgid "Use libadwaita"
 msgstr "Použít libadwaita"
 
-#: src/SpedreadWindow.vala:583
-msgid "Paste"
+#: src/SpedreadWindow.vala:682
+msgid "Paste (Ctrl+P)"
 msgstr ""
