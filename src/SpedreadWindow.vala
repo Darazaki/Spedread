@@ -560,8 +560,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                     "This change will only be applied after you restart Spedread");
 
 #if GTK_4_10
-                var dialog = new Gtk.AlertDialog (message_string);
-                dialog.show (this);
+                new Gtk.AlertDialog ("%s", message_string) {
+                    buttons = { _ ("_OK") },
+                }.show (this);
 #else
                 var dialog = new Gtk.MessageDialog (
                     this,
@@ -570,10 +571,10 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                     Gtk.ButtonsType.OK,
                     "%s",
                     message_string);
-                dialog.show ();
                 dialog.response.connect (() => {
                     dialog.close ();
                 });
+                dialog.show ();
 #endif
             }
 
