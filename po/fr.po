@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2025-04-27 22:15+0200\n"
+"POT-Creation-Date: 2025-04-28 12:52+0200\n"
 "PO-Revision-Date: 2021-12-23 01:16+0100\n"
 "Last-Translator: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "Language-Team: none\n"
@@ -16,19 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.Darazaki.Spedread.desktop.in:3
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: src/SpedreadWindow.vala:590
-msgid "Read like a speedrunner!"
-msgstr "Lisez comme un speedrunner !"
-
-#: data/com.github.Darazaki.Spedread.desktop.in:9
-msgid "read;fast;speed;reading;"
-msgstr "lire;vite;rapide;lecture;"
-
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "Logiciel de lecture rapide GTK : Lisez comme un speedrunner !"
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:591
+msgid "Read like a speedrunner!"
+msgstr "Lisez comme un speedrunner !"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:20
 msgid ""
@@ -38,6 +33,10 @@ msgstr ""
 "Ce programme affiche rapidement les mots un à un pour permettre de se "
 "concentrer sur l'idée générale plutôt que sur les mots en soit tout en "
 "réduisant les mouvements oculaires."
+
+#: data/com.github.Darazaki.Spedread.desktop.in:9
+msgid "read;fast;speed;reading;"
+msgstr "lire;vite;rapide;lecture;"
 
 #: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:313
 msgid "Go to \"Text\" and paste your read!"
@@ -73,27 +72,31 @@ msgstr "Menu Principal"
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Ce changement ne sera appliqué qu'après avoir relancé Spedread"
 
-#: src/SpedreadWindow.vala:584
+#: src/SpedreadWindow.vala:564
+msgid "_OK"
+msgstr "_OK"
+
+#: src/SpedreadWindow.vala:585
 msgid "About Spedread..."
 msgstr "À propos de Spedread..."
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:589
+#: src/SpedreadWindow.vala:590
 msgid "translator-credits"
 msgstr "Naqua Darazaki <n.darazaki@gmail.com>"
 
-#: src/SpedreadWindow.vala:637
+#: src/SpedreadWindow.vala:638
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
-#: src/SpedreadWindow.vala:639
+#: src/SpedreadWindow.vala:640
 msgid "Reading Font"
 msgstr "Police de Lecture"
 
-#: src/SpedreadWindow.vala:641
+#: src/SpedreadWindow.vala:642
 msgid "Use libadwaita"
 msgstr "Utiliser libadwaita"
 
-#: src/SpedreadWindow.vala:682
+#: src/SpedreadWindow.vala:683
 msgid "Paste (Ctrl+P)"
 msgstr "Coller (Ctrl+P)"

@@ -1,6 +1,9 @@
-data/com.github.Darazaki.Spedread.desktop.in
 data/com.github.Darazaki.Spedread.appdata.xml.in
+data/com.github.Darazaki.Spedread.desktop.in
 src/SpedreadApp.vala
+src/SpedreadDictionary.vala
+src/SpedreadIterHistory.vala
 src/SpedreadReadTab.vala
+src/SpedreadSettings.vala
 src/SpedreadTextTab.vala
 src/SpedreadWindow.vala

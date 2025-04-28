@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2025-04-27 22:15+0200\n"
+"POT-Creation-Date: 2025-04-28 12:52+0200\n"
 "PO-Revision-Date: 2023-04-26 13:05+0200\n"
 "Last-Translator: Pavel Fric <pavelfric@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -19,19 +19,14 @@ msgstr ""
 "X-Generator: Lokalize 22.12.2\n"
 "X-Poedit-Country: Czech Republic\n"
 
-#: data/com.github.Darazaki.Spedread.desktop.in:3
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: src/SpedreadWindow.vala:590
-msgid "Read like a speedrunner!"
-msgstr "Čtěte rychle"
-
-#: data/com.github.Darazaki.Spedread.desktop.in:9
-msgid "read;fast;speed;reading;"
-msgstr "čtení;rychlé;rychlost;čtení;"
-
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "Software GTK pro rychlé čtení: Čtěte ryche"
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:591
+msgid "Read like a speedrunner!"
+msgstr "Čtěte rychle"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:20
 msgid ""
@@ -41,6 +36,10 @@ msgstr ""
 "Tento program zobrazuje rychle jedno slovo po druhém, abyste se mohl "
 "soustředit na myšlenku spíše než na jednotlivá slova a méně přitom pohyboval "
 "očima."
+
+#: data/com.github.Darazaki.Spedread.desktop.in:9
+msgid "read;fast;speed;reading;"
+msgstr "čtení;rychlé;rychlost;čtení;"
 
 #: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:313
 msgid "Go to \"Text\" and paste your read!"
@@ -76,27 +75,31 @@ msgstr ""
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Tato změna se provede až po opětovném spuštění aplikace Spedread."
 
-#: src/SpedreadWindow.vala:584
+#: src/SpedreadWindow.vala:564
+msgid "_OK"
+msgstr ""
+
+#: src/SpedreadWindow.vala:585
 msgid "About Spedread..."
 msgstr "O programu Spedread …"
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:589
+#: src/SpedreadWindow.vala:590
 msgid "translator-credits"
 msgstr "Pavel Fric <pavelfric@seznam.cz>"
 
-#: src/SpedreadWindow.vala:637
+#: src/SpedreadWindow.vala:638
 msgid "Milliseconds per Word"
 msgstr "Milisekund na slovo"
 
-#: src/SpedreadWindow.vala:639
+#: src/SpedreadWindow.vala:640
 msgid "Reading Font"
 msgstr "Písmo pro čtení"
 
-#: src/SpedreadWindow.vala:641
+#: src/SpedreadWindow.vala:642
 msgid "Use libadwaita"
 msgstr "Použít libadwaita"
 
-#: src/SpedreadWindow.vala:682
+#: src/SpedreadWindow.vala:683
 msgid "Paste (Ctrl+P)"
 msgstr ""
