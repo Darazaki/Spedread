@@ -1,6 +1,17 @@
 #!/bin/sh
 set -e
 
+appid=com.github.Darazaki.Spedread
+
+for x in \
+    "data/$appid.appdata.xml.in" \
+    "data/$appid.desktop.in" \
+    src/*.vala
+do
+    echo "$x"
+done | sort > po/POTFILES
+echo "Regenerated po/POTFILES."
+
 printf "po/_base.pot: "
 xgettext \
     -f po/POTFILES \
