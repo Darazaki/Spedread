@@ -52,11 +52,13 @@ class SpedreadReadTab : Gtk.Grid {
     /** Controls whether the next word button should be enabled */
     public bool has_next_word {
         set { _next.sensitive = value; }
+        get { return _next.sensitive; }
     }
 
     /** Controls whether the previous word button should be enabled */
     public bool has_previous_word {
         set { _previous.sensitive = value; }
+        get { return _previous.sensitive; }
     }
 
     /** Controls the text shown by the time left label */

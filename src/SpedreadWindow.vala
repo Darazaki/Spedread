@@ -25,6 +25,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** The type of lambdas that are passed to the `add_new_shortcut` method */
     delegate void ShortcutFunc ();
 
+    /** Used by `add_new_shortcut` to determine if the shortcut should run */
+    delegate bool ShouldRunFunc ();
+    static bool should_always_run () { return true; }
+    bool is_tab_read () { return _stack.visible_child == _read; }
+
     public SpedreadWindow (Gtk.Application app) {
         Object (
             application: app,
@@ -71,15 +76,32 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         base.dispose ();
     }
 
-    void add_new_shortcut (Gdk.ModifierType modifiers, uint keyval, owned ShortcutFunc action) {
+    void add_new_shortcut (
+        Gdk.ModifierType modifiers,
+        uint keyval,
+        owned ShortcutFunc action,
+        owned ShouldRunFunc should_run = should_always_run
+    ) {
         var shortcut_trigger = new Gtk.KeyvalTrigger (keyval, modifiers);
         var shortcut_action = new Gtk.CallbackAction (() => {
-            action ();
-            return true;
+            var should_run_result = should_run ();
+            if (should_run_result) {
+                action ();
+            }
+
+            return should_run_result;
         });
 
         var shortcut = new Gtk.Shortcut (shortcut_trigger, shortcut_action);
         _shortcut_controller.add_shortcut (shortcut);
+    }
+
+    bool can_click_next_word () {
+        return is_tab_read () && !_read.is_playing && _read.has_next_word;
+    }
+
+    bool can_click_previous_word () {
+        return is_tab_read () && !_read.is_playing && _read.has_previous_word;
     }
 
     /** Stop iterating every word automatically */
@@ -437,19 +459,23 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _read.stop_reading.connect (stop_reading);
 
         _read.previous_word.connect (() => {
-            previous_word_and_tick ();
-            _read.has_next_word = has_next_word (_input_iter);
-            _read.has_previous_word = has_previous_word (_input_iter);
-            update_text_position ();
-            update_time_left ();
+            if (can_click_previous_word ()) {
+                previous_word_and_tick ();
+                _read.has_next_word = has_next_word (_input_iter);
+                _read.has_previous_word = has_previous_word (_input_iter);
+                update_text_position ();
+                update_time_left ();
+            }
         });
 
         _read.next_word.connect (() => {
-            tick ();
-            _read.has_next_word = has_next_word (_input_iter);
-            _read.has_previous_word = has_previous_word (_input_iter);
-            update_text_position ();
-            update_time_left ();
+            if (can_click_next_word ()) {
+                tick ();
+                _read.has_next_word = has_next_word (_input_iter);
+                _read.has_previous_word = has_previous_word (_input_iter);
+                update_text_position ();
+                update_time_left ();
+            }
         });
     }
 
@@ -693,6 +719,16 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             : (Gtk.Widget) _read;
     }
 
+    void toggle_reading () {
+        if (!_read.allow_playing)
+            return;
+
+        if (_read.is_playing)
+            stop_reading ();
+        else
+            start_reading ();
+    }
+
     void define_shortcuts () {
         const Gdk.ModifierType CTRL = Gdk.ModifierType.CONTROL_MASK;
         const Gdk.ModifierType CTRL_SHIFT = CTRL | Gdk.ModifierType.SHIFT_MASK;
@@ -711,5 +747,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         add_new_shortcut (CTRL, Gdk.Key.N, () => {
             new SpedreadWindow (application).present ();
         });
+
+        // Previous word
+        add_new_shortcut (0, Gdk.Key.Left, () => _read.previous_word (), is_tab_read);
+        add_new_shortcut (0, Gdk.Key.KP_Left, () => _read.previous_word (), is_tab_read);
+
+        // Next word
+        add_new_shortcut (0, Gdk.Key.Right, () => _read.next_word (), is_tab_read);
+        add_new_shortcut (0, Gdk.Key.KP_Right, () => _read.next_word (), is_tab_read);
+
+        // Toggle reading
+        add_new_shortcut (0, Gdk.Key.space, toggle_reading, is_tab_read);
+        add_new_shortcut (0, Gdk.Key.Return, toggle_reading, is_tab_read);
+        add_new_shortcut (0, Gdk.Key.KP_Space, toggle_reading, is_tab_read);
+        add_new_shortcut (0, Gdk.Key.KP_Enter, toggle_reading, is_tab_read);
     }
 }
