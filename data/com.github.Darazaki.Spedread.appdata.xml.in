@@ -54,7 +54,7 @@
 				</ul>
 				<p>Fixed:</p>
 				<ul>
-					<li>Settings popover now closes when the font selecton window appears</li>
+					<li>Settings popover now closes when the font selection window appears</li>
 					<li>Replaced usage of deprecated widgets with newer ones when available</li>
 					<li>Clearing the text will no longer create a dangling pointer</li>
 				</ul>
