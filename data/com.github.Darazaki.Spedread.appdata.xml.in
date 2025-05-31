@@ -4,8 +4,8 @@
 	<id>com.github.Darazaki.Spedread</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
-    <launchable type="desktop-id">com.github.Darazaki.Spedread.desktop</launchable>
-    <name translatable="no">Spedread</name>
+	<launchable type="desktop-id">com.github.Darazaki.Spedread.desktop</launchable>
+	<name translatable="no">Spedread</name>
 	<developer_name translatable="no">Naqua Darazaki</developer_name>
 	<translation type="gettext">spedread</translation>
 	<update_contact>n.darazaki@gmail.com</update_contact>
@@ -42,6 +42,24 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.5.0" date="2025-05-31">
+			<description translatable="no">
+				<p>New:</p>
+				<ul>
+					<li>Add keyboard shortcuts for quick pasting, switching tabs and opening new windows</li>
+					<li>You can now move around your text in the "Read" tab using your keyboard</li>
+					<li>About dialog now shows the latest version's changes when using libadwaita</li>
+					<li>GTK and libadwaita versions are now autodetected when building from source</li>
+					<li>Update Italian translation (thanks to @albanobattistella)</li>
+				</ul>
+				<p>Fixed:</p>
+				<ul>
+					<li>Settings popover now closes when the font selecton window appears</li>
+					<li>Replaced usage of deprecated widgets with newer ones when available</li>
+					<li>Clearing the text will no longer create a dangling pointer</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.4.7" date="2024-04-14">
 			<description translatable="no">
 				<p>New:</p>
@@ -229,17 +247,17 @@
 			</description>
 		</release>
 		<release version="2.0.0" date="2021-12-24">
-            <description translatable="no">
-                <p>New:</p>
-                <ul>
-                    <li>Previous/next word buttons</li>
+			<description translatable="no">
+				<p>New:</p>
+				<ul>
+					<li>Previous/next word buttons</li>
 					<li>Highlight and follow current word</li>
-                </ul>
+				</ul>
 				<p>Changes:</p>
 				<ul>
 					<li>Ported from C + GTK3 to Vala + GTK4</li>
 				</ul>
-            </description>
-        </release>
+			</description>
+		</release>
 	</releases>
 </component>
