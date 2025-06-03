@@ -1,7 +1,7 @@
 # Translation for the Spedread project.
 # Copyright (C) 2024
 # This file is distributed under the same license as the Spedread package.
-# %AUTHOR%, %YEAR%.
+# John Peter Sá, 2025.
 #
 msgid ""
 msgstr ""
@@ -84,9 +84,7 @@ msgstr "Sobre o Spedread..."
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
 #: src/SpedreadWindow.vala:590
 msgid "translator-credits"
-msgstr ""
-"john peter sa, seu\n"
-"nome <johnppetersa@gmail.com>"
+msgstr "John Peter Sá <johnppetersa@gmail.com>"
 
 #: src/SpedreadWindow.vala:638
 msgid "Milliseconds per Word"
