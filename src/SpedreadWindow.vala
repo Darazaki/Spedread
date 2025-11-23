@@ -4,6 +4,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.ShortcutController _shortcut_controller;
     Gtk.SpinButton _ms_per_word;
+    static Gtk.SpinButton _words_at_a_time;
     Gtk.Stack _stack;
 
 #if GTK_4_10
@@ -152,7 +153,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         Gtk.TextIter end_of_word, last_iter;
 
         last_iter = iter;
-        iter.forward_word_end ();
+        var number_of_words = (int) _words_at_a_time.value;
+        iter.forward_word_ends (number_of_words);
         end_of_word = skip_trailing_characters (ref iter);
 
         if (is_number_between (last_iter, iter)) {
@@ -532,6 +534,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        SettingsBindFlags.DEFAULT
         );
 
+        _words_at_a_time = new Gtk.SpinButton (null, 25, 0);
+        _words_at_a_time.set_increments (1, 2);
+        _words_at_a_time.set_range (1,10);
+
+        settings.bind ("words-at-a-time",
+                _words_at_a_time, "value",
+                SettingsBindFlags.DEFAULT
+        );
+
+        _words_at_a_time.value_changed.connect(() => {
+            text_changed();
+            });
+
 #if GTK_4_10
         var font_dialog = new Gtk.FontDialog ();
         _font_chooser = new Gtk.FontDialogButton (font_dialog);
@@ -663,11 +678,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 1, 1, 1);
-        contents.attach (_font_chooser, 1, 1, 1, 1);
-        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 2, 1, 1);
-        contents.attach (use_libadwaita, 1, 2, 1, 1);
-        contents.attach (about_button, 0, 3, 2, 1);
+        contents.attach (new Gtk.Label(_ ("Words at a time")), 0, 1, 1, 1);
+        contents.attach (_words_at_a_time, 1, 1, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
+        contents.attach (_font_chooser, 1, 2, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 3, 1, 1);
+        contents.attach (use_libadwaita, 1, 3, 1, 1);
+        contents.attach (about_button, 0, 4, 2, 1);
 
         popover.show.connect (popover_shown);
 

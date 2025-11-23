@@ -8,6 +8,13 @@
 	    </description>
 	    <default>150</default>
 	  </key>
+	  <key name="words-at-a-time" type="u">
+	    <summary>Words at a time</summary>
+	    <description>
+	      Controls how many words at a time are displayed
+	    </description>
+	    <default>150</default>
+	  </key>
 	  <key name="reading-font" type="s">
 	    <summary>Font used while reading</summary>
 	    <description>

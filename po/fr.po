@@ -89,6 +89,10 @@ msgstr "Naqua Darazaki <n.darazaki@gmail.com>"
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
+#: src/SpedreadWindow.vala:678
+msgid "Words per tick"
+msgstr "Mots par tic"
+
 #: src/SpedreadWindow.vala:640
 msgid "Reading Font"
 msgstr "Police de Lecture"
