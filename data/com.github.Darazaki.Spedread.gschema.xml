@@ -13,7 +13,7 @@
 	    <description>
 	      Controls how many words at a time are displayed
 	    </description>
-	    <default>150</default>
+	    <default>1</default>
 	  </key>
 	  <key name="reading-font" type="s">
 	    <summary>Font used while reading</summary>
