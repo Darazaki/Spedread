@@ -40,65 +40,65 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr "read;fast;speed;reading;lesen;schnell;Geschwindigkeit;"
 
-#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:313
+#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:337
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Gehen Sie zu »Text« und fügen Sie Ihren Lesetext ein!"
 
-#: src/SpedreadWindow.vala:267
+#: src/SpedreadWindow.vala:291
 msgid "End reached"
 msgstr ""
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:292
+#: src/SpedreadWindow.vala:316
 #, c-format
 msgid "%u min %u s left"
 msgstr ""
 
-#: src/SpedreadWindow.vala:427
+#: src/SpedreadWindow.vala:451
 msgid "Text"
 msgstr "Text"
 
-#: src/SpedreadWindow.vala:428
+#: src/SpedreadWindow.vala:452
 msgid "Read"
 msgstr "Lesen"
 
-#: src/SpedreadWindow.vala:463
+#: src/SpedreadWindow.vala:491
 msgid "New Window (Ctrl+N)"
 msgstr ""
 
-#: src/SpedreadWindow.vala:493
+#: src/SpedreadWindow.vala:521
 msgid "Main Menu"
 msgstr ""
 
-#: src/SpedreadWindow.vala:560
+#: src/SpedreadWindow.vala:601
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Diese Änderung wird erst nach einem Neustart von Spedread angewandt"
 
-#: src/SpedreadWindow.vala:564
+#: src/SpedreadWindow.vala:605
 msgid "_OK"
 msgstr ""
 
-#: src/SpedreadWindow.vala:585
+#: src/SpedreadWindow.vala:626
 msgid "About Spedread..."
 msgstr "Info zu Spedread …"
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:590
+#: src/SpedreadWindow.vala:631
 msgid "translator-credits"
 msgstr "Jürgen Benvenuti <gastornis@posteo.org>"
 
-#: src/SpedreadWindow.vala:638
+#: src/SpedreadWindow.vala:679
 msgid "Milliseconds per Word"
 msgstr "Millisekunden pro Wort"
 
-#: src/SpedreadWindow.vala:640
+#: src/SpedreadWindow.vala:683
 msgid "Reading Font"
 msgstr "Leseschriftart"
 
-#: src/SpedreadWindow.vala:642
+#: src/SpedreadWindow.vala:685
 msgid "Use libadwaita"
 msgstr "Libadwaita verwenden"
 
-#: src/SpedreadWindow.vala:683
+#: src/SpedreadWindow.vala:726
 msgid "Paste (Ctrl+P)"
 msgstr ""

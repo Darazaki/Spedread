@@ -38,65 +38,65 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr "leggere;veloce;velocità;lettura;"
 
-#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:313
+#: src/SpedreadReadTab.vala:79 src/SpedreadWindow.vala:337
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Vai su \"Testo\" e incolla la tua lettura!"
 
-#: src/SpedreadWindow.vala:267
+#: src/SpedreadWindow.vala:291
 msgid "End reached"
 msgstr "Fine raggiunta"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:292
+#: src/SpedreadWindow.vala:316
 #, c-format
 msgid "%u min %u s left"
 msgstr "%u min %u rimasti"
 
-#: src/SpedreadWindow.vala:427
+#: src/SpedreadWindow.vala:451
 msgid "Text"
 msgstr "Testo"
 
-#: src/SpedreadWindow.vala:428
+#: src/SpedreadWindow.vala:452
 msgid "Read"
 msgstr "Leggi"
 
-#: src/SpedreadWindow.vala:463
+#: src/SpedreadWindow.vala:491
 msgid "New Window (Ctrl+N)"
 msgstr "Nuova finestra (Ctrl+N)"
 
-#: src/SpedreadWindow.vala:493
+#: src/SpedreadWindow.vala:521
 msgid "Main Menu"
 msgstr "Menu principale"
 
-#: src/SpedreadWindow.vala:560
+#: src/SpedreadWindow.vala:601
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Questa modifica verrà applicata solo dopo il riavvio di Speedread"
 
-#: src/SpedreadWindow.vala:564
+#: src/SpedreadWindow.vala:605
 msgid "_OK"
 msgstr "_OK"
 
-#: src/SpedreadWindow.vala:585
+#: src/SpedreadWindow.vala:626
 msgid "About Spedread..."
 msgstr "Informazioni su Spedread..."
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:590
+#: src/SpedreadWindow.vala:631
 msgid "translator-credits"
 msgstr "Albano Battistella <albanobattistella@gmail.com>"
 
-#: src/SpedreadWindow.vala:638
+#: src/SpedreadWindow.vala:679
 msgid "Milliseconds per Word"
 msgstr "Millisecondi per Parola"
 
-#: src/SpedreadWindow.vala:640
+#: src/SpedreadWindow.vala:683
 msgid "Reading Font"
 msgstr "Carattere di lettura"
 
-#: src/SpedreadWindow.vala:642
+#: src/SpedreadWindow.vala:685
 msgid "Use libadwaita"
 msgstr "Usa libadwaita"
 
-#: src/SpedreadWindow.vala:683
+#: src/SpedreadWindow.vala:726
 msgid "Paste (Ctrl+P)"
 msgstr "Incolla (Ctrl+P)"
