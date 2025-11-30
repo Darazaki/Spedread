@@ -139,7 +139,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     void skip_whitespaces (ref Gtk.TextIter iter) {
         for ( ;; ) {
             unichar current_char = iter.get_char ();
-
             if (current_char.isspace ())
                 iter.forward_char ();
             else
@@ -343,7 +342,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             _end_of_word = next_word (ref next_iter);
 
-            var word = buffer.get_text (iter, next_iter, false);
+            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             var has_next = has_next_word (next_iter);
@@ -364,6 +363,14 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** When the main menu is shown */
     void popover_shown () {
         stop_reading ();
+    }
+
+    /** Remove newlines from the text displayed in the read tab. */
+
+     string filter_new_lines(string word) {
+        StringBuilder strbuilder = new StringBuilder(word);
+        strbuilder.replace("\n", " ");
+        return strbuilder.str;
     }
 
     /** Shows the next word if any and update the UI, returning if there's a
@@ -390,7 +397,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // A new word has been read! Update the UI to reflect that
             _end_of_word = next_word (ref next_iter);
-            var word = buffer.get_text (iter, next_iter, false);
+            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             // Add it to the history
