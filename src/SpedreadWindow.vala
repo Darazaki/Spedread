@@ -369,6 +369,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
      string filter_new_lines(string word) {
         StringBuilder strbuilder = new StringBuilder(word);
+        strbuilder.replace(" \n", " ");
         strbuilder.replace("\n", " ");
         return strbuilder.str;
     }
