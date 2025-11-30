@@ -146,7 +146,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
-    /** Advance the iterator to the next word and return the end of the
+    /** Advance the iterator to the next word (or group of words) and return the end of the
         "end of word" iterator for the previous word */
     static Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         Gtk.TextIter end_of_word, last_iter;
