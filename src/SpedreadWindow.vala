@@ -146,14 +146,48 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
+    static bool is_comma(unichar ch) {
+        return ch == ',';
+
+    }
+
+
+
+
     /** Advance the iterator to the next word (or group of words) and return the end of the
         "end of word" iterator for the previous word */
+
     static Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         Gtk.TextIter end_of_word, last_iter;
-
         last_iter = iter;
         var number_of_words = (int) _words_at_a_time.value;
-        iter.forward_word_ends (number_of_words);
+        // if we have a end of sentence, we still want to end prematurely for visibility
+        for (int i=0; i < number_of_words; i++) {
+            var iter_next_sentence = iter;
+            var iter_next_word = iter;
+            var iter_next_comma = iter;
+
+            iter_next_word.forward_word_end();
+            iter_next_sentence.forward_sentence_end();
+            iter_next_comma.forward_find_char(is_comma, null);
+
+            int next_sentence_pos = iter_next_sentence.get_offset();
+            int next_word_pos = iter_next_word.get_offset();
+            int next_comma_pos = iter_next_comma.get_offset();
+
+            if (next_sentence_pos <= next_word_pos && next_sentence_pos <= next_comma_pos) {
+                iter = iter_next_sentence;
+                break;
+                }
+            if (next_comma_pos <= next_word_pos) {
+                iter = iter_next_comma;
+                break;
+            }
+            else {
+                iter = iter_next_word;
+                }
+        }
+
         end_of_word = skip_trailing_characters (ref iter);
 
         if (is_number_between (last_iter, iter)) {
@@ -686,7 +720,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label(_ ("Words at a time")), 0, 1, 1, 1);
+        contents.attach (new Gtk.Label(_ ("Max words at a time")), 0, 1, 1, 1);
         contents.attach (_words_at_a_time, 1, 1, 1, 1);
         contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
         contents.attach (_font_chooser, 1, 2, 1, 1);

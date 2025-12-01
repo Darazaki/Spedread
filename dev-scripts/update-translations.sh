@@ -4,7 +4,6 @@ set -e
 appid=com.github.Darazaki.Spedread
 
 for x in \
-    "data/$appid.appdata.xml.in" \
     "data/$appid.desktop.in" \
     src/*.vala
 do
