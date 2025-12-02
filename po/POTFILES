@@ -1,3 +1,4 @@
+data/com.github.Darazaki.Spedread.appdata.xml.in
 data/com.github.Darazaki.Spedread.desktop.in
 src/SpedreadApp.vala
 src/SpedreadDictionary.vala
