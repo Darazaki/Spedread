@@ -368,10 +368,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Remove newlines from the text displayed in the read tab. */
 
      string filter_new_lines(string word) {
-        StringBuilder strbuilder = new StringBuilder(word);
-        strbuilder.replace(" \n", " ");
-        strbuilder.replace("\n", " ");
-        return strbuilder.str;
+        Regex regex = new Regex("\\s*(\\n+|\\r+|\\t+|\\v+|\\f+)+\\s*");
+
+        return regex.replace(word, word.length, 0, " ");
     }
 
     /** Shows the next word if any and update the UI, returning if there's a
