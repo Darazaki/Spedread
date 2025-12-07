@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2025-11-30 21:11-0500\n"
+"POT-Creation-Date: 2025-12-06 16:10-0500\n"
 "PO-Revision-Date: %DATE%\n"
 "Last-Translator: %AUTHOR%\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:640
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:638
 msgid "Read like a speedrunner!"
 msgstr ""
 
@@ -288,55 +288,55 @@ msgstr ""
 msgid "%u min %u s left"
 msgstr ""
 
-#: src/SpedreadWindow.vala:459
+#: src/SpedreadWindow.vala:457
 msgid "Text"
 msgstr ""
 
-#: src/SpedreadWindow.vala:460
+#: src/SpedreadWindow.vala:458
 msgid "Read"
 msgstr ""
 
-#: src/SpedreadWindow.vala:499
+#: src/SpedreadWindow.vala:497
 msgid "New Window (Ctrl+N)"
 msgstr ""
 
-#: src/SpedreadWindow.vala:529
+#: src/SpedreadWindow.vala:527
 msgid "Main Menu"
 msgstr ""
 
-#: src/SpedreadWindow.vala:609
+#: src/SpedreadWindow.vala:607
 msgid "This change will only be applied after you restart Spedread"
 msgstr ""
 
-#: src/SpedreadWindow.vala:613
+#: src/SpedreadWindow.vala:611
 msgid "_OK"
 msgstr ""
 
-#: src/SpedreadWindow.vala:634
+#: src/SpedreadWindow.vala:632
 msgid "About Spedread..."
 msgstr ""
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:639
+#: src/SpedreadWindow.vala:637
 msgid "translator-credits"
 msgstr ""
 
-#: src/SpedreadWindow.vala:687
+#: src/SpedreadWindow.vala:685
 msgid "Milliseconds per Word"
 msgstr ""
 
-#: src/SpedreadWindow.vala:689
+#: src/SpedreadWindow.vala:687
 msgid "Words at a time"
 msgstr ""
 
-#: src/SpedreadWindow.vala:691
+#: src/SpedreadWindow.vala:689
 msgid "Reading Font"
 msgstr ""
 
-#: src/SpedreadWindow.vala:693
+#: src/SpedreadWindow.vala:691
 msgid "Use libadwaita"
 msgstr ""
 
-#: src/SpedreadWindow.vala:734
+#: src/SpedreadWindow.vala:732
 msgid "Paste (Ctrl+P)"
 msgstr ""
