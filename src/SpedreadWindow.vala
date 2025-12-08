@@ -22,7 +22,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
-
 #if GTK_4_10
     Gtk.FontDialogButton _font_chooser;
 #else
@@ -44,16 +43,15 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Used by `add_new_shortcut` to determine if the shortcut should run */
     delegate bool ShouldRunFunc ();
-
     static bool should_always_run () { return true; }
     bool is_tab_read () { return _stack.visible_child == _read; }
 
     public SpedreadWindow (Gtk.Application app) {
         Object (
-                application : app,
-                default_height: 400,
-                default_width: 600,
-                title: "Spedread"
+            application: app,
+            default_height: 400,
+            default_width: 600,
+            title: "Spedread"
         );
 
         _stack = build_main_stack ();
@@ -94,10 +92,12 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         base.dispose ();
     }
 
-    void add_new_shortcut (Gdk.ModifierType modifiers,
-                           uint keyval,
-                           owned ShortcutFunc action,
-                           owned ShouldRunFunc should_run = should_always_run) {
+    void add_new_shortcut (
+        Gdk.ModifierType modifiers,
+        uint keyval,
+        owned ShortcutFunc action,
+        owned ShouldRunFunc should_run = should_always_run
+    ) {
         var shortcut_trigger = new Gtk.KeyvalTrigger (keyval, modifiers);
         var shortcut_action = new Gtk.CallbackAction (() => {
             var should_run_result = should_run ();
@@ -183,9 +183,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Advance the iterator to the next word using a specific function to
         detect where the word stops */
     static void next_word_using (IsThingBetween is_thing_between,
-                                 ref Gtk.TextIter iter,
-                                 Gtk.TextIter last_iter,
-                                 ref Gtk.TextIter end_of_word) {
+        ref Gtk.TextIter iter,
+        Gtk.TextIter last_iter,
+        ref Gtk.TextIter end_of_word) {
         var initial_iter = last_iter;
         for ( ;; ) {
             last_iter = iter;
@@ -302,7 +302,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             if (start_iter.equal (iter)) {
                 _read.time_left = "";
             } else {
-                _read.time_left = _("End reached");
+                _read.time_left = _ ("End reached");
             }
 
             return;
@@ -327,9 +327,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var minutes_left = time_left_in_s / 60;
 
         // TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-        _read.time_left = _("%u min %u s left").printf (
-                                                        minutes_left,
-                                                        seconds_left
+        _read.time_left = _ ("%u min %u s left").printf (
+            minutes_left,
+            seconds_left
         );
     }
 
@@ -348,7 +348,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         if (iter.is_end ()) {
             // No text, disable everything and prompt the user to add something
             // to read
-            _read.word = _("Go to \"Text\" and paste your read!");
+            _read.word = _ ("Go to \"Text\" and paste your read!");
             _read.allow_playing = false;
             _read.has_next_word = false;
             _read.has_previous_word = false;
@@ -357,7 +357,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             _end_of_word = next_word (ref next_iter);
 
-            var word = filter_new_lines (buffer.get_text (iter, next_iter, false));
+            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             var has_next = has_next_word (next_iter);
@@ -382,8 +382,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Remove newlines from the text displayed in the read tab. */
 
-    string filter_new_lines (string word) {
-        return regex.replace (word, word.length, 0, " ");
+     string filter_new_lines(string word) {
+        return regex.replace(word, word.length, 0, " ");
     }
 
     /** Shows the next word if any and update the UI, returning if there's a
@@ -410,7 +410,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // A new word has been read! Update the UI to reflect that
             _end_of_word = next_word (ref next_iter);
-            var word = filter_new_lines (buffer.get_text (iter, next_iter, false));
+            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             // Add it to the history
@@ -468,8 +468,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         build_text_tab ();
         build_read_tab ();
 
-        stack.add_titled (_text, "Text", _("Text"));
-        stack.add_titled (_read, "Read", _("Read"));
+        stack.add_titled (_text, "Text", _ ("Text"));
+        stack.add_titled (_read, "Read", _ ("Read"));
 
         return stack;
     }
@@ -508,7 +508,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.Button build_new_window_button () {
         var button = new Gtk.Button () {
             icon_name = "window-new-symbolic",
-            tooltip_text = _("New Window (Ctrl+N)")
+            tooltip_text = _ ("New Window (Ctrl+N)")
         };
 
         button.clicked.connect (() => {
@@ -538,7 +538,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         var button = new Gtk.MenuButton () {
             icon_name = "open-menu-symbolic",
             popover = popover,
-            tooltip_text = _("Main Menu")
+            tooltip_text = _ ("Main Menu")
         };
 
         _ms_per_word = new Gtk.SpinButton (null, 25, 0);
@@ -556,35 +556,35 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         _words_at_a_time = new Gtk.SpinButton (null, 25, 0);
         _words_at_a_time.set_increments (1, 2);
-        _words_at_a_time.set_range (1, 10);
+        _words_at_a_time.set_range (1,10);
 
         settings.bind ("words-at-a-time",
-                       _words_at_a_time, "value",
-                       SettingsBindFlags.DEFAULT
+                _words_at_a_time, "value",
+                SettingsBindFlags.DEFAULT
         );
 
-        _words_at_a_time.value_changed.connect (() => {
-            text_changed ();
-        });
+        _words_at_a_time.value_changed.connect(() => {
+            text_changed();
+            });
 
 #if GTK_4_10
         var font_dialog = new Gtk.FontDialog ();
         _font_chooser = new Gtk.FontDialogButton (font_dialog);
         settings.bind_with_mapping (
-                                    "reading-font",
-                                    _font_chooser, "font-desc",
-                                    SettingsBindFlags.DEFAULT,
-                                    (target, gotten) => { // get from settings
-            var font_string = gotten.get_string ();
-            var font = Pango.FontDescription.from_string (font_string);
-            target.set_boxed (font);
-            return true;
-        },
-                                    value => { // set to settings
-            var font = (Pango.FontDescription) value;
-            return font.to_string ();
-        },
-                                    null, null
+            "reading-font",
+            _font_chooser, "font-desc",
+            SettingsBindFlags.DEFAULT,
+            (target, gotten) => { // get from settings
+                var font_string = gotten.get_string ();
+                var font = Pango.FontDescription.from_string (font_string);
+                target.set_boxed (font);
+                return true;
+            },
+            value => { // set to settings
+                var font = (Pango.FontDescription) value;
+                return font.to_string ();
+            },
+            null, null
         );
 #else
         _font_chooser = new Gtk.FontButton ();
@@ -617,21 +617,21 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             if (is_active && new_state != SpedreadSettings.is_using_libadwaita) {
                 popover.popdown ();
 
-                var message_string = _(
-                                       "This change will only be applied after you restart Spedread");
+                var message_string = _ (
+                    "This change will only be applied after you restart Spedread");
 
 #if GTK_4_10
                 new Gtk.AlertDialog ("%s", message_string) {
-                    buttons = { _("_OK") },
+                    buttons = { _ ("_OK") },
                 }.show (this);
 #else
                 var dialog = new Gtk.MessageDialog (
-                                                    this,
-                                                    Gtk.DialogFlags.MODAL,
-                                                    Gtk.MessageType.WARNING,
-                                                    Gtk.ButtonsType.OK,
-                                                    "%s",
-                                                    message_string);
+                    this,
+                    Gtk.DialogFlags.MODAL,
+                    Gtk.MessageType.WARNING,
+                    Gtk.ButtonsType.OK,
+                    "%s",
+                    message_string);
                 dialog.response.connect (() => {
                     dialog.close ();
                 });
@@ -643,13 +643,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             return false;
         });
 
-        var about_button = new Gtk.Button.with_label (_("About Spedread..."));
+        var about_button = new Gtk.Button.with_label (_ ("About Spedread..."));
         about_button.clicked.connect (() => {
             popover.popdown ();
 
             // TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-            var translator_credits = _("translator-credits");
-            var catchphrase = _("Read like a speedrunner!");
+            var translator_credits = _ ("translator-credits");
+            var catchphrase = _ ("Read like a speedrunner!");
             var authors = new string[] {
                 "Naqua Darazaki <n.darazaki@gmail.com>"
             };
@@ -657,11 +657,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 #if ADW_1_5
             if (SpedreadSettings.is_using_libadwaita) {
                 Adw.show_about_dialog_from_appdata (this,
-                                                    application.resource_base_path + "/appdata.xml", VERSION,
-                                                    "comments", catchphrase,
-                                                    "translator-credits", translator_credits,
-                                                    "developers", authors,
-                                                    null);
+                    application.resource_base_path + "/appdata.xml", VERSION,
+                    "comments", catchphrase,
+                    "translator-credits", translator_credits,
+                    "developers", authors,
+                    null);
 
                 return;
             }
@@ -685,24 +685,24 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 #endif
 
             Gtk.show_about_dialog (this,
-                                   "program-name", "Spedread",
-                                   "website", "https://github.com/Darazaki/Spedread",
-                                   "license-type", Gtk.License.GPL_3_0,
-                                   "logo-icon-name", "com.github.Darazaki.Spedread",
-                                   "comments", catchphrase,
-                                   "translator-credits", translator_credits,
-                                   "version", VERSION,
-                                   "authors", authors
+                "program-name", "Spedread",
+                "website", "https://github.com/Darazaki/Spedread",
+                "license-type", Gtk.License.GPL_3_0,
+                "logo-icon-name", "com.github.Darazaki.Spedread",
+                "comments", catchphrase,
+                "translator-credits", translator_credits,
+                "version", VERSION,
+                "authors", authors
             );
         });
 
-        contents.attach (new Gtk.Label (_("Milliseconds per Word")), 0, 0, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label (_("Words at a time")), 0, 1, 1, 1);
+        contents.attach (new Gtk.Label(_ ("Words at a time")), 0, 1, 1, 1);
         contents.attach (_words_at_a_time, 1, 1, 1, 1);
-        contents.attach (new Gtk.Label (_("Reading Font")), 0, 2, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
         contents.attach (_font_chooser, 1, 2, 1, 1);
-        contents.attach (new Gtk.Label (_("Use libadwaita")), 0, 3, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 3, 1, 1);
         contents.attach (use_libadwaita, 1, 3, 1, 1);
         contents.attach (about_button, 0, 4, 2, 1);
 
@@ -743,7 +743,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.Button build_quick_paste_button () {
         var button = new Gtk.Button () {
             icon_name = "edit-paste-symbolic",
-            tooltip_text = _("Paste (Ctrl+P)")
+            tooltip_text = _ ("Paste (Ctrl+P)")
         };
 
         button.clicked.connect (quick_paste);
