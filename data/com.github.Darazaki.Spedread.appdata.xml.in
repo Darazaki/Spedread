@@ -147,7 +147,7 @@
 			<description translatable="no">
 				<p>Fixed:</p>
 				<ul>
-					<li>Typo in German translation has been fixed (thanks to Jurgen Benvenuti)</li>
+					<li>Typo in German translation has been fixed (thanks to Jürgen Benvenuti)</li>
 				</ul>
 			</description>
 		</release>
@@ -155,7 +155,7 @@
 			<description translatable="no">
 				<p>New:</p>
 				<ul>
-					<li>Add German translation (thanks to Jurgen Benvenuti)</li>
+					<li>Add German translation (thanks to Jürgen Benvenuti)</li>
 				</ul>
 			</description>
 		</release>
