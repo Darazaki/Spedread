@@ -14,6 +14,7 @@ echo "Regenerated po/POTFILES."
 
 printf "po/_base.pot: "
 xgettext \
+    --from-code=UTF-8 \
     -f po/POTFILES \
     -x po/_excluded.pot \
     -cTR: \

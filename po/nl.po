@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
-"POT-Creation-Date: 2025-12-07 16:17-0500\n"
+"POT-Creation-Date: 2025-12-07 22:55-0500\n"
 "PO-Revision-Date: 2023-06-06 12:01+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -23,7 +23,7 @@ msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "GTK-software om snel te lezen: lees vliegensvlug!"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:638
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:652
 msgid "Read like a speedrunner!"
 msgstr "Lees vliegensvlug!"
 
@@ -170,11 +170,11 @@ msgid ""
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:150
-msgid "Typo in German translation has been fixed (thanks to Jrgen Benvenuti)"
+msgid "Typo in German translation has been fixed (thanks to Jurgen Benvenuti)"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:158
-msgid "Add German translation (thanks to Jrgen Benvenuti)"
+msgid "Add German translation (thanks to Jurgen Benvenuti)"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:166
@@ -278,69 +278,69 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr "lezen;lees;snel;snelheid;"
 
-#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:336
+#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:351
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Ga naar ‘Tekst’ en plak uw leesmateriaal!"
 
-#: src/SpedreadWindow.vala:290
+#: src/SpedreadWindow.vala:305
 msgid "End reached"
 msgstr "Het einde is bereikt"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:315
+#: src/SpedreadWindow.vala:330
 #, c-format
 msgid "%u min %u s left"
 msgstr "Nog %u min. en %u sec. te gaan"
 
-#: src/SpedreadWindow.vala:457
+#: src/SpedreadWindow.vala:471
 msgid "Text"
 msgstr "Tekst"
 
-#: src/SpedreadWindow.vala:458
+#: src/SpedreadWindow.vala:472
 msgid "Read"
 msgstr "Lezen"
 
-#: src/SpedreadWindow.vala:497
+#: src/SpedreadWindow.vala:511
 msgid "New Window (Ctrl+N)"
 msgstr "Nieuw venster (Ctrl+N)"
 
-#: src/SpedreadWindow.vala:527
+#: src/SpedreadWindow.vala:541
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: src/SpedreadWindow.vala:607
+#: src/SpedreadWindow.vala:621
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Herstart Spedread om de wijziging toe te passen"
 
-#: src/SpedreadWindow.vala:611
+#: src/SpedreadWindow.vala:625
 msgid "_OK"
 msgstr ""
 
-#: src/SpedreadWindow.vala:632
+#: src/SpedreadWindow.vala:646
 msgid "About Spedread..."
 msgstr "Over Spedread…"
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:637
+#: src/SpedreadWindow.vala:651
 msgid "translator-credits"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
-#: src/SpedreadWindow.vala:685
+#: src/SpedreadWindow.vala:699
 msgid "Milliseconds per Word"
 msgstr "Aantal milliseconden per woord"
 
-#: src/SpedreadWindow.vala:687
+#: src/SpedreadWindow.vala:701
 msgid "Words at a time"
 msgstr ""
 
-#: src/SpedreadWindow.vala:689
+#: src/SpedreadWindow.vala:703
 msgid "Reading Font"
 msgstr "Lettertype"
 
-#: src/SpedreadWindow.vala:691
+#: src/SpedreadWindow.vala:705
 msgid "Use libadwaita"
 msgstr "Libadwaita gebruiken"
 
-#: src/SpedreadWindow.vala:732
+#: src/SpedreadWindow.vala:746
 msgid "Paste (Ctrl+P)"
 msgstr "Plakken (Ctrl+P)"
