@@ -39,16 +39,16 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr "lezen;lees;snel;snelheid;"
 
-#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:351
+#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:352
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Ga naar ‘Tekst’ en plak uw leesmateriaal!"
 
-#: src/SpedreadWindow.vala:305
+#: src/SpedreadWindow.vala:306
 msgid "End reached"
 msgstr "Het einde is bereikt"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:330
+#: src/SpedreadWindow.vala:331
 #, c-format
 msgid "%u min %u s left"
 msgstr "Nog %u min. en %u sec. te gaan"

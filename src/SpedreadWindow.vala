@@ -154,6 +154,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     void skip_whitespaces (ref Gtk.TextIter iter) {
         for ( ;; ) {
             unichar current_char = iter.get_char ();
+
             if (current_char.isspace ())
                 iter.forward_char ();
             else
@@ -381,7 +382,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     /** Remove newlines from the text displayed in the read tab. */
-
      string filter_new_lines (string word) {
         return regex.replace(word, word.length, 0, " ");
     }
@@ -563,8 +563,8 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                 SettingsBindFlags.DEFAULT
         );
 
-        _words_at_a_time.value_changed.connect(() => {
-            text_changed();
+        _words_at_a_time.value_changed.connect (() => {
+            text_changed ();
             });
 
 #if GTK_4_10
