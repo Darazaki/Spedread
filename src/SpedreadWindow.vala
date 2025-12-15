@@ -357,7 +357,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             _end_of_word = next_word (ref next_iter);
 
-            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
+            var word = filter_new_lines (buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             var has_next = has_next_word (next_iter);
@@ -382,7 +382,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     /** Remove newlines from the text displayed in the read tab. */
 
-     string filter_new_lines(string word) {
+     string filter_new_lines (string word) {
         return regex.replace(word, word.length, 0, " ");
     }
 
