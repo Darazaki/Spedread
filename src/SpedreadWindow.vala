@@ -4,7 +4,23 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
     Gtk.ShortcutController _shortcut_controller;
     Gtk.SpinButton _ms_per_word;
+    Gtk.SpinButton _words_at_a_time;
     Gtk.Stack _stack;
+
+    private static Regex? _regex;
+
+    public static Regex regex {
+        get {
+            if (_regex == null) {
+                try {
+                    _regex = new Regex ("\\s*(\\n+|\\r+|\\t+|\\v+|\\f+)+\\s*");
+                } catch (Error e) {
+                    stderr.printf ("Fatal Regex Error: %s\n", e.message);
+                }
+            }
+            return _regex;
+        }
+    }
 
 #if GTK_4_10
     Gtk.FontDialogButton _font_chooser;
@@ -146,13 +162,14 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
-    /** Advance the iterator to the next word and return the end of the
+    /** Advance the iterator to the next word (or group of words) and return the end of the
         "end of word" iterator for the previous word */
-    static Gtk.TextIter next_word (ref Gtk.TextIter iter) {
+    Gtk.TextIter next_word (ref Gtk.TextIter iter) {
         Gtk.TextIter end_of_word, last_iter;
 
         last_iter = iter;
-        iter.forward_word_end ();
+        var number_of_words = (int) _words_at_a_time.value;
+        iter.forward_word_ends (number_of_words);
         end_of_word = skip_trailing_characters (ref iter);
 
         if (is_number_between (last_iter, iter)) {
@@ -341,7 +358,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             _end_of_word = next_word (ref next_iter);
 
-            var word = buffer.get_text (iter, next_iter, false);
+            var word = filter_new_lines (buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             var has_next = has_next_word (next_iter);
@@ -362,6 +379,11 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** When the main menu is shown */
     void popover_shown () {
         stop_reading ();
+    }
+
+    /** Remove newlines from the text displayed in the read tab. */
+     string filter_new_lines (string word) {
+        return regex.replace(word, word.length, 0, " ");
     }
 
     /** Shows the next word if any and update the UI, returning if there's a
@@ -388,7 +410,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // A new word has been read! Update the UI to reflect that
             _end_of_word = next_word (ref next_iter);
-            var word = buffer.get_text (iter, next_iter, false);
+            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
             _read.word = word;
 
             // Add it to the history
@@ -532,6 +554,19 @@ class SpedreadWindow : Gtk.ApplicationWindow {
                        SettingsBindFlags.DEFAULT
         );
 
+        _words_at_a_time = new Gtk.SpinButton (null, 25, 0);
+        _words_at_a_time.set_increments (1, 2);
+        _words_at_a_time.set_range (1,10);
+
+        settings.bind ("words-at-a-time",
+                _words_at_a_time, "value",
+                SettingsBindFlags.DEFAULT
+        );
+
+        _words_at_a_time.value_changed.connect (() => {
+            text_changed ();
+            });
+
 #if GTK_4_10
         var font_dialog = new Gtk.FontDialog ();
         _font_chooser = new Gtk.FontDialogButton (font_dialog);
@@ -663,11 +698,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 1, 1, 1);
-        contents.attach (_font_chooser, 1, 1, 1, 1);
-        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 2, 1, 1);
-        contents.attach (use_libadwaita, 1, 2, 1, 1);
-        contents.attach (about_button, 0, 3, 2, 1);
+        contents.attach (new Gtk.Label(_ ("Words at a time")), 0, 1, 1, 1);
+        contents.attach (_words_at_a_time, 1, 1, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
+        contents.attach (_font_chooser, 1, 2, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 3, 1, 1);
+        contents.attach (use_libadwaita, 1, 3, 1, 1);
+        contents.attach (about_button, 0, 4, 2, 1);
 
         popover.show.connect (popover_shown);
 
