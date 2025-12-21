@@ -7,18 +7,17 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.SpinButton _words_at_a_time;
     Gtk.Stack _stack;
 
-    private static Regex? _regex;
-
-    public static Regex regex {
+    static Regex? _space_detection_regex;
+    static Regex space_detection_regex {
         get {
-            if (_regex == null) {
+            if (_space_detection_regex == null) {
                 try {
-                    _regex = new Regex ("\\s*(\\n+|\\r+|\\t+|\\v+|\\f+)+\\s*");
-                } catch (Error e) {
-                    stderr.printf ("Fatal Regex Error: %s\n", e.message);
+                    _space_detection_regex = new Regex ("\\s*(\\n+|\\r+|\\t+|\\v+|\\f+)+\\s*");
+                } catch (RegexError e) {
+                    error ("Fatal Regex Error: %s\n", e.message);
                 }
             }
-            return _regex;
+            return _space_detection_regex;
         }
     }
 
@@ -382,8 +381,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     /** Remove newlines from the text displayed in the read tab. */
-     string filter_new_lines (string word) {
-        return regex.replace(word, word.length, 0, " ");
+    string filter_new_lines (string word) {
+        try {
+            return space_detection_regex.replace (word, word.length, 0, " ");
+        } catch (RegexError error) {
+            warning ("Regex failure with word '%s', falling back to doing nothing.", word);
+            return word;
+        }
     }
 
     /** Shows the next word if any and update the UI, returning if there's a
@@ -559,13 +563,13 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         _words_at_a_time.set_range (1,10);
 
         settings.bind ("words-at-a-time",
-                _words_at_a_time, "value",
-                SettingsBindFlags.DEFAULT
+                       _words_at_a_time, "value",
+                       SettingsBindFlags.DEFAULT
         );
 
         _words_at_a_time.value_changed.connect (() => {
             text_changed ();
-            });
+        });
 
 #if GTK_4_10
         var font_dialog = new Gtk.FontDialog ();
