@@ -23,7 +23,7 @@ class SpedreadReadTab : Gtk.Grid {
     /** The text shown on screen */
     public string word {
         get { return _word.get_text (); }
-        set { _word.set_text (value.strip ()); }
+        set { _word.set_text (normalize_whitespace (value.strip ())); }
     }
 
     /** The font used to show the current word */
@@ -141,5 +141,41 @@ class SpedreadReadTab : Gtk.Grid {
         var attribute = new Pango.AttrFontDesc (description);
 
         return attribute;
+    }
+
+    /** Replace all consecutive whitespaces by a single space */
+    static string normalize_whitespace (string word) {
+        int index;
+        unichar character;
+
+        // Find if there are whitespaces in that word
+        bool found_a_whitespace = false;
+        for (index = 0; word.get_next_char (ref index, out character);) {
+            found_a_whitespace = character.isspace ();
+            if (found_a_whitespace)
+                break;
+        }
+
+        // No extra allocations
+        if (!found_a_whitespace)
+            return word;
+
+        // Replace all single/repeated whitespaces by one single space
+        var result = new StringBuilder ();
+        for (index = 0; word.get_next_char (ref index, out character);) {
+            if (character.isspace ()) {
+                result.append_unichar (' ');
+                var end_not_reached = false;
+                do {
+                    end_not_reached = word.get_next_char (ref index, out character);
+                } while (end_not_reached && character.isspace ());
+                if (end_not_reached)
+                    result.append_unichar (character);
+            } else {
+                result.append_unichar (character);
+            }
+        }
+
+        return result.str;
     }
 }

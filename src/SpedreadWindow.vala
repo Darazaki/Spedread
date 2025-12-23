@@ -7,20 +7,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.SpinButton _words_at_a_time;
     Gtk.Stack _stack;
 
-    static Regex? _space_detection_regex;
-    static Regex space_detection_regex {
-        get {
-            if (_space_detection_regex == null) {
-                try {
-                    _space_detection_regex = new Regex ("\\s*(\\n+|\\r+|\\t+|\\v+|\\f+)+\\s*");
-                } catch (RegexError e) {
-                    error ("Fatal Regex Error: %s\n", e.message);
-                }
-            }
-            return _space_detection_regex;
-        }
-    }
-
 #if GTK_4_10
     Gtk.FontDialogButton _font_chooser;
 #else
@@ -357,7 +343,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
             _end_of_word = next_word (ref next_iter);
 
-            var word = filter_new_lines (buffer.get_text (iter, next_iter, false));
+            var word = buffer.get_text (iter, next_iter, false);
             _read.word = word;
 
             var has_next = has_next_word (next_iter);
@@ -378,16 +364,6 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** When the main menu is shown */
     void popover_shown () {
         stop_reading ();
-    }
-
-    /** Remove newlines from the text displayed in the read tab. */
-    string filter_new_lines (string word) {
-        try {
-            return space_detection_regex.replace (word, word.length, 0, " ");
-        } catch (RegexError error) {
-            warning ("Regex failure with word '%s', falling back to doing nothing.", word);
-            return word;
-        }
     }
 
     /** Shows the next word if any and update the UI, returning if there's a
@@ -414,7 +390,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         } else {
             // A new word has been read! Update the UI to reflect that
             _end_of_word = next_word (ref next_iter);
-            var word = filter_new_lines(buffer.get_text (iter, next_iter, false));
+            var word = buffer.get_text (iter, next_iter, false);
             _read.word = word;
 
             // Add it to the history
