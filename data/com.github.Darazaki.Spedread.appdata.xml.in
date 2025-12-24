@@ -42,6 +42,14 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.6.0" date="2025-12-24">
+			<description translatable="no">
+				<p>New:</p>
+				<ul>
+					<li>Add the option to show several words at a time (thanks to @Kibranoz)</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.5.1" date="2025-06-03">
 			<description translatable="no">
 				<p>New:</p>
