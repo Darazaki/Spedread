@@ -9,7 +9,7 @@
 	    <default>150</default>
 	  </key>
 	  <key name="words-at-a-time" type="u">
-	    <summary>Words at a time</summary>
+	    <summary>Words at a Time</summary>
 	    <description>
 	      Controls how many words at a time are displayed
 	    </description>

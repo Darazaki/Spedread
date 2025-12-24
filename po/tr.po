@@ -92,7 +92,7 @@ msgid "Milliseconds per Word"
 msgstr "Kelime Başına Milisaniye"
 
 #: src/SpedreadWindow.vala:681
-msgid "Words at a time"
+msgid "Words at a Time"
 msgstr ""
 
 #: src/SpedreadWindow.vala:683

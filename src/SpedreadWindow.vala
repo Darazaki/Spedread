@@ -678,7 +678,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
 
         contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label(_ ("Words at a time")), 0, 1, 1, 1);
+        contents.attach (new Gtk.Label(_ ("Words at a Time")), 0, 1, 1, 1);
         contents.attach (_words_at_a_time, 1, 1, 1, 1);
         contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
         contents.attach (_font_chooser, 1, 2, 1, 1);

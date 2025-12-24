@@ -90,8 +90,8 @@ msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
 #: src/SpedreadWindow.vala:681
-msgid "Words at a time"
-msgstr "Mots à la fois"
+msgid "Words at a Time"
+msgstr "Mots à la Fois"
 
 #: src/SpedreadWindow.vala:683
 msgid "Reading Font"
