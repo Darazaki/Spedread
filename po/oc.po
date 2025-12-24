@@ -22,7 +22,7 @@ msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "Logicial GTK de lectura rapida : legissètz coma un correire !"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:652
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:632
 msgid "Read like a speedrunner!"
 msgstr "Legissètz coma un correire naut nivèl !"
 
@@ -39,69 +39,69 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr "legir;lectura;rapid;aviat;lèu;velocitat;"
 
-#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:352
+#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:337
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Anatz a « Tèxte » e pegatz-i vòstra lectura !"
 
-#: src/SpedreadWindow.vala:306
+#: src/SpedreadWindow.vala:291
 msgid "End reached"
 msgstr "Fin atenguda"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:331
+#: src/SpedreadWindow.vala:316
 #, c-format
 msgid "%u min %u s left"
 msgstr "%u min %u s restantas"
 
-#: src/SpedreadWindow.vala:471
+#: src/SpedreadWindow.vala:451
 msgid "Text"
 msgstr "Tèxte"
 
-#: src/SpedreadWindow.vala:472
+#: src/SpedreadWindow.vala:452
 msgid "Read"
 msgstr "Legir"
 
-#: src/SpedreadWindow.vala:511
+#: src/SpedreadWindow.vala:491
 msgid "New Window (Ctrl+N)"
 msgstr "Fenèstra novèla (Ctrl+N)"
 
-#: src/SpedreadWindow.vala:541
+#: src/SpedreadWindow.vala:521
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: src/SpedreadWindow.vala:621
+#: src/SpedreadWindow.vala:601
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Se prendrà en compte aquesta modificacion un còp Spedread reaviat"
 
-#: src/SpedreadWindow.vala:625
+#: src/SpedreadWindow.vala:605
 msgid "_OK"
 msgstr ""
 
-#: src/SpedreadWindow.vala:646
+#: src/SpedreadWindow.vala:626
 msgid "About Spedread..."
 msgstr "A prepaus de Spedread..."
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:651
+#: src/SpedreadWindow.vala:631
 msgid "translator-credits"
 msgstr "Quentin PAGÈS"
 
-#: src/SpedreadWindow.vala:699
+#: src/SpedreadWindow.vala:679
 msgid "Milliseconds per Word"
 msgstr "Millisegondas per mot"
 
-#: src/SpedreadWindow.vala:701
+#: src/SpedreadWindow.vala:681
 msgid "Words at a time"
 msgstr ""
 
-#: src/SpedreadWindow.vala:703
+#: src/SpedreadWindow.vala:683
 msgid "Reading Font"
 msgstr "Polissa de lectura"
 
-#: src/SpedreadWindow.vala:705
+#: src/SpedreadWindow.vala:685
 msgid "Use libadwaita"
 msgstr "Utilizar libadwaita"
 
-#: src/SpedreadWindow.vala:746
+#: src/SpedreadWindow.vala:726
 msgid "Paste (Ctrl+P)"
 msgstr "Pegar (Ctrl+P)"
