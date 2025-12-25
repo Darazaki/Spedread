@@ -11,7 +11,7 @@
 	  <key name="words-at-a-time" type="u">
 	    <summary>Words at a Time</summary>
 	    <description>
-	      Controls how many words at a time are displayed
+	      Controls how many words are displayed at a time
 	    </description>
 	    <default>1</default>
 	  </key>
