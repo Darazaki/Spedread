@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.github.Darazaki.Spedread\n"
 "Report-Msgid-Bugs-To: Naqua Darazaki <n.darazaki@gmail.com>\n"
 "POT-Creation-Date: 2025-12-07 22:55-0500\n"
-"PO-Revision-Date: 2023-06-06 12:01+0200\n"
+"PO-Revision-Date: 2025-12-25 11:27+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:17
 msgid "GTK speed reading software: Read like a speedrunner!"
@@ -75,7 +75,7 @@ msgstr "Herstart Spedread om de wijziging toe te passen"
 
 #: src/SpedreadWindow.vala:605
 msgid "_OK"
-msgstr ""
+msgstr "_Oké"
 
 #: src/SpedreadWindow.vala:626
 msgid "About Spedread..."
@@ -92,7 +92,7 @@ msgstr "Aantal milliseconden per woord"
 
 #: src/SpedreadWindow.vala:681
 msgid "Words at a Time"
-msgstr ""
+msgstr "Aantal woorden tegelijk"
 
 #: src/SpedreadWindow.vala:683
 msgid "Reading Font"
