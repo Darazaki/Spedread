@@ -92,7 +92,7 @@ msgstr "Milissegundos por palavra"
 
 #: src/SpedreadWindow.vala:681
 msgid "Words at a Time"
-msgstr ""
+msgstr "Palavras de cada vez"
 
 #: src/SpedreadWindow.vala:683
 msgid "Reading Font"
