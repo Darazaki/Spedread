@@ -20,13 +20,19 @@ This program will show one word at a time rapidly to allow focusing on the gener
 
 This application is available as a Flatpak on Flathub:
 
-**[Download on Flathub](https://flathub.org/apps/details/com.github.Darazaki.Spedread)**
+<a href='https://flathub.org/apps/details/com.github.Darazaki.Spedread'>
+    <img width='180' alt='Download on Flathub'
+    src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
+</a>
 
 ### Snap
 
 A snap version is available on Canonical's Snap Store:
 
-**[Get it from the Snap Store](https://snapcraft.io/spedread)**
+<a href='https://snapcraft.io/spedread'>
+    <img width='180' alt='Get it from the Snap Store'
+    src='https://snapcraft.io/static/images/badges/en/snap-store-black.svg'/>
+</a>
 
 *This snap was originally created and maintained by @sameersharma2006*
 
