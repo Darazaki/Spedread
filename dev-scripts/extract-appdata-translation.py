@@ -19,9 +19,9 @@ def normalize_whitespace(text: str) -> str:
     return text
 
 
-def extract_summary_description(xml_file_path: str) -> list[tuple[str, str, int]]:
+def extract_translatable_nodes(xml_file_path: str) -> list[tuple[str, str, int]]:
     """
-    Extract text from 'summary' or 'description' nodes in an XML file,
+    Extract text from translatable nodes in an XML file,
     including all text from their subnodes.
 
     Args:
@@ -31,6 +31,8 @@ def extract_summary_description(xml_file_path: str) -> list[tuple[str, str, int]
         List of tuples containing (node_name, text_content, line_number)
     """
     from xml.parsers import expat
+
+    TRANSLATABLE_TAG_NAMES = {"summary", "caption", "description"}
 
     class LineNumberingParser:
         """Parser that tracks line numbers for elements."""
@@ -65,8 +67,7 @@ def extract_summary_description(xml_file_path: str) -> list[tuple[str, str, int]
             direct_text = "".join(elem_info["texts"])
             direct_text = normalize_whitespace(direct_text)
 
-            # Check if this is a summary or description element
-            if name in ("summary", "description"):
+            if name in TRANSLATABLE_TAG_NAMES:
                 # Check if translatable attribute is set to "no"
                 if elem_info["attribs"].get("translatable") == "no":
                     if self.element_stack:
@@ -88,7 +89,7 @@ def extract_summary_description(xml_file_path: str) -> list[tuple[str, str, int]
                 for text, line_num, _ in elem_info["children_data"]:
                     self.results.append((name, text, line_num))
             else:
-                # For non-summary/description elements, combine text and pass up
+                # For non-translatable elements, combine text and pass up
                 combined_text = direct_text
                 if elem_info["children_data"]:
                     # Combine direct text with children text
@@ -133,7 +134,7 @@ def write_po_file(
     Args:
         input_filename: Original XML filename (used in comments)
         output_filename: Output .po file path
-        extracted_data: List of tuples (node_name, text, line_number) from extract_summary_description
+        extracted_data: List of tuples (node_name, text, line_number) from extract_translatable_nodes
     """
 
     def wrap_comment_line(
@@ -229,6 +230,6 @@ def write_po_file(
 
 
 if __name__ == "__main__":
-    APPDATA_FILENAME = "./data/com.github.Darazaki.Spedread.appdata.xml.in"
-    results = extract_summary_description(APPDATA_FILENAME)
+    APPDATA_FILENAME = "data/com.github.Darazaki.Spedread.appdata.xml.in"
+    results = extract_translatable_nodes(APPDATA_FILENAME)
     write_po_file(APPDATA_FILENAME, "appdata.po", results)
