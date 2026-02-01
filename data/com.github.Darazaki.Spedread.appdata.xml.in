@@ -6,7 +6,10 @@
 	<project_license>GPL-3.0-or-later</project_license>
 	<launchable type="desktop-id">com.github.Darazaki.Spedread.desktop</launchable>
 	<name translatable="no">Spedread</name>
-	<developer_name translatable="no">Naqua Darazaki</developer_name>
+	<developer id="com.github.darazaki">
+		<name translatable="no">Naqua Darazaki</name>
+		<url>https://github.com/Darazaki</url>
+	</developer>
 	<translation type="gettext">spedread</translation>
 	<update_contact>n.darazaki@gmail.com</update_contact>
 	<recommends>
@@ -14,6 +17,10 @@
 		<control>keyboard</control>
 		<control>touch</control>
 	</recommends>
+	<branding>
+		<color type="primary" scheme_preference="light">#cdade8</color>
+		<color type="primary" scheme_preference="dark">#3ea4ba</color>
+	</branding>
 	<summary>GTK speed reading software: Read like a speedrunner!</summary>
 	<description>
 		<p>Read like a speedrunner!</p>
@@ -25,13 +32,13 @@
 	</description>
 	<screenshots>
 		<screenshot type="default">
-			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/data/screenshots/0.png</image>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v@VERSION@/data/screenshots/0.png</image>
 		</screenshot>
 		<screenshot>
-			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/data/screenshots/1.png</image>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v@VERSION@/data/screenshots/1.png</image>
 		</screenshot>
 		<screenshot>
-			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v2/data/screenshots/2.png</image>
+			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v@VERSION@/data/screenshots/2.png</image>
 		</screenshot>
 	</screenshots>
 	<url type="homepage">https://github.com/Darazaki/Spedread</url>

@@ -14,8 +14,16 @@ if desktop_utils.found()
   )
 endif
 
-appstream_file = i18n.merge_file(
+config_appstream = configuration_data()
+config_appstream.set('VERSION', meson.project_version())
+pre_appstream_file = configure_file(
   input: 'com.github.Darazaki.Spedread.appdata.xml.in',
+  output: 'com.github.Darazaki.Spedread.appdata.xml.in',
+  configuration: config_appstream
+)
+
+appstream_file = i18n.merge_file(
+  input: pre_appstream_file,
   output: 'com.github.Darazaki.Spedread.appdata.xml',
   po_dir: '../po',
   install: true,
