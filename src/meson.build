@@ -25,13 +25,13 @@ gtk4_dependency = dependency('gtk4')
 gtk4_version = gtk4_dependency.version()
 
 if not get_option('force_legacy_libs')
-    if libadwaita_dependency.version().version_compare('>=1.2.0')
+    if libadwaita_version.version_compare('>=1.2.0')
         preprocessor_definitions += {
             'ADW_1_2': 'libadwaita >=1.2.0 detected, extra features enabled',
         }
     endif
 
-    if libadwaita_dependency.version().version_compare('>=1.5.0')
+    if libadwaita_version.version_compare('>=1.5.0')
         preprocessor_definitions += {
             'ADW_1_5': 'libadwaita >=1.5.0 detected, extra features enabled',
         }
