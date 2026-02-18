@@ -1,17 +1,18 @@
-public class Spedread.App {
-    Gtk.Application real_app = null;
+public abstract class Spedread.App {
+    const ApplicationFlags APP_FLAGS = ApplicationFlags.NON_UNIQUE;
 
-    public App () {
+    public static int main (string[] args) {
         AppSettings.init ();
 
+        Gtk.Application app;
         if (AppSettings.is_using_libadwaita) {
-            real_app = new Adw.Application ("com.github.Darazaki.Spedread", ApplicationFlags.NON_UNIQUE);
+            app = new Adw.Application (APP_ID, APP_FLAGS);
         } else {
-            real_app = new Gtk.Application ("com.github.Darazaki.Spedread", ApplicationFlags.NON_UNIQUE);
+            app = new Gtk.Application (APP_ID, APP_FLAGS);
         }
 
-        real_app.activate.connect (() => {
-            var main_window = new MainWindow (real_app);
+        app.activate.connect (() => {
+            var main_window = new MainWindow (app);
             main_window.present ();
         });
 
@@ -19,9 +20,7 @@ public class Spedread.App {
         Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
         Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         Intl.textdomain (GETTEXT_PACKAGE);
-    }
 
-    public static int main (string[] args) {
-        return new App ().real_app.run (args);
+        return app.run (args);
     }
 }

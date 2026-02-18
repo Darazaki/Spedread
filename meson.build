@@ -8,6 +8,8 @@ project(
     ],
 )
 
+application_id = 'com.github.Darazaki.Spedread'
+
 gnome = import('gnome')
 i18n = import('i18n')
 

@@ -1,3 +1,4 @@
 public const string GETTEXT_PACKAGE = @GETTEXT_PACKAGE@;
 public const string LOCALEDIR = @LOCALEDIR@;
 public const string VERSION = @VERSION@;
+public const string APP_ID = @APP_ID@;

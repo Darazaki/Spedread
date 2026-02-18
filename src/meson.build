@@ -66,6 +66,7 @@ config_data.set_quoted(
 )
 config_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 config_data.set_quoted('VERSION', meson.project_version())
+config_data.set_quoted('APP_ID', application_id)
 config_file = configure_file(
     input: 'AppConfig.vala.in',
     output: '@BASENAME@',
