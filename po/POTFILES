@@ -1,8 +1,9 @@
-data/com.github.Darazaki.Spedread.desktop.in
-src/SpedreadApp.vala
-src/SpedreadDictionary.vala
-src/SpedreadIterHistory.vala
-src/SpedreadReadTab.vala
-src/SpedreadSettings.vala
-src/SpedreadTextTab.vala
-src/SpedreadWindow.vala
+src/App.vala
+src/AppSettings.vala
+src/ContractionDictionary.vala
+src/IterHistory.vala
+src/MainWindow.vala
+src/ReadTab.vala
+src/SearchBar.vala
+src/TextBounds.vala
+src/TextTab.vala

@@ -1,6 +1,6 @@
-class SpedreadWindow : Gtk.ApplicationWindow {
-    SpedreadReadTab _read;
-    SpedreadTextTab _text;
+class Spedread.MainWindow : Gtk.ApplicationWindow {
+    ReadTab _read;
+    TextTab _text;
 
     Gtk.ShortcutController _shortcut_controller;
     Gtk.SpinButton _ms_per_word;
@@ -13,7 +13,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     Gtk.FontButton _font_chooser;
 #endif
 
-    SpedreadIterHistory _iter_history = SpedreadIterHistory ();
+    IterHistory _iter_history = IterHistory ();
     Gtk.TextIter _input_iter;
     Gtk.TextIter _previous_iter;
     Gtk.TextIter _end_of_word;
@@ -30,8 +30,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     delegate bool ShouldRunFunc ();
     static bool should_always_run () { return true; }
     bool is_tab_read () { return _stack.visible_child == _read; }
+    bool is_tab_text () { return _stack.visible_child == _text; }
 
-    public SpedreadWindow (Gtk.Application app) {
+    public MainWindow (Gtk.Application app) {
         Object (
             application: app,
             default_height: 400,
@@ -188,7 +189,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         }
     }
 
-    /** Check if whatever is contained between `start` and `end` looks like an
+    /** Check if whatever is contained between `bounds` looks like an
         acronym */
     static bool is_acronym_between (Gtk.TextIter start, Gtk.TextIter end) {
         var expects_alpha_next = true;
@@ -351,7 +352,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             _read.has_next_word = has_next;
             _read.has_previous_word = false;
 
-            _text.highlight_current_word (iter, _end_of_word);
+            _text.highlight_current_word (
+                TextBounds (iter, _end_of_word)
+            );
         }
 
         _input_iter = next_iter;
@@ -407,7 +410,9 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     /** Scroll to the current word and highlight it inside the "Text" tab */
     void update_text_position () {
         _text.scroll_to_position (_end_of_word);
-        _text.highlight_current_word (_previous_iter, _end_of_word);
+        _text.highlight_current_word (
+            TextBounds (_previous_iter, _end_of_word)
+        );
     }
 
     bool has_next_word (Gtk.TextIter iter) {
@@ -455,7 +460,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     void build_read_tab () {
-        _read = new SpedreadReadTab ();
+        _read = new ReadTab ();
 
         _read.start_reading.connect (start_reading);
         _read.stop_reading.connect (stop_reading);
@@ -482,7 +487,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
     }
 
     void build_text_tab () {
-        _text = new SpedreadTextTab ();
+        _text = new TextTab ();
     }
 
     Gtk.Button build_new_window_button () {
@@ -492,15 +497,15 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         };
 
         button.clicked.connect (() => {
-            new SpedreadWindow (application).present ();
+            new MainWindow (application).present ();
         });
 
         return button;
     }
 
     Gtk.MenuButton build_menu_button () {
-        var settings = SpedreadSettings.settings;
-        var is_using_libadwaita = SpedreadSettings.is_using_libadwaita;
+        var settings = AppSettings.settings;
+        var is_using_libadwaita = AppSettings.is_using_libadwaita;
 
         var contents = new Gtk.Grid () {
             column_spacing = 12,
@@ -594,7 +599,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             // Warn the user that the change will only be applied after an app
             // restart. `is_active` is there to make sure only the focused
             // window displays the warning
-            if (is_active && new_state != SpedreadSettings.is_using_libadwaita) {
+            if (is_active && new_state != AppSettings.is_using_libadwaita) {
                 popover.popdown ();
 
                 var message_string = _ (
@@ -635,7 +640,7 @@ class SpedreadWindow : Gtk.ApplicationWindow {
             };
 
 #if ADW_1_5
-            if (SpedreadSettings.is_using_libadwaita) {
+            if (AppSettings.is_using_libadwaita) {
                 Adw.show_about_dialog_from_appdata (this,
                     application.resource_base_path + "/appdata.xml", VERSION,
                     "comments", catchphrase,
@@ -760,9 +765,12 @@ class SpedreadWindow : Gtk.ApplicationWindow {
         add_new_shortcut (CTRL_SHIFT, Gdk.Key.Tab, switch_tab);
         add_new_shortcut (CTRL_SHIFT, Gdk.Key.KP_Tab, switch_tab);
 
+        // Search text
+        add_new_shortcut (CTRL, Gdk.Key.F, _text.search_bar.toggle_search_visible_focused, is_tab_text);
+
         // New window
         add_new_shortcut (CTRL, Gdk.Key.N, () => {
-            new SpedreadWindow (application).present ();
+            new MainWindow (application).present ();
         });
 
         // Previous word

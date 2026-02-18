@@ -1,4 +1,4 @@
-class SpedreadReadTab : Gtk.Grid {
+class Spedread.ReadTab : Gtk.Grid {
     /** On play button pressed */
     public signal void start_reading ();
 
@@ -73,7 +73,7 @@ class SpedreadReadTab : Gtk.Grid {
         set { _play.sensitive = value; }
     }
 
-    public SpedreadReadTab () {
+    public ReadTab () {
         Object (
             column_spacing: 12
         );

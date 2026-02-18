@@ -1,4 +1,4 @@
-struct SpedreadIterHistory {
+struct Spedread.IterHistory {
     Gtk.TextIter[] _stack;
 
     /** Last text iterator added to the history */
@@ -12,7 +12,7 @@ struct SpedreadIterHistory {
         }
     }
 
-    public SpedreadIterHistory () {
+    public IterHistory () {
         _stack = new Gtk.TextIter[] {};
     }
 

@@ -67,19 +67,22 @@ config_data.set_quoted(
 config_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 config_data.set_quoted('VERSION', meson.project_version())
 config_file = configure_file(
-    input: 'SpedreadConfig.vala.in',
+    input: 'AppConfig.vala.in',
     output: '@BASENAME@',
     configuration: config_data,
 )
 
 spedread_sources = files(
-    'SpedreadApp.vala',
-    'SpedreadDictionary.vala',
-    'SpedreadIterHistory.vala',
-    'SpedreadReadTab.vala',
-    'SpedreadSettings.vala',
-    'SpedreadTextTab.vala',
-    'SpedreadWindow.vala',
+    'App.vala',
+    'ContractionDictionary.vala',
+    'IterHistory.vala',
+    'ReadTab.vala',
+    'AppSettings.vala',
+    'TextTab.vala',
+    'MainWindow.vala',
+    'SearchBar.vala',
+    'TextBounds.vala',
+    'TextBoundsList.vala',
 )
 
 executable(

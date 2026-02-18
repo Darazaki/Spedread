@@ -1,4 +1,4 @@
-public abstract class SpedreadSettings {
+public abstract class Spedread.AppSettings {
     public static Settings settings = null;
     public static bool is_using_libadwaita;
 
