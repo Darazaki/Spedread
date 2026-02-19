@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install dependencies
       run: sudo apt-get install meson build-essential valac libadwaita-1-dev appstream-util desktop-file-utils gettext
     - name: Configure
@@ -30,7 +30,7 @@ jobs:
       options: --privileged
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: Spedread.flatpak
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: snapcore/action-build@v1
       id: build
     - name: Install built snap package
