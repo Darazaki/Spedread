@@ -32,12 +32,15 @@
 	</description>
 	<screenshots>
 		<screenshot type="default">
+			<caption>Spedread's main window with the input "Hello world!"</caption>
 			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v@VERSION@/data/screenshots/0.png</image>
 		</screenshot>
 		<screenshot>
+			<caption>When entering the read tab, the window first shows the word "Hello"</caption>
 			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v@VERSION@/data/screenshots/1.png</image>
 		</screenshot>
 		<screenshot>
+			<caption>After pressing the play button, the word "world!" is then shown</caption>
 			<image>https://raw.githubusercontent.com/Darazaki/Spedread/v@VERSION@/data/screenshots/2.png</image>
 		</screenshot>
 	</screenshots>
