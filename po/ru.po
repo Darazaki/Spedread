@@ -19,16 +19,16 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:17
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:24
 msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "Программа для скорочтения GTK: Читайте быстро!"
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:19
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/SpedreadWindow.vala:632
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:26
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:637
 msgid "Read like a speedrunner!"
 msgstr "Читайте как скоростной бегун!"
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:20
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:27
 msgid ""
 "This program will show one word at a time rapidly to allow focusing on the "
 "general idea rather than single words along with less eye movements."
@@ -37,73 +37,89 @@ msgstr ""
 "позволить сосредоточиться на общей идее, а не на отдельных словах, с меньшим "
 "количеством движений глаз."
 
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:35
+msgid "Spedread's main window with the input \"Hello world!\""
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:39
+msgid "When entering the read tab, the window first shows the word \"Hello\""
+msgstr ""
+
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:43
+msgid "After pressing the play button, the word \"world!\" is then shown"
+msgstr ""
+
 #: data/com.github.Darazaki.Spedread.desktop.in:9
 msgid "read;fast;speed;reading;"
 msgstr "читать;быстро;скорость;чтение;"
 
-#: src/SpedreadReadTab.vala:81 src/SpedreadWindow.vala:337
-msgid "Go to \"Text\" and paste your read!"
-msgstr "Перейдите в раздел \"Текст\" и вставьте читаемое!"
-
-#: src/SpedreadWindow.vala:291
+#: src/MainWindow.vala:292
 msgid "End reached"
 msgstr "Конец достигнут"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/SpedreadWindow.vala:316
+#: src/MainWindow.vala:317
 #, c-format
 msgid "%u min %u s left"
 msgstr "Осталось %u мин. %u сек."
 
-#: src/SpedreadWindow.vala:451
+#: src/MainWindow.vala:338 src/ReadTab.vala:81
+msgid "Go to \"Text\" and paste your read!"
+msgstr "Перейдите в раздел \"Текст\" и вставьте читаемое!"
+
+#: src/MainWindow.vala:456
 msgid "Text"
 msgstr "Текст"
 
-#: src/SpedreadWindow.vala:452
+#: src/MainWindow.vala:457
 msgid "Read"
 msgstr "Чтение"
 
-#: src/SpedreadWindow.vala:491
+#: src/MainWindow.vala:496
 msgid "New Window (Ctrl+N)"
 msgstr "Новое Окно (Ctrl+N)"
 
-#: src/SpedreadWindow.vala:521
+#: src/MainWindow.vala:526
 msgid "Main Menu"
 msgstr "Главное Меню"
 
-#: src/SpedreadWindow.vala:601
+#: src/MainWindow.vala:606
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Это изменение будет применено только после перезапуска Spedread"
 
-#: src/SpedreadWindow.vala:605
+#: src/MainWindow.vala:610
 msgid "_OK"
 msgstr ""
 
-#: src/SpedreadWindow.vala:626
+#: src/MainWindow.vala:631
 msgid "About Spedread..."
 msgstr "О Программе..."
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/SpedreadWindow.vala:631
+#: src/MainWindow.vala:636
 msgid "translator-credits"
 msgstr "Alex K"
 
-#: src/SpedreadWindow.vala:679
+#: src/MainWindow.vala:684
 msgid "Milliseconds per Word"
 msgstr "Миллисекунды на слово"
 
-#: src/SpedreadWindow.vala:681
+#: src/MainWindow.vala:686
 msgid "Words at a Time"
 msgstr ""
 
-#: src/SpedreadWindow.vala:683
+#: src/MainWindow.vala:688
 msgid "Reading Font"
 msgstr "Шрифт для чтения"
 
-#: src/SpedreadWindow.vala:685
+#: src/MainWindow.vala:690
 msgid "Use libadwaita"
 msgstr "Использовать libadwaita"
 
-#: src/SpedreadWindow.vala:726
+#: src/MainWindow.vala:731
 msgid "Paste (Ctrl+P)"
 msgstr "Вставить (Ctrl+P)"
+
+#: src/SearchBar.vala:25
+msgid "Find in text"
+msgstr ""

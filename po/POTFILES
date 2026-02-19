@@ -1,9 +1,10 @@
-src/App.vala
+data/com.github.Darazaki.Spedread.desktop.in
 src/AppSettings.vala
-src/ContractionDictionary.vala
+src/App.vala
 src/IterHistory.vala
 src/MainWindow.vala
 src/ReadTab.vala
 src/SearchBar.vala
+src/TextBoundsList.vala
 src/TextBounds.vala
 src/TextTab.vala
