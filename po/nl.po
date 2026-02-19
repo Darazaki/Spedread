@@ -36,15 +36,15 @@ msgstr ""
 "concentreren op de moraal en uw ogen van minder werk te voorzien."
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:35
-msgid "Spedread's main window with the input \"Hello world!\""
+msgid "First tab, where you paste what you want to read"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:39
-msgid "When entering the read tab, the window first shows the word \"Hello\""
+msgid "Second tab, where you can read your text"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:43
-msgid "After pressing the play button, the word \"world!\" is then shown"
+msgid "Press the play button to start speed reading"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.desktop.in:9
