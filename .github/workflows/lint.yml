@@ -1,0 +1,19 @@
+name: Lint
+
+on:
+  push:
+    branches: [ v2 ]
+  pull_request:
+    branches: [ v2 ]
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-slim
+
+    steps:
+    - uses: actions/checkout@v6
+    - uses: elementary/actions/vala-lint@main
+      with:
+        dir: src/
+        conf: src/vala-lint.conf

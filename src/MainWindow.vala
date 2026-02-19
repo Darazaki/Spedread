@@ -541,7 +541,7 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
 
         _words_at_a_time = new Gtk.SpinButton (null, 25, 0);
         _words_at_a_time.set_increments (1, 2);
-        _words_at_a_time.set_range (1,10);
+        _words_at_a_time.set_range (1, 10);
 
         settings.bind ("words-at-a-time",
                        _words_at_a_time, "value",
@@ -683,7 +683,7 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
 
         contents.attach (new Gtk.Label (_ ("Milliseconds per Word")), 0, 0, 1, 1);
         contents.attach (_ms_per_word, 1, 0, 1, 1);
-        contents.attach (new Gtk.Label(_ ("Words at a Time")), 0, 1, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Words at a Time")), 0, 1, 1, 1);
         contents.attach (_words_at_a_time, 1, 1, 1, 1);
         contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
         contents.attach (_font_chooser, 1, 2, 1, 1);
@@ -766,7 +766,8 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         add_new_shortcut (CTRL_SHIFT, Gdk.Key.KP_Tab, switch_tab);
 
         // Search text
-        add_new_shortcut (CTRL, Gdk.Key.F, _text.search_bar.toggle_search_visible_focused, is_tab_text);
+        add_new_shortcut (CTRL, Gdk.Key.F,
+            _text.search_bar.toggle_search_visible_focused, is_tab_text);
 
         // New window
         add_new_shortcut (CTRL, Gdk.Key.N, () => {

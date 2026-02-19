@@ -5,7 +5,10 @@ struct Spedread.IterHistory {
     public Gtk.TextIter last {
         get {
             if (_stack.length == 0) {
-                log (null, LogLevelFlags.FLAG_FATAL, "Tried to access last element of empty history");
+                log (
+                    null, LogLevelFlags.FLAG_FATAL,
+                    "Tried to access last element of empty history"
+                );
             }
 
             return _stack[_stack.length - 1];
@@ -26,7 +29,10 @@ struct Spedread.IterHistory {
     /** Remove the last iterator added to the history and return it */
     public Gtk.TextIter pop () {
         if (_stack.length == 0) {
-            log (null, LogLevelFlags.FLAG_FATAL, "Tried to remove entry from empty history");
+            log (
+                null, LogLevelFlags.FLAG_FATAL,
+                "Tried to remove entry from empty history"
+            );
         }
 
         var new_length = _stack.length - 1;

@@ -62,7 +62,7 @@ class Spedread.TextTab : Gtk.Box {
             hexpand = true,
             vexpand = true
         };
-        
+
         search_bar = new SearchBar (input, _tag_manager) {
             visible = false,
         };
