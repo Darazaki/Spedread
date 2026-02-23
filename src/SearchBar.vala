@@ -214,40 +214,22 @@ class Spedread.SearchBar : Gtk.Box {
         Gtk.TextBuffer buffer,
         string needle
     ) {
-        var buffer_text = buffer.text;
-        MatchInfo match_info;
-
-        try {
-            var regex = new Regex (
-                Regex.escape_string (needle),
-                GLib.RegexCompileFlags.CASELESS
-            );
-
-            regex.match (buffer_text, 0, out match_info);
-        } catch (RegexError err) {
-            error ("Regex ctor error: %s", err.message);
-        }
-
         var matches = new TextBoundsList ();
-        try {
-            // Iterate over every result, adding them to the list
-            for (; match_info.matches (); match_info.next ()) {
-                int start_pos, end_pos;
-                match_info.fetch_pos (0, out start_pos, out end_pos);
 
-                // Byte to character offset convertion
-                var start_char_offset = buffer_text.char_count (start_pos);
-                var end_char_offset = buffer_text.char_count (end_pos);
+        Gtk.TextIter search_cursor, match_start, match_end;
+        buffer.get_start_iter (out search_cursor);
 
-                // Get bounds of current result
-                Gtk.TextIter start, end;
-                buffer.get_iter_at_offset (out start, start_char_offset);
-                buffer.get_iter_at_offset (out end, end_char_offset);
-
-                matches.append (TextBounds (start, end));
-            }
-        } catch (RegexError err) {
-            error ("Regex search error: %s", err.message);
+        while (search_cursor.forward_search (
+            needle,
+            Gtk.TextSearchFlags.CASE_INSENSITIVE
+                | Gtk.TextSearchFlags.TEXT_ONLY
+                | Gtk.TextSearchFlags.VISIBLE_ONLY,
+            out match_start,
+            out match_end,
+            null
+        )) {
+            matches.append (TextBounds (match_start, match_end));
+            search_cursor = match_end;
         }
 
         return matches.into_array ();
