@@ -201,7 +201,7 @@ class Spedread.SearchBar : Gtk.Box {
 
     void go_to_and_select_region (TextBounds region) {
         _text.buffer.select_range (region.start, region.end);
-        _text.scroll_to_iter (region.start, 0.1, false, 0, 0);
+        _text.scroll_to_iter (region.start, 0.1, true, 0, 0.5);
     }
 
     /** Check needle for length and forbidden characters */
