@@ -131,11 +131,6 @@ class Spedread.SearchBar : Gtk.Box {
         bounds.remove_tag (_tag_manager.needle);
         bounds.remove_tag (_tag_manager.selected_needle);
 
-        if (!can_search_needle (needle)) {
-            // Nothing to search for
-            return;
-        }
-
         _matches = find_all_matches (buffer, needle);
         foreach (var match in _matches) {
             match.apply_tag (_tag_manager.needle);
@@ -214,6 +209,10 @@ class Spedread.SearchBar : Gtk.Box {
         Gtk.TextBuffer buffer,
         string needle
     ) {
+        if (!can_search_needle (needle)) {
+            return {};
+        }
+
         var matches = new TextBoundsList ();
 
         Gtk.TextIter search_cursor, match_start, match_end;
