@@ -11,7 +11,7 @@ class Spedread.SearchBar : Gtk.Box {
         Object (
             orientation: Gtk.Orientation.HORIZONTAL,
             hexpand: true,
-            spacing: 12
+            spacing: App.MARGIN
         );
 
         _tag_manager = tag_manager;
@@ -119,6 +119,7 @@ class Spedread.SearchBar : Gtk.Box {
         _counter_label.set_text ("%d/%d".printf (index, _matches.length));
     }
 
+    /** Look for new search results and highlight them */
     void search_or_buffer_changed (string needle) {
         if (!visible) {
             // Don't try to search while the search bar isn't visible
@@ -203,10 +204,12 @@ class Spedread.SearchBar : Gtk.Box {
         _text.scroll_to_iter (region.start, 0.1, false, 0, 0);
     }
 
+    /** Check needle for length and forbidden characters */
     static bool can_search_needle (string needle) {
         return needle.length >= 2 && needle.index_of_char ('\n') == -1;
     }
 
+    /** Return all bounds of occurences of `needle` found within `buffer` */
     static TextBounds[] find_all_matches (
         Gtk.TextBuffer buffer,
         string needle
@@ -227,13 +230,16 @@ class Spedread.SearchBar : Gtk.Box {
 
         var matches = new TextBoundsList ();
         try {
+            // Iterate over every result, adding them to the list
             for (; match_info.matches (); match_info.next ()) {
                 int start_pos, end_pos;
                 match_info.fetch_pos (0, out start_pos, out end_pos);
 
+                // Byte to character offset convertion
                 var start_char_offset = buffer_text.char_count (start_pos);
                 var end_char_offset = buffer_text.char_count (end_pos);
 
+                // Get bounds of current result
                 Gtk.TextIter start, end;
                 buffer.get_iter_at_offset (out start, start_char_offset);
                 buffer.get_iter_at_offset (out end, end_char_offset);

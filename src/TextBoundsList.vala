@@ -9,6 +9,7 @@ public class Spedread.TextBoundsList {
         _true_length = 0;
     }
 
+    /** Push item to the end of the list */
     public void append (TextBounds item)
         requires (_items != null)
     {
@@ -19,6 +20,8 @@ public class Spedread.TextBoundsList {
         _items[_true_length++] = item;
     }
 
+    /** Convert list into a native array, invalidating itself and shriking
+        memory usage */
     public TextBounds[] into_array ()
         requires (_items != null)
         ensures (_items == null)

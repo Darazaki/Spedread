@@ -75,7 +75,7 @@ class Spedread.ReadTab : Gtk.Grid {
 
     public ReadTab () {
         Object (
-            column_spacing: 12
+            column_spacing: App.MARGIN
         );
 
         _word = new Gtk.Label (_ ("Go to \"Text\" and paste your read!")) {
@@ -85,7 +85,7 @@ class Spedread.ReadTab : Gtk.Grid {
 
         _time_left = new Gtk.Label (null) {
             valign = Gtk.Align.END,
-            margin_bottom = 12,
+            margin_bottom = App.MARGIN,
         };
 
         var overlay = new Gtk.Overlay ();
@@ -128,9 +128,7 @@ class Spedread.ReadTab : Gtk.Grid {
     void play_toggled () {
         // The play button has just been toggled so its state is the opposite
         // of what's expected
-        var start_playing = _play.active;
-
-        if (start_playing)
+        if (_play.active)
             start_reading ();
         else
             stop_reading ();

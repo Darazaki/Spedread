@@ -1,5 +1,5 @@
 public abstract class Spedread.AppSettings {
-    public static Settings settings = null;
+    public static Settings settings;
     public static bool is_using_libadwaita;
 
     /** Get the application's global settings */
