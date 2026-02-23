@@ -52,6 +52,18 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.7.0" date="2026-02-23">
+			<description translatable="no">
+				<p>New:</p>
+				<ul>
+					<li>You can now search the text in the "Text" tab using Ctrl+F</li>
+				</ul>
+				<p>Fix:</p>
+				<ul>
+					<li>Update application metadata to fit newest Flathub guidelines</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.6.2" date="2025-12-28">
 			<description translatable="no">
 				<p>New:</p>
