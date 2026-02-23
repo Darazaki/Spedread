@@ -21,7 +21,7 @@ msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:26
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:637
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:645
 msgid "Read like a speedrunner!"
 msgstr ""
 
@@ -47,70 +47,70 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr ""
 
-#: src/MainWindow.vala:292
+#: src/MainWindow.vala:296
 msgid "End reached"
 msgstr ""
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/MainWindow.vala:317
+#: src/MainWindow.vala:321
 #, c-format
 msgid "%u min %u s left"
 msgstr ""
 
-#: src/MainWindow.vala:338 src/ReadTab.vala:81
+#: src/MainWindow.vala:342 src/ReadTab.vala:81
 msgid "Go to \"Text\" and paste your read!"
 msgstr ""
 
-#: src/MainWindow.vala:456
+#: src/MainWindow.vala:460
 msgid "Text"
 msgstr ""
 
-#: src/MainWindow.vala:457
+#: src/MainWindow.vala:461
 msgid "Read"
 msgstr ""
 
-#: src/MainWindow.vala:496
+#: src/MainWindow.vala:500
 msgid "New Window (Ctrl+N)"
 msgstr ""
 
-#: src/MainWindow.vala:526
+#: src/MainWindow.vala:530
 msgid "Main Menu"
 msgstr ""
 
-#: src/MainWindow.vala:606
+#: src/MainWindow.vala:614
 msgid "This change will only be applied after you restart Spedread"
 msgstr ""
 
-#: src/MainWindow.vala:610
+#: src/MainWindow.vala:618
 msgid "_OK"
 msgstr ""
 
-#: src/MainWindow.vala:631
+#: src/MainWindow.vala:639
 msgid "About Spedread..."
 msgstr ""
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/MainWindow.vala:636
+#: src/MainWindow.vala:644
 msgid "translator-credits"
 msgstr ""
 
-#: src/MainWindow.vala:684
+#: src/MainWindow.vala:693
 msgid "Milliseconds per Word"
 msgstr ""
 
-#: src/MainWindow.vala:686
+#: src/MainWindow.vala:695
 msgid "Words at a Time"
 msgstr ""
 
-#: src/MainWindow.vala:688
+#: src/MainWindow.vala:697
 msgid "Reading Font"
 msgstr ""
 
-#: src/MainWindow.vala:690
+#: src/MainWindow.vala:699
 msgid "Use libadwaita"
 msgstr ""
 
-#: src/MainWindow.vala:731
+#: src/MainWindow.vala:736
 msgid "Paste (Ctrl+P)"
 msgstr ""
 

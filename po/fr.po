@@ -21,7 +21,7 @@ msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "Logiciel de lecture rapide GTK : Lisez comme un speedrunner !"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:26
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:637
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:645
 msgid "Read like a speedrunner!"
 msgstr "Lisez comme un speedrunner !"
 
@@ -36,84 +36,84 @@ msgstr ""
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:35
 msgid "First tab, where you paste what you want to read"
-msgstr ""
+msgstr "Premier onglet, là où mettre votre texte à lire"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:39
 msgid "Second tab, where you can read your text"
-msgstr ""
+msgstr "Second onglet, là où lire votre texte"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:43
 msgid "Press the play button to start speed reading"
-msgstr ""
+msgstr "Appuyez sur play pour commencer à lire"
 
 #: data/com.github.Darazaki.Spedread.desktop.in:9
 msgid "read;fast;speed;reading;"
 msgstr "lire;vite;rapide;lecture;"
 
-#: src/MainWindow.vala:292
+#: src/MainWindow.vala:296
 msgid "End reached"
 msgstr "Terminé"
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/MainWindow.vala:317
+#: src/MainWindow.vala:321
 #, c-format
 msgid "%u min %u s left"
 msgstr "Temps restant : %u min %u s"
 
-#: src/MainWindow.vala:338 src/ReadTab.vala:81
+#: src/MainWindow.vala:342 src/ReadTab.vala:81
 msgid "Go to \"Text\" and paste your read!"
 msgstr "Allez dans \"Texte\" et collez votre lecture !"
 
-#: src/MainWindow.vala:456
+#: src/MainWindow.vala:460
 msgid "Text"
 msgstr "Texte"
 
-#: src/MainWindow.vala:457
+#: src/MainWindow.vala:461
 msgid "Read"
 msgstr "Lecture"
 
-#: src/MainWindow.vala:496
+#: src/MainWindow.vala:500
 msgid "New Window (Ctrl+N)"
 msgstr "Nouvelle Fenêtre (Ctrl+N)"
 
-#: src/MainWindow.vala:526
+#: src/MainWindow.vala:530
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: src/MainWindow.vala:606
+#: src/MainWindow.vala:614
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Ce changement ne sera appliqué qu'après avoir relancé Spedread"
 
-#: src/MainWindow.vala:610
+#: src/MainWindow.vala:618
 msgid "_OK"
 msgstr "_OK"
 
-#: src/MainWindow.vala:631
+#: src/MainWindow.vala:639
 msgid "About Spedread..."
 msgstr "À propos de Spedread..."
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/MainWindow.vala:636
+#: src/MainWindow.vala:644
 msgid "translator-credits"
 msgstr "Naqua Darazaki <n.darazaki@gmail.com>"
 
-#: src/MainWindow.vala:684
+#: src/MainWindow.vala:693
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
-#: src/MainWindow.vala:686
+#: src/MainWindow.vala:695
 msgid "Words at a Time"
 msgstr "Mots à la Fois"
 
-#: src/MainWindow.vala:688
+#: src/MainWindow.vala:697
 msgid "Reading Font"
 msgstr "Police de Lecture"
 
-#: src/MainWindow.vala:690
+#: src/MainWindow.vala:699
 msgid "Use libadwaita"
 msgstr "Utiliser libadwaita"
 
-#: src/MainWindow.vala:731
+#: src/MainWindow.vala:736
 msgid "Paste (Ctrl+P)"
 msgstr "Coller (Ctrl+P)"
 
