@@ -1,54 +1,44 @@
 struct Spedread.IterHistory {
     Gtk.TextIter[] _stack;
+    int _true_size;
 
-    /** Last text iterator added to the history */
-    public Gtk.TextIter last {
-        get {
-            if (_stack.length == 0) {
-                log (
-                    null, LogLevelFlags.FLAG_FATAL,
-                    "Tried to access last element of empty history"
-                );
-            }
-
-            return _stack[_stack.length - 1];
-        }
-    }
+    const int BASE_CAPACITY = 32;
 
     public IterHistory () {
-        _stack = new Gtk.TextIter[] {};
+        _stack = new Gtk.TextIter[BASE_CAPACITY];
+        _true_size = 0;
     }
 
     /** Add an iterator to the end of the history */
     public void push (Gtk.TextIter iter) {
-        var length = _stack.length;
-        _stack.resize (length + 1);
-        _stack[length] = iter;
+        if (unlikely (_stack.length == _true_size)) {
+            _stack.resize (int.max (_stack.length * 2, 4));
+        }
+
+        _stack[_true_size++] = iter;
     }
 
     /** Remove the last iterator added to the history and return it */
-    public Gtk.TextIter pop () {
-        if (_stack.length == 0) {
-            log (
-                null, LogLevelFlags.FLAG_FATAL,
-                "Tried to remove entry from empty history"
-            );
-        }
+    public Gtk.TextIter pop ()
+        requires (!is_empty ())
+    {
+        return _stack[--_true_size];
+    }
 
-        var new_length = _stack.length - 1;
-        var removed = _stack[new_length];
-        _stack.resize (new_length);
-
-        return removed;
+    /** Get last text iterator added to the history */
+    public Gtk.TextIter last ()
+        requires (!is_empty ())
+    {
+        return _stack[_true_size - 1];
     }
 
     /** Delete the whole history, making it empty and family-friendly */
     public void erase () {
-        _stack.resize (0);
+        _true_size = 0;
     }
 
     /** Is the history empty? */
     public bool is_empty () {
-        return _stack.length == 0;
+        return _true_size == 0;
     }
 }
