@@ -1,19 +1,20 @@
-# <img height="32" src="./data/icons/normal.svg" /> Spedread
+# Spedread
 
-GTK speed reading software: Read like a speedrunner!
+**GTK speed reading software: Read like a speedrunner!**
 
-This program will show one word at a time rapidly to allow focusing on the general idea rather than single words
-along with less eye movements
+This program will show one word at a time rapidly to allow focusing on the general idea rather than single words along with less eye movements.
 
-## Features
+---
 
-![screenshot](./demo.gif)
+## ✨ Features
 
-- International
-- Play, pause, next word & previous word
-- Control the speed at which words are shown
+- **International** — Multi-language support
+- **Intuitive controls** — Play, pause, next word & previous word
+- **Adjustable speed** — Control the speed at which words are shown
 
-## Install
+---
+
+## 📦 Install
 
 ### Flatpak
 
@@ -33,20 +34,24 @@ A snap version is available on Canonical's Snap Store:
     src='https://snapcraft.io/static/images/badges/en/snap-store-black.svg'/>
 </a>
 
-This snap was originally created and maintained by @sameersharma2006
+*This snap was originally created and maintained by @sameersharma2006*
 
 ### AUR
 
 Two packages are available on the AUR:
-[spedread](https://aur.archlinux.org/packages/spedread)
-and [spedread-git](https://aur.archlinux.org/packages/spedread-git)
 
-These packages are maintained by both Igor Dyatlov and me so if you have any
-issues with the packaging please report them directly onto the AUR
+- [spedread](https://aur.archlinux.org/packages/spedread)
+- [spedread-git](https://aur.archlinux.org/packages/spedread-git)
 
-### Build from source (native install)
+*These packages are maintained by both Igor Dyatlov and me so if you have any issues with the packaging please report them directly onto the AUR.*
 
-This will require a valid Vala compiler and the GTK4 and libadwaita development files:
+---
+
+## 🔧 Build from Source
+
+### Native Install
+
+**Requirements:** Valid Vala compiler and the GTK4 and libadwaita development files
 
 ```sh
 git clone https://github.com/Darazaki/Spedread spedread
@@ -57,13 +62,11 @@ ninja
 sudo ninja install
 ```
 
-You can also run `sudo ninja uninstall` from the `build/` directory to
-uninstall Spedread after having installed it
+**To uninstall:** Run `sudo ninja uninstall` from the `build/` directory
 
-### Build from source (Flatpak install)
+### Flatpak Install
 
-This will require having the `flatpak-builder` & `appstream-compose` commands
-installed along with version 49 of the `org.gnome.Sdk` Flatpak package:
+**Requirements:** `flatpak-builder` & `appstream-compose` commands installed along with version 49 of the `org.gnome.Sdk` Flatpak package
 
 ```sh
 git clone https://github.com/Darazaki/Spedread spedread
@@ -71,5 +74,8 @@ cd spedread
 dev-scripts/build.sh --install
 ```
 
-Spedread will then be installed as a Flatpak application and can be managed as
-such
+Spedread will then be installed as a Flatpak application and can be managed as such.
+
+---
+
+**Repository:** [github.com/Darazaki/Spedread](https://github.com/Darazaki/Spedread)
