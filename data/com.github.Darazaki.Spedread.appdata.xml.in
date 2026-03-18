@@ -46,6 +46,7 @@
 	</screenshots>
 	<url type="homepage">https://github.com/Darazaki/Spedread</url>
 	<url type="bugtracker">https://github.com/Darazaki/Spedread/issues</url>
+	<url type="vcs-browser">https://github.com/Darazaki/Spedread</url>
 	<content_rating type="oars-1.1" />
 	<custom>
 		<value key="Purism::form_factor">workstation</value>
