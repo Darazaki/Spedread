@@ -9,7 +9,7 @@ on:
 jobs:
   build-n-test:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-slim
 
     steps:
     - uses: actions/checkout@v6
@@ -38,7 +38,7 @@ jobs:
 
   snap-build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
     - uses: actions/checkout@v6
