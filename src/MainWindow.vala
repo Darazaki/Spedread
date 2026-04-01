@@ -339,7 +339,7 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         if (iter.is_end ()) {
             // No text, disable everything and prompt the user to add something
             // to read
-            _read.word = _ ("Go to \"Text\" and paste your read!");
+            _read.reset_text ();
             _read.allow_playing = false;
             _read.has_next_word = false;
             _read.has_previous_word = false;
@@ -596,12 +596,27 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
             SettingsBindFlags.GET
         );
 
+        var pivot_enabled = new Gtk.Switch () {
+            halign = Gtk.Align.END,
+        };
+        settings.bind (
+            "pivot-enabled",
+            pivot_enabled, "active",
+            SettingsBindFlags.DEFAULT
+        );
+        pivot_enabled.state_set.connect (new_state => {
+            _read.user_enabled_pivot = new_state;
+            return false;
+        });
+        _read.user_enabled_pivot = settings.get_boolean ("pivot-enabled");
+
         var use_libadwaita = new Gtk.Switch () {
             halign = Gtk.Align.END,
         };
-        settings.bind ("use-libadwaita",
-                       use_libadwaita, "active",
-                       SettingsBindFlags.DEFAULT
+        settings.bind (
+            "use-libadwaita",
+            use_libadwaita, "active",
+            SettingsBindFlags.DEFAULT
         );
         use_libadwaita.state_set.connect (new_state => {
             // Warn the user that the change will only be applied after an app
@@ -696,9 +711,11 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         contents.attach (_words_at_a_time, 1, 1, 1, 1);
         contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
         contents.attach (_font_chooser, 1, 2, 1, 1);
-        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 3, 1, 1);
-        contents.attach (use_libadwaita, 1, 3, 1, 1);
-        contents.attach (about_button, 0, 4, 2, 1);
+        contents.attach (new Gtk.Label (_ ("Pivot Enabled")), 0, 3, 1, 1);
+        contents.attach (pivot_enabled, 1, 3, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 4, 1, 1);
+        contents.attach (use_libadwaita, 1, 4, 1, 1);
+        contents.attach (about_button, 0, 5, 2, 1);
 
         popover.show.connect (popover_shown);
 

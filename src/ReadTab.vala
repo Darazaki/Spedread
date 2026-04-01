@@ -14,25 +14,36 @@ class Spedread.ReadTab : Gtk.Grid {
     const string PLAY_ICON = "media-playback-start-symbolic";
     const string STOP_ICON = "media-playback-stop-symbolic";
 
+    static string _default_text = _ ("Go to \"Text\" and paste your read!");
+
     Gtk.ToggleButton _play;
     Gtk.Button _previous;
     Gtk.Button _next;
     Gtk.Label _time_left;
-    Gtk.Label _word;
+    PivotLabel _word;
+    bool _is_default_text_shown = true;
+    bool _user_enabled_pivot = false;
 
     /** The text shown on screen */
     public string word {
-        get { return _word.get_text (); }
-        set { _word.set_text (normalize_whitespace (value.strip ())); }
+        get { return _word.text; }
+        set {
+            _word.text = normalize_whitespace (value.strip ());
+            _word.pivot_enabled = _user_enabled_pivot;
+            _is_default_text_shown = false;
+        }
     }
 
     /** The font used to show the current word */
     public string font {
+        set { _word.font_desc = Pango.FontDescription.from_string (value); }
+    }
+
+    /** Whether the user enabled the pivot in the app settings or not */
+    public bool user_enabled_pivot {
         set {
-            var font_attribute = build_font_attribute (value);
-            var attributes = _word.attributes;
-            attributes.change (font_attribute.copy ());
-            _word.attributes = attributes;
+            _user_enabled_pivot = value;
+            _word.pivot_enabled = value && !_is_default_text_shown;
         }
     }
 
@@ -78,9 +89,11 @@ class Spedread.ReadTab : Gtk.Grid {
             column_spacing: App.MARGIN
         );
 
-        _word = new Gtk.Label (_ ("Go to \"Text\" and paste your read!")) {
+        _word = new PivotLabel () {
             vexpand = true,
-            attributes = new Pango.AttrList ()
+            hexpand = true,
+            text = _default_text,
+            pivot_enabled = false,
         };
 
         _time_left = new Gtk.Label (null) {
@@ -125,6 +138,13 @@ class Spedread.ReadTab : Gtk.Grid {
         _play.grab_focus ();
     }
 
+    /** Show default text */
+    public void reset_text () {
+        _word.text = _default_text;
+        _word.pivot_enabled = false;
+        _is_default_text_shown = true;
+    }
+
     void play_toggled () {
         // The play button has just been toggled so its state is the opposite
         // of what's expected
@@ -132,13 +152,6 @@ class Spedread.ReadTab : Gtk.Grid {
             start_reading ();
         else
             stop_reading ();
-    }
-
-    static Pango.AttrFontDesc build_font_attribute (string font) {
-        var description = Pango.FontDescription.from_string (font);
-        var attribute = new Pango.AttrFontDesc (description);
-
-        return attribute;
     }
 
     /** Replace all consecutive whitespaces by a single space */

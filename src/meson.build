@@ -1,3 +1,5 @@
+cc = meson.get_compiler('c')
+
 add_project_arguments(
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     language: 'c',
@@ -55,6 +57,7 @@ endforeach
 spedread_dependencies = [
     dependency('glib-2.0'),
     dependency('gobject-2.0'),
+    cc.find_library('m'),
     gtk4_dependency,
     libadwaita_dependency,
 ]
@@ -83,6 +86,7 @@ spedread_sources = files(
     'SearchBar.vala',
     'TextBounds.vala',
     'TextBoundsList.vala',
+    'PivotLabel.vala',
 )
 
 executable(

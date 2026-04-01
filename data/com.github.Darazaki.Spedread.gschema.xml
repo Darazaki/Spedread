@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="spedread">
 	<schema id="com.github.Darazaki.Spedread" path="/com/github/Darazaki/Spedread/">
-	  <key name="milliseconds-per-word" type="u">
-	    <summary>Milliseconds Per Word</summary>
-	    <description>
-	      Controls the speed at which words are read in milliseconds per word
-	    </description>
-	    <default>150</default>
-	  </key>
-	  <key name="words-at-a-time" type="u">
-	    <summary>Words at a Time</summary>
-	    <description>
-	      Controls how many words are displayed at a time
-	    </description>
-	    <default>1</default>
-	  </key>
-	  <key name="reading-font" type="s">
-	    <summary>Font used while reading</summary>
-	    <description>
-	      Controls the font used to show the words inside the "Read" tab
-	    </description>
-	    <default>"Bold 20"</default>
-	  </key>
-	  <key name="use-libadwaita" type="b">
-	    <summary>Use libadwaita</summary>
-	    <description>
-			Use libadwaita for theming the application
-	    </description>
-	    <default>true</default>
-	  </key>
+		<key name="milliseconds-per-word" type="u">
+			<summary>Milliseconds Per Word</summary>
+			<description>
+				Controls the speed at which words are read in milliseconds per word
+			</description>
+			<default>150</default>
+		</key>
+		<key name="words-at-a-time" type="u">
+			<summary>Words at a Time</summary>
+			<description>
+				Controls how many words are displayed at a time
+			</description>
+			<default>1</default>
+		</key>
+		<key name="reading-font" type="s">
+			<summary>Font used while reading</summary>
+			<description>
+				Controls the font used to show the words inside the "Read" tab
+			</description>
+			<default>"Bold 20"</default>
+		</key>
+		<key name="pivot-enabled" type="b">
+			<summary>Whether pivots are used</summary>
+			<description>
+				Whether pivots are used to help with eye movements
+			</description>
+			<default>false</default>
+		</key>
+		<key name="use-libadwaita" type="b">
+			<summary>Use libadwaita</summary>
+			<description>
+				Use libadwaita for theming the application
+			</description>
+			<default>true</default>
+		</key>
 	</schema>
 </schemalist>
