@@ -21,7 +21,7 @@ msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr "Logiciel de lecture rapide GTK : Lisez comme un speedrunner !"
 
 #: data/com.github.Darazaki.Spedread.appdata.xml.in:26
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:645
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:660
 msgid "Read like a speedrunner!"
 msgstr "Lisez comme un speedrunner !"
 
@@ -60,10 +60,6 @@ msgstr "Terminé"
 msgid "%u min %u s left"
 msgstr "Temps restant : %u min %u s"
 
-#: src/MainWindow.vala:342 src/ReadTab.vala:81
-msgid "Go to \"Text\" and paste your read!"
-msgstr "Allez dans \"Texte\" et collez votre lecture !"
-
 #: src/MainWindow.vala:460
 msgid "Text"
 msgstr "Texte"
@@ -80,42 +76,50 @@ msgstr "Nouvelle Fenêtre (Ctrl+N)"
 msgid "Main Menu"
 msgstr "Menu Principal"
 
-#: src/MainWindow.vala:614
+#: src/MainWindow.vala:629
 msgid "This change will only be applied after you restart Spedread"
 msgstr "Ce changement ne sera appliqué qu'après avoir relancé Spedread"
 
-#: src/MainWindow.vala:618
+#: src/MainWindow.vala:633
 msgid "_OK"
 msgstr "_OK"
 
-#: src/MainWindow.vala:639
+#: src/MainWindow.vala:654
 msgid "About Spedread..."
 msgstr "À propos de Spedread..."
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/MainWindow.vala:644
+#: src/MainWindow.vala:659
 msgid "translator-credits"
 msgstr "Naqua Darazaki <n.darazaki@gmail.com>"
 
-#: src/MainWindow.vala:693
+#: src/MainWindow.vala:708
 msgid "Milliseconds per Word"
 msgstr "Millisecondes par Mot"
 
-#: src/MainWindow.vala:695
+#: src/MainWindow.vala:710
 msgid "Words at a Time"
 msgstr "Mots à la Fois"
 
-#: src/MainWindow.vala:697
+#: src/MainWindow.vala:712
 msgid "Reading Font"
 msgstr "Police de Lecture"
 
-#: src/MainWindow.vala:699
+#: src/MainWindow.vala:714
+msgid "Fixed Pivot"
+msgstr "Pivot Fixe"
+
+#: src/MainWindow.vala:716
 msgid "Use libadwaita"
 msgstr "Utiliser libadwaita"
 
-#: src/MainWindow.vala:736
+#: src/MainWindow.vala:753
 msgid "Paste (Ctrl+P)"
 msgstr "Coller (Ctrl+P)"
+
+#: src/ReadTab.vala:17
+msgid "Go to \"Text\" and paste your read!"
+msgstr "Allez dans \"Texte\" et collez votre lecture !"
 
 #: src/SearchBar.vala:25
 msgid "Find in text"

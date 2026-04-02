@@ -3,6 +3,7 @@ src/AppSettings.vala
 src/App.vala
 src/IterHistory.vala
 src/MainWindow.vala
+src/PivotLabel.vala
 src/ReadTab.vala
 src/SearchBar.vala
 src/TextBoundsList.vala
