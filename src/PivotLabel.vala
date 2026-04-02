@@ -64,10 +64,15 @@ class Spedread.PivotLabel : Gtk.Widget {
 
     /** Reassign `_layout` and force a complete redraw */
     void rebuild_layout () {
-        _layout = new Pango.Layout (get_pango_context ());
+        // For some reason, creating a new context this specific way is
+        // necessary to avoid visual artifacts with previous texts not being
+        // fully erased
+        var font_map = Pango.CairoFontMap.get_default ();
+        var context = font_map.create_context ();
+
+        _layout = new Pango.Layout (context);
         _layout.set_text (_text, -1);
         _layout.set_font_description (_font_desc);
-        _layout.set_width (-1);
         _layout.set_single_paragraph_mode (true);
 
         if (_pivot_enabled) compute_pivot ();
