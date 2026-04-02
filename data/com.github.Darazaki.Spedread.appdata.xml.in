@@ -53,6 +53,14 @@
 		<!-- TODO: <value key="Purism::form_factor">mobile</value> -->
 	</custom>
 	<releases>
+		<release version="2.8.0" date="2026-04-02">
+			<description translatable="no">
+				<p>New:</p>
+				<ul>
+					<li>Add fixed pivot option to help reduce eye movements even further</li>
+				</ul>
+			</description>
+		</release>
 		<release version="2.7.0" date="2026-02-23">
 			<description translatable="no">
 				<p>New:</p>
