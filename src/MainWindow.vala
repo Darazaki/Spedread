@@ -711,7 +711,7 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         contents.attach (_words_at_a_time, 1, 1, 1, 1);
         contents.attach (new Gtk.Label (_ ("Reading Font")), 0, 2, 1, 1);
         contents.attach (_font_chooser, 1, 2, 1, 1);
-        contents.attach (new Gtk.Label (_ ("Pivot Enabled")), 0, 3, 1, 1);
+        contents.attach (new Gtk.Label (_ ("Fixed Pivot")), 0, 3, 1, 1);
         contents.attach (pivot_enabled, 1, 3, 1, 1);
         contents.attach (new Gtk.Label (_ ("Use libadwaita")), 0, 4, 1, 1);
         contents.attach (use_libadwaita, 1, 4, 1, 1);
