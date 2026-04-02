@@ -1,6 +1,7 @@
 class Spedread.PivotLabel : Gtk.Widget {
     string _text = "";
-    Pango.FontDescription _font_desc;
+    Pango.FontDescription _font_desc =
+        Pango.FontDescription.from_string ("Sans 12");
 
     bool _previous_was_rtl = false;
 
@@ -59,7 +60,6 @@ class Spedread.PivotLabel : Gtk.Widget {
 
     public PivotLabel () {
         Object ();
-        _font_desc = Pango.FontDescription.from_string ("Sans 12");
     }
 
     /** Reassign `_layout` and force a complete redraw */
