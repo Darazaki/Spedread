@@ -1,5 +1,5 @@
 name: spedread
-base: core24
+base: core26
 adopt-info: spedread
 grade: stable
 confinement: strict
