@@ -133,6 +133,17 @@ class Spedread.ReadTab : Gtk.Grid {
         attach (_next, 2, 1, 1, 1);
     }
 
+    var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.VERTICAL);
+    scroll_controller.scroll.connect ((_, dy) => {
+        if (dy > 0)
+            next_word ();
+        else if (dy < 0)
+            previous_word ();
+        return true;
+    });
+    add_controller (scroll_controller);
+}
+
     /** Focus the play button so that the space key plays/pauses */
     public void focus_play_button () {
         _play.grab_focus ();
