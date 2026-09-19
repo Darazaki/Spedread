@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -34,7 +34,7 @@ jobs:
       options: --privileged
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: Spedread.flatpak
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - uses: snapcore/action-build@v1
       id: build
     - name: Install built snap package
