@@ -1,5 +1,5 @@
 name: spedread
-base: core24
+base: core26
 adopt-info: spedread
 grade: stable
 confinement: strict
@@ -8,6 +8,7 @@ platforms:
   amd64:
   armhf:
   arm64:
+  riscv64:
 
 slots:
   spedread:
@@ -19,6 +20,7 @@ apps:
   spedread:
     command: usr/bin/spedread
     extensions: [gnome]
+    plugs: [gsettings]
     common-id: com.github.Darazaki.Spedread
     desktop: usr/share/applications/com.github.Darazaki.Spedread.desktop
 
