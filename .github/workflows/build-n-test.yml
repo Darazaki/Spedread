@@ -46,13 +46,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v7
-    - uses: snapcore/action-build@v1
-      id: build
+    - name: Set up LXD and Snapcraft
+      run: |
+        snap list lxd >/dev/null 2>&1 || sudo snap install lxd
+        sudo lxd init --auto
+        sudo usermod -aG lxd "$USER"
+        sudo iptables -P FORWARD ACCEPT
+        sudo snap install snapcraft --classic
+    - name: Build snap
+      run: sg lxd -c 'snapcraft pack --use-lxd --build-for=amd64'
     - name: Install built snap package
-      run: sudo snap install --dangerous ${{ steps.build.outputs.snap }}
+      run: sudo snap install --dangerous ./*.snap
     - name: Verify that the installed snap package runs
       run: spedread --help
     - uses: actions/upload-artifact@v4
       with:
         name: Spedread-x86_64.snap
-        path: ${{ steps.build.outputs.snap }}
+        path: ./*.snap
