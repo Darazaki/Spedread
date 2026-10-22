@@ -1,0 +1,115 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ v2-windows-experimental ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ v2 ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-x86_64:
+
+    runs-on: windows-latest
+
+    steps:
+    # Git for Windows would otherwise check files out with CRLF line endings,
+    # which breaks the bash build script
+    - name: Disable CRLF conversion
+      shell: pwsh
+      run: git config --global core.autocrlf false
+
+    - uses: actions/checkout@v7
+
+    - name: Set up MSYS2 (UCRT64)
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: UCRT64
+        update: true
+        install: zip
+        pacboy: >-
+          cc:p
+          meson:p
+          ninja:p
+          pkgconf:p
+          python:p
+          vala:p
+          glib2:p
+          gtk4:p
+          libadwaita:p
+          gdk-pixbuf2:p
+          librsvg:p
+          gettext-tools:p
+          libxml2:p
+          adwaita-icon-theme:p
+          hicolor-icon-theme:p
+
+    - name: Build and package
+      shell: msys2 {0}
+      run: bash dev-scripts/build-windows.sh
+
+    - name: Smoke test the ZIP
+      shell: pwsh
+      run: |
+        $zip = (Get-ChildItem dist -Filter *.zip | Select-Object -First 1).FullName
+        $dest = Join-Path $env:RUNNER_TEMP 'smoke'
+        Expand-Archive -Path $zip -DestinationPath $dest
+        $root = (Get-ChildItem $dest -Directory | Select-Object -First 1).FullName
+        $exe = Join-Path $root 'bin\spedread.exe'
+        $launcher = Join-Path $root 'Spedread.exe'
+        foreach ($f in $exe, $launcher) {
+          if (-not (Test-Path $f)) { throw "Missing $f" }
+        }
+        Write-Host "Testing $exe"
+
+        $env:PATH = "$env:SystemRoot\System32;$env:SystemRoot"
+        $env:GSK_RENDERER = 'cairo'
+
+        # `--help` must start (all DLLs and the GSettings schema are found) and exit successfully
+        $log = Join-Path $env:RUNNER_TEMP 'spedread-help.log'
+        $p = Start-Process -FilePath $exe -ArgumentList '--help' -PassThru `
+              -RedirectStandardError $log
+        if (-not $p.WaitForExit(10000)) {
+          $p.Kill()
+          throw '--help did not exit within 10 seconds'
+        }
+        if (Test-Path $log) { Get-Content $log }
+        if ($p.ExitCode -ne 0) {
+          throw "--help exited with code $($p.ExitCode)"
+        }
+
+        # The GUI must stay alive for a few seconds after startup
+        $log = Join-Path $env:RUNNER_TEMP 'spedread-run.log'
+        $p = Start-Process -FilePath $exe -PassThru -RedirectStandardError $log
+        Start-Sleep -Seconds 10
+        if (Test-Path $log) { Get-Content $log }
+        if ($p.HasExited) {
+          throw "Spedread exited right after startup with code $($p.ExitCode)"
+        }
+        $p.Kill()
+        Write-Host 'Spedread started successfully'
+
+        # The root launcher must start bin\spedread.exe and exit by itself
+        $l = Start-Process -FilePath $launcher -PassThru
+        if (-not $l.WaitForExit(10000)) {
+          $l.Kill()
+          throw 'The launcher did not exit within 10 seconds'
+        }
+        if ($l.ExitCode -ne 0) { throw "The launcher exited with code $($l.ExitCode)" }
+        Start-Sleep -Seconds 10
+        $app = Get-Process -Name spedread -ErrorAction SilentlyContinue |
+               Where-Object { $_.Path -eq $exe }
+        if (-not $app) { throw 'The launcher did not leave Spedread running' }
+        $app | Stop-Process -Force
+        Write-Host 'Launcher started Spedread successfully'
+
+    - name: Upload ZIP
+      uses: actions/upload-artifact@v7
+      with:
+        path: dist/*.zip
+        archive: false
+        if-no-files-found: error

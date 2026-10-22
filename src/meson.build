@@ -96,5 +96,6 @@ executable(
     gresource_target,
     dependencies: spedread_dependencies,
     vala_args: ['--target-glib=2.50'],
+    win_subsystem: 'windows',
     install: true,
 )
