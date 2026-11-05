@@ -46,6 +46,12 @@ if not get_option('force_legacy_libs')
     endif
 endif
 
+if host_machine.system() == 'windows'
+    preprocessor_definitions += {
+        'WINDOWS': 'windows build detected',
+    }
+endif
+
 foreach definition, msg : preprocessor_definitions
     message(msg)
     add_project_arguments(
@@ -96,5 +102,6 @@ executable(
     gresource_target,
     dependencies: spedread_dependencies,
     vala_args: ['--target-glib=2.50'],
+    win_subsystem: 'windows',
     install: true,
 )

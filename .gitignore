@@ -1,2 +1,4 @@
 /build
+/build-windows
+/dist
 /.flatpak-builder

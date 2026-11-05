@@ -44,6 +44,25 @@ and [spedread-git](https://aur.archlinux.org/packages/spedread-git)
 These packages are maintained by both Igor Dyatlov and me so if you have any
 issues with the packaging please report them directly onto the AUR
 
+### Windows (experimental)
+
+Experimental Windows builds are produced automatically and attached to each
+GitHub release as `Spedread-<version>-windows-x86_64.zip`. Download the ZIP,
+extract it anywhere and run `Spedread.exe`. Those should be compatible with
+Windows 10 (or Windows Server 2016) and up
+
+Download those [here](https://github.com/Darazaki/Spedread/releases/latest)
+
+To build the Windows package yourself, run the following from the repository
+root in an [MSYS2](https://www.msys2.org) UCRT64 shell:
+
+```sh
+dev-scripts/build-windows.sh
+```
+
+The resulting ZIP is written to `dist/`. The script needs the packages listed
+at the top of `dev-scripts/build-windows.sh`
+
 ### Build from source (native install)
 
 This will require a valid Vala compiler and the GTK4 and libadwaita development files:
