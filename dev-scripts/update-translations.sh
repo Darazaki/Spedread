@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+cd "$(dirname "$0")/.."
 
 appid=com.github.Darazaki.Spedread
 
@@ -35,3 +36,6 @@ do
 done
 
 sed -E 's/POT-Creation-Date: [0-9]{4}(-[0-9]{2}){2} [0-9]{2}:[0-9]{2}\+[0-9]{4}/'"POT-Creation-Date: $(date "+%Y-%m-%d %H:%M%z")"'/g' -i po/_base.pot po/*.po
+
+# Update translation report for "README.md"
+dev-scripts/generate-translation-progress-svg.sh

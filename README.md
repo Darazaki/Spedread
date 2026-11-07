@@ -92,3 +92,9 @@ dev-scripts/build.sh --install
 
 Spedread will then be installed as a Flatpak application and can be managed as
 such
+
+## UI Translations
+
+![translations](./data/translation-progress.svg)
+
+To contribute new translations, please read [CONTRIBUTING.md](./CONTRIBUTING.md)

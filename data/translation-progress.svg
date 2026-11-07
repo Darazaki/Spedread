@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="413" viewBox="0 0 760 413">
+<style>text{font-family:Arial,sans-serif;fill:#f2f5f3}.muted{fill:#b6bfb8;font-size:12px}.muted.big{font-size:16px}</style>
+<rect width="100%" height="100%" rx="5" fill="#0d1117" stroke="#353d37" stroke-with="1"/>
+<text x="32" y="42" font-size="22" font-weight="bold">UI translation progress per language</text>
+<text x="32" y="64" class="muted big">with "translated/total" messages</text>
+<line x1="90" y1="80" x2="90" y2="368" stroke="#353d37"/>
+<text x="90" y="393" text-anchor="middle" class="muted">0%</text>
+<line x1="235" y1="80" x2="235" y2="368" stroke="#353d37"/>
+<text x="235" y="393" text-anchor="middle" class="muted">25%</text>
+<line x1="380" y1="80" x2="380" y2="368" stroke="#353d37"/>
+<text x="380" y="393" text-anchor="middle" class="muted">50%</text>
+<line x1="525" y1="80" x2="525" y2="368" stroke="#353d37"/>
+<text x="525" y="393" text-anchor="middle" class="muted">75%</text>
+<line x1="670" y1="80" x2="670" y2="368" stroke="#353d37"/>
+<text x="670" y="393" text-anchor="middle" class="muted">100%</text>
+<text x="32" y="102" font-size="14">cs</text>
+<rect x="90" y="90" width="301" height="16" rx="5" fill="#0fbf3e"/>
+<text x="399" y="102" font-size="13">13/25</text>
+<text x="32" y="134" font-size="14">de</text>
+<rect x="90" y="122" width="301" height="16" rx="5" fill="#0fbf3e"/>
+<text x="399" y="134" font-size="13">13/25</text>
+<text x="32" y="166" font-size="14">fr</text>
+<rect x="90" y="154" width="580" height="16" rx="5" fill="#c7a60b"/>
+<text x="678" y="166" font-size="13">25/25</text>
+<text x="32" y="198" font-size="14">it</text>
+<rect x="90" y="186" width="440" height="16" rx="5" fill="#0fbf3e"/>
+<text x="538" y="198" font-size="13">19/25</text>
+<text x="32" y="230" font-size="14">nl</text>
+<rect x="90" y="218" width="464" height="16" rx="5" fill="#0fbf3e"/>
+<text x="562" y="230" font-size="13">20/25</text>
+<text x="32" y="262" font-size="14">oc</text>
+<rect x="90" y="250" width="417" height="16" rx="5" fill="#0fbf3e"/>
+<text x="515" y="262" font-size="13">18/25</text>
+<text x="32" y="294" font-size="14">pt_BR</text>
+<rect x="90" y="282" width="464" height="16" rx="5" fill="#0fbf3e"/>
+<text x="562" y="294" font-size="13">20/25</text>
+<text x="32" y="326" font-size="14">ru</text>
+<rect x="90" y="314" width="417" height="16" rx="5" fill="#0fbf3e"/>
+<text x="515" y="326" font-size="13">18/25</text>
+<text x="32" y="358" font-size="14">tr</text>
+<rect x="90" y="346" width="417" height="16" rx="5" fill="#0fbf3e"/>
+<text x="515" y="358" font-size="13">18/25</text>
+</svg>

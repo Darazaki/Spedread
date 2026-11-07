@@ -16,30 +16,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:24
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:27
 msgid "GTK speed reading software: Read like a speedrunner!"
 msgstr ""
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:26
-#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:660
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:29
+#: data/com.github.Darazaki.Spedread.desktop.in:3 src/MainWindow.vala:528
 msgid "Read like a speedrunner!"
 msgstr ""
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:27
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:30
 msgid ""
 "This program will show one word at a time rapidly to allow focusing on the "
 "general idea rather than single words along with less eye movements."
 msgstr ""
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:35
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:38
 msgid "First tab, where you paste what you want to read"
 msgstr ""
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:39
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:42
 msgid "Second tab, where you can read your text"
 msgstr ""
 
-#: data/com.github.Darazaki.Spedread.appdata.xml.in:43
+#: data/com.github.Darazaki.Spedread.appdata.xml.in:46
 msgid "Press the play button to start speed reading"
 msgstr ""
 
@@ -47,70 +47,70 @@ msgstr ""
 msgid "read;fast;speed;reading;"
 msgstr ""
 
-#: src/MainWindow.vala:296
+#: src/MainWindow.vala:188
 msgid "End reached"
 msgstr ""
 
 #. TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
-#: src/MainWindow.vala:321
+#: src/MainWindow.vala:205
 #, c-format
 msgid "%u min %u s left"
 msgstr ""
 
-#: src/MainWindow.vala:460
+#: src/MainWindow.vala:329
 msgid "Text"
 msgstr ""
 
-#: src/MainWindow.vala:461
+#: src/MainWindow.vala:330
 msgid "Read"
 msgstr ""
 
-#: src/MainWindow.vala:500
+#: src/MainWindow.vala:368
 msgid "New Window (Ctrl+N)"
 msgstr ""
 
-#: src/MainWindow.vala:530
+#: src/MainWindow.vala:398
 msgid "Main Menu"
 msgstr ""
 
-#: src/MainWindow.vala:629
+#: src/MainWindow.vala:497
 msgid "This change will only be applied after you restart Spedread"
 msgstr ""
 
-#: src/MainWindow.vala:633
+#: src/MainWindow.vala:501
 msgid "_OK"
 msgstr ""
 
-#: src/MainWindow.vala:654
+#: src/MainWindow.vala:522
 msgid "About Spedread..."
 msgstr ""
 
 #. TR: "Name <email@domain.com>", "Name https://website.example" or "Name"
-#: src/MainWindow.vala:659
+#: src/MainWindow.vala:527
 msgid "translator-credits"
 msgstr ""
 
-#: src/MainWindow.vala:708
+#: src/MainWindow.vala:576
 msgid "Milliseconds per Word"
 msgstr ""
 
-#: src/MainWindow.vala:710
+#: src/MainWindow.vala:578
 msgid "Words at a Time"
 msgstr ""
 
-#: src/MainWindow.vala:712
+#: src/MainWindow.vala:580
 msgid "Reading Font"
 msgstr ""
 
-#: src/MainWindow.vala:714
+#: src/MainWindow.vala:582
 msgid "Fixed Pivot"
 msgstr ""
 
-#: src/MainWindow.vala:716
+#: src/MainWindow.vala:584
 msgid "Use libadwaita"
 msgstr ""
 
-#: src/MainWindow.vala:753
+#: src/MainWindow.vala:621
 msgid "Paste (Ctrl+P)"
 msgstr ""
 
