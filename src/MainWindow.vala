@@ -13,15 +13,9 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
     Gtk.FontButton _font_chooser;
 #endif
 
-    IterHistory _iter_history = IterHistory ();
-    Gtk.TextIter _input_iter;
-    Gtk.TextIter _previous_iter;
-    Gtk.TextIter _end_of_word;
+    WordIndex _word_index = new WordIndex ();
+    int _current_word = -1;
     uint _timeout_id = 0;
-
-    /** Type of the `is_*_between` methods, used by `next_word_using` for word
-        detection */
-    delegate bool IsThingBetween (Gtk.TextIter start, Gtk.TextIter end);
 
     /** The type of lambdas that are passed to the `add_new_shortcut` method */
     delegate void ShortcutFunc ();
@@ -43,10 +37,7 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         _stack = build_main_stack ();
         _stack.notify["visible-child"].connect (view_switched);
 
-        _text.input.buffer.get_start_iter (out _input_iter);
         _text.input.buffer.changed.connect (text_changed);
-        _previous_iter = _input_iter;
-        _end_of_word = _input_iter;
 
         var switcher = new Gtk.StackSwitcher () {
             stack = _stack,
@@ -114,152 +105,52 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    /** Skip whitespaces and punctuations then return the end of the
-        "end of word" iterator */
-    static Gtk.TextIter skip_trailing_characters (ref Gtk.TextIter iter) {
-        var end_of_word = iter;
-
-        for ( ;; ) {
-            unichar current_char = iter.get_char ();
-
-            if (current_char == (unichar) '\n') {
-                break;
-            } else if (current_char.ispunct ()) {
-                iter.forward_char ();
-                end_of_word = iter;
-            } else if (current_char.isspace ()) {
-                iter.forward_char ();
-            } else {
-                break;
-            }
+    /** Build the word index if needed. Return false when there is no text. */
+    bool ensure_word_index () {
+        if (!_word_index.is_valid) {
+            _word_index.rebuild (
+                _text.input.buffer,
+                (int) _words_at_a_time.value
+            );
         }
 
-        return end_of_word;
+        return !_word_index.is_empty;
     }
 
-    void skip_whitespaces (ref Gtk.TextIter iter) {
-        for ( ;; ) {
-            unichar current_char = iter.get_char ();
-
-            if (current_char.isspace ())
-                iter.forward_char ();
-            else
-                break;
-        }
-    }
-
-    /** Advance the iterator to the next word (or group of words) and return the end of the
-        "end of word" iterator for the previous word */
-    Gtk.TextIter next_word (ref Gtk.TextIter iter) {
-        Gtk.TextIter end_of_word, last_iter;
-
-        last_iter = iter;
-        var number_of_words = (int) _words_at_a_time.value;
-        iter.forward_word_ends (number_of_words);
-        end_of_word = skip_trailing_characters (ref iter);
-
-        if (is_number_between (last_iter, iter)) {
-            next_word_using (is_number_between, ref iter, last_iter, ref end_of_word);
-        } else if (is_acronym_between (last_iter, iter)) {
-            next_word_using (is_acronym_between, ref iter, last_iter, ref end_of_word);
+    /** Reset the reading position to the start and show the first word */
+    void refresh_read_tab () {
+        if (!ensure_word_index ()) {
+            _current_word = -1;
+            _read.reset_text ();
+            _read.allow_playing = false;
+            _read.has_next_word = false;
+            _read.has_previous_word = false;
+            update_time_left ();
+            return;
         }
 
-        return end_of_word;
+        _current_word = 0;
+        show_word (_current_word);
+        _read.allow_playing = _word_index.length > 1;
+        update_word_navigation ();
+        update_time_left ();
     }
 
-    /** Advance the iterator to the next word using a specific function to
-        detect where the word stops */
-    static void next_word_using (IsThingBetween is_thing_between,
-        ref Gtk.TextIter iter,
-        Gtk.TextIter last_iter,
-        ref Gtk.TextIter end_of_word) {
-        var initial_iter = last_iter;
-        for ( ;; ) {
-            last_iter = iter;
-            iter.forward_word_end ();
+    /** Show the word at `index` in the "Read" tab */
+    void show_word (int index) {
+        var buffer = _text.input.buffer;
+        Gtk.TextIter start, end;
 
-            if (!is_thing_between (initial_iter, iter)) {
-                iter = last_iter;
-                end_of_word = skip_trailing_characters (ref iter);
-                break;
-            } else if (iter.equal (last_iter)) {
-                end_of_word = skip_trailing_characters (ref iter);
-                break;
-            }
-        }
+        buffer.get_iter_at_offset (out start, _word_index.start (index));
+        buffer.get_iter_at_offset (out end, _word_index.end (index));
+        _read.word = buffer.get_text (start, end, false);
     }
 
-    /** Check if whatever is contained between `bounds` looks like an
-        acronym */
-    static bool is_acronym_between (Gtk.TextIter start, Gtk.TextIter end) {
-        var expects_alpha_next = true;
-
-        for (
-            var c = start.get_char ();
-            !start.equal (end);
-            start.forward_char (), c = start.get_char ()
-        ) {
-            if (expects_alpha_next && c.isalpha ()) {
-                expects_alpha_next = false;
-            } else if (!expects_alpha_next && c == '.') {
-                expects_alpha_next = true;
-            } else {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /** Check if whatever is contained between `start` and `end` looks like a
-        number */
-    static bool is_number_between (Gtk.TextIter start, Gtk.TextIter end) {
-        var separator_found = false;
-        var found_digit = false;
-
-        for (
-            var c = start.get_char ();
-            !start.equal (end);
-            start.forward_char (), c = start.get_char ()
-        ) {
-            if (c.isdigit ()) {
-                found_digit = true;
-                separator_found = false;
-            } else if (c.isspace () || c == '.' || c == ',') {
-                // Separator found!
-
-                if (separator_found) {
-                    // 2 separators in a row => not a number
-                    return false;
-                } else {
-                    separator_found = true;
-                }
-            } else {
-                // Character not valid in a number
-                return false;
-            }
-        }
-
-        return found_digit;
-    }
-
-    /** Go to the previous word and show it */
-    void previous_word_and_tick () {
-        _input_iter = _iter_history.pop ();
-        if (!_iter_history.is_empty ()) {
-            _previous_iter = _iter_history.last ();
-        } else {
-            _text.input.buffer.get_start_iter (out _previous_iter);
-        }
-
-        tick ();
-
-        // Remove the extra iterator added by `tick`
-        _iter_history.pop ();
-    }
-
-    bool has_previous_word (Gtk.TextIter iter) {
-        return !_iter_history.is_empty ();
+    /** Update the "next"/"previous" button states */
+    void update_word_navigation () {
+        _read.has_next_word = _word_index.is_valid
+            && _current_word + 1 < _word_index.length;
+        _read.has_previous_word = _word_index.is_valid && _current_word > 0;
     }
 
     void view_switched () {
@@ -272,41 +163,34 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
             _text.input.grab_focus ();
         } else {
             // "Read" view: focus on the play/pause button
+            if (!_word_index.is_valid)
+                refresh_read_tab ();
+            else
+                update_time_left ();
+
             _read.focus_play_button ();
-            update_time_left ();
         }
     }
 
     /** Update the "Read" view's time left label */
     void update_time_left () {
-        var iter = _input_iter;
-        skip_whitespaces (ref iter);
+        if (!_word_index.is_valid)
+            return;
 
-        if (iter.is_end ()) {
-            // Get the iter indicating the start of the first word
-            Gtk.TextIter start_iter;
-            _text.input.buffer.get_start_iter (out start_iter);
-            skip_whitespaces (ref start_iter);
-
-            // If the first word is also the end (=> text is empty)
-            // then don't show the "End reached" message
-            if (start_iter.equal (iter)) {
-                _read.time_left = "";
-            } else {
-                _read.time_left = _ ("End reached");
-            }
-
+        if (_word_index.is_empty) {
+            _read.time_left = "";
             return;
         }
 
-        uint word_count;
-        for (word_count = 0; !iter.is_end (); word_count++) {
-            next_word (ref iter);
-            skip_whitespaces (ref iter);
+        int remaining_words = _word_index.length - (_current_word + 1);
+
+        if (remaining_words <= 0) {
+            _read.time_left = _ ("End reached");
+            return;
         }
 
-        var ms_per_word = (uint) _ms_per_word.value;
-        var time_left_in_ms = ms_per_word * word_count;
+        var ms_per_word = (ulong) _ms_per_word.value;
+        var time_left_in_ms = ms_per_word * (ulong) remaining_words;
         var time_left_in_s = time_left_in_ms / 1000;
 
         // Always round up
@@ -314,8 +198,8 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
             time_left_in_s++;
         }
 
-        var seconds_left = time_left_in_s % 60;
-        var minutes_left = time_left_in_s / 60;
+        var seconds_left = (uint) (time_left_in_s % 60);
+        var minutes_left = (uint) (time_left_in_s / 60);
 
         // TR: If plural is an issue, you can translate it as "Time left: %u min %u s"
         _read.time_left = _ ("%u min %u s left").printf (
@@ -326,45 +210,17 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
 
     /** Reset the reading position to the start and show the first word if any */
     void text_changed () {
-        var buffer = _text.input.buffer;
-        Gtk.TextIter iter;
+        _word_index.invalidate ();
+        _current_word = -1;
+        _read.allow_playing = false;
+        _read.has_next_word = false;
+        _read.has_previous_word = false;
 
-        buffer.get_start_iter (out iter);
-        skip_whitespaces (ref iter);
-
-        // Invalidate old `Gtk.TextIter`s
-        var next_iter = _end_of_word = _previous_iter = iter;
-        _iter_history.erase ();
-
-        if (iter.is_end ()) {
-            // No text, disable everything and prompt the user to add something
-            // to read
-            _read.reset_text ();
-            _read.allow_playing = false;
-            _read.has_next_word = false;
-            _read.has_previous_word = false;
-        } else {
-            // There's text! Show the first word and highlight it
-
-            _end_of_word = next_word (ref next_iter);
-
-            var word = buffer.get_text (iter, next_iter, false);
-            _read.word = word;
-
-            var has_next = has_next_word (next_iter);
-            _read.allow_playing = has_next;
-            _read.has_next_word = has_next;
-            _read.has_previous_word = false;
-
-            _text.highlight_current_word (
-                TextBounds (iter, _end_of_word)
-            );
-        }
-
-        _input_iter = next_iter;
+        // The highlight may refer to a word that no longer exists
+        _text.clear_word_highlight ();
 
         if (_stack.visible_child == _read) {
-            update_time_left ();
+            refresh_read_tab ();
         }
     }
 
@@ -376,36 +232,33 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
     /** Shows the next word if any and update the UI, returning if there's a
         next word */
     bool tick () {
-        var buffer = _text.input.buffer;
+        if (!ensure_word_index ()) {
+            // No text: update the UI and stop trying to read more
+            _timeout_id = 0;
+            _read.is_playing = false;
+            _read.has_next_word = false;
+            _read.has_previous_word = false;
+            update_text_position ();
+            update_time_left ();
 
-        skip_whitespaces (ref _input_iter);
+            return false;
+        }
 
-        var iter = _input_iter;
-        var next_iter = iter;
-
-        if (iter.is_end ()) {
+        if (_current_word + 1 >= _word_index.length) {
             // Nothing left to read, update the UI and stop trying to read more
             _timeout_id = 0;
             _read.is_playing = false;
             _read.has_next_word = false;
-            _read.has_previous_word = has_previous_word (iter);
+            _read.has_previous_word = _current_word > 0;
             update_text_position ();
             update_time_left ();
 
-            // Stop ticking
             return false;
-        } else {
-            // A new word has been read! Update the UI to reflect that
-            _end_of_word = next_word (ref next_iter);
-            var word = buffer.get_text (iter, next_iter, false);
-            _read.word = word;
-
-            // Add it to the history
-            _iter_history.push (_previous_iter);
         }
 
-        _previous_iter = _input_iter;
-        _input_iter = next_iter;
+        // A new word has been read! Update the UI to reflect that
+        _current_word++;
+        show_word (_current_word);
 
         // Keep ticking
         return true;
@@ -413,20 +266,31 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
 
     /** Scroll to the current word and highlight it inside the "Text" tab */
     void update_text_position () {
-        _text.scroll_to_position (_end_of_word);
-        _text.highlight_current_word (
-            TextBounds (_previous_iter, _end_of_word)
-        );
-    }
+        // Only the visible Text tab needs to be scrolled and highlighted.
+        // When switching to it, `stop_reading` calls this method again.
+        if (!is_tab_text ()) {
+            return;
+        }
 
-    bool has_next_word (Gtk.TextIter iter) {
-        skip_whitespaces (ref iter);
-        return !iter.is_end ();
+        if (!_word_index.is_valid || _current_word < 0
+            || _current_word >= _word_index.length) {
+            return;
+        }
+
+        var buffer = _text.input.buffer;
+        Gtk.TextIter start, end;
+
+        buffer.get_iter_at_offset (out start, _word_index.start (_current_word));
+        buffer.get_iter_at_offset (out end, _word_index.end (_current_word));
+        _text.scroll_to_position (end);
+        _text.highlight_current_word (TextBounds (start, end));
     }
 
     void start_reading () {
-        if (_input_iter.is_end ())
-            text_changed ();
+        if (!_word_index.is_valid || _current_word < 0
+            || _current_word + 1 >= _word_index.length) {
+            refresh_read_tab ();
+        }
 
         uint ms_per_word = (uint) _ms_per_word.value;
 
@@ -438,11 +302,16 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
     void stop_reading () {
         remove_timeout ();
 
-        _read.has_next_word = has_next_word (_input_iter);
-        _read.has_previous_word = has_previous_word (_input_iter);
+        if (_word_index.is_valid) {
+            update_word_navigation ();
+            update_text_position ();
+            update_time_left ();
+        } else {
+            _read.has_next_word = false;
+            _read.has_previous_word = false;
+        }
+
         _read.is_playing = false;
-        update_text_position ();
-        update_time_left ();
     }
 
     Gtk.Stack build_main_stack () {
@@ -471,9 +340,9 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
 
         _read.previous_word.connect (() => {
             if (can_click_previous_word ()) {
-                previous_word_and_tick ();
-                _read.has_next_word = has_next_word (_input_iter);
-                _read.has_previous_word = has_previous_word (_input_iter);
+                _current_word--;
+                show_word (_current_word);
+                update_word_navigation ();
                 update_text_position ();
                 update_time_left ();
             }
@@ -482,8 +351,7 @@ class Spedread.MainWindow : Gtk.ApplicationWindow {
         _read.next_word.connect (() => {
             if (can_click_next_word ()) {
                 tick ();
-                _read.has_next_word = has_next_word (_input_iter);
-                _read.has_previous_word = has_previous_word (_input_iter);
+                update_word_navigation ();
                 update_text_position ();
                 update_time_left ();
             }

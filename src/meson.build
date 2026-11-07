@@ -84,7 +84,7 @@ config_file = configure_file(
 
 spedread_sources = files(
     'App.vala',
-    'IterHistory.vala',
+    'WordIndex.vala',
     'ReadTab.vala',
     'AppSettings.vala',
     'TextTab.vala',

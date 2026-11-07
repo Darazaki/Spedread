@@ -87,6 +87,11 @@ class Spedread.TextTab : Gtk.Box {
         bounds.apply_tag (tag);
     }
 
+    /** Remove the highlight around the word being read */
+    public void clear_word_highlight () {
+        TextBounds.of (input.buffer).remove_tag (_tag_manager.next_word);
+    }
+
     /** Scroll the text so that the `position` is as close to the center as
         possible */
     public void scroll_to_position (Gtk.TextIter position) {
